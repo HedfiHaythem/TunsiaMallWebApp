@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+    
+      <script type="text/javascript" >
+  
+
+ 
+	  
+	
+	  jQuery(document).ready(function () {
+      
+          var url = location.pathname;
+          jQuery('ul.inner-nav li  a[href="'+url+'"]').parent().addClass('active');
+          jQuery('ul.inner-nav li  a[href="'+url+'"]').parent().parent().parent().addClass('active');
+  
+          var href =jQuery('ul.inner-nav li  a[href="'+url+'"]').text();
+          jQuery('#webPageName').html(href);
+      
+    
+	  });
+    </script>
+    
+    </h:head>
+    
+
+    <h:body >
+        
+   	<aside id="sidebar">
+                        	<nav id="navigation" class="collapse">
+                            	<ul>
+                                	<li >
+                                    	<span title="General">
+                                    		<i class="icon-home"></i>
+											<span class="nav-title"></span>
+                                        </span>
+                                    	<ul class="inner-nav">
+                                    
+                                    	  	<li ><a href="#{request.contextPath}/WebFrontOffice/Page/MonProfile/Profile.jsf" ><i class="icol-user"></i> Profile Page</a></li>                                     
+                                 
+                                 
+                                        </ul>
+                                    </li>
+                              
+                               
+                               
+                                	<li>
+                                    	<span title="Elements">
+                                        	<i class="icon-cogs"></i>
+											<span class="nav-title"></span>
+                                        </span>
+                                    	<ul class="inner-nav">
+                                    	  
+                                          <li><a href="#{request.contextPath}/admin/AllData"><i class="icol-databases"></i> /Home</a></li>
+                                          <li><a href="#{request.contextPath}/admin/AllBackUp"><i class="icol-databases"></i> All Backup</a></li>
+                                 
+                                     
+                                         <li><a href="#{request.contextPath}/admin/Parametre"><i class="icol-pencil"></i>  Paramétrage systeme</a></li>
+                                        </ul>
+                                    </li>
+                                    
+                                
+                                    <li>
+                                    	<span title="Table">
+                                    		<i class="icon-table"></i>
+											<span class="nav-title"></span>
+                                        </span>
+                                    	<ul class="inner-nav">
+                                    	  <li><a href="#{request.contextPath}/admin/user"><i class="icol-vcard"></i> Gestion Utilisateur</a></li>
+                                          <li><a href="#{request.contextPath}/admin/pays"><i class="icol-pencil"></i> Pays</a></li>
+                                          <li><a href="#{request.contextPath}/admin/PaysGouvernorat"><i class="icol-pencil"></i> Gouvernorat</a></li>
+                                          <li><a href="#{request.contextPath}/admin/Delegation"><i class="icol-pencil"></i>  Delegation</a></li>
+                                        </ul>
+                                    </li>
+                         
+                                </ul>
+                            </nav>
+                        </aside>
+ 			
+ 			
+    </h:body>
+    
+
+</html>

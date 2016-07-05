@@ -1,0 +1,507 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:p="http://primefaces.org/ui"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:sec="http://www.springframework.org/security/tags">
+     
+<h:head>
+
+<title>Profile</title>
+
+<ui:include src="/WebFrontOffice/templates/UrlCssJSIMG/UrlCssJSIMGOther.xhtml" />
+
+
+</h:head>
+
+	
+
+
+
+       
+
+ 
+
+  <h:body data-show-sidebar-toggle-button="true" data-fixed-sidebar="true" >
+
+
+    <div id="wrapper">
+  	<ui:include src="/WebFrontOffice/templates/header/header.xhtml" />
+        
+        <div id="content-wrap">
+        	<div id="content">
+            	<div id="content-outer">
+                	<div id="content-inner">
+                  	
+                  	<ui:include src="/WebFrontOffice/templates/Menu/LeftMenu.xhtml" />
+
+                        <div id="sidebar-separator"></div>
+                        
+                        <section id="main" class="clearfix">
+                 	<ui:include src="/WebFrontOffice/templates/Menu/breadCrumb.xhtml" />
+                            
+                            <div id="main-content">
+	
+
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->
+		<!-- INSERT NEW userBean -->
+		<h:form id="form2" onreset="reset()">
+			<p:dialog header="Nouveau" widgetVar="ADDING" onLoad="reset()">
+				<p:panelGrid columns="2">		
+			
+					<p:panelGrid columns="2">	
+					<h:outputText value="Nom *"/>
+					<p:inputText value="#{userBean.utilisateur.nomUser}" required="true" requiredMessage="Nom obligatoire" style="width:98%"  validatorMessage=" Nom invalide format">
+						            	  <f:validateRegex pattern="^[_A-Za-z0-9\p{javaLowerCase}*\p{javaUpperCase}*\s*\-*]*$"  />
+				</p:inputText>
+					<h:outputText value="Prénom "/>
+					<p:inputText value="#{userBean.utilisateur.prenomUser}"  style="width:98%"  validatorMessage=" Prenom invalide format">
+				   <f:validateRegex pattern="^[_A-Za-z0-9\p{javaLowerCase}*\p{javaUpperCase}*\s*\-*]*$"  />
+				</p:inputText>
+						
+					<h:outputText value="email * "/>
+					<p:inputText value="#{userBean.utilisateur.email}" required="true" requiredMessage="Votre email " style="width:98%"  >
+						
+					</p:inputText>
+					
+					
+					
+							  <h:outputText value=" Telephone "/>
+					<p:inputText value="#{userBean.utilisateur.telephone}" style="width:98%"    />
+			      		
+						</p:panelGrid>
+					<p:panelGrid columns="2">				
+					<h:outputText value="Login : Email ou  Téléphone *"/>
+					<p:inputText value="#{userBean.utilisateur.authorities.email}" required="true" requiredMessage="Téléphone obligatoire" style="width:98%"  validatorMessage="Téléphone invalide">
+						
+					</p:inputText>
+						
+				<!--  	
+							<h:outputText value="Path Home "/>
+					<p:inputText value="#{userBean.utilisateur.authorities.pathHome}" required="true" requiredMessage="Path Home obligatoire" style="width:98%"  validatorMessage="Path Home invalide">
+						
+							</p:inputText>	
+			-->	
+					<h:outputText value="Mot de passe *"/>
+					<p:inputText value="#{userBean.utilisateur.authorities.password}" required="true" requiredMessage="Mot de passe obligatoire" style="width:98%"  />
+						
+					</p:panelGrid>
+					<p:panelGrid columns="2">	
+						<h:outputText value="Nature *"/>	
+						 <p:selectOneMenu  value="#{userBean.utilisateur.authorities.authority}" required="true">
+					 
+						            <f:selectItem itemLabel="Select One" itemValue="" />
+						            <f:selectItem itemLabel="ORGANISME" itemValue="ROLE_ORGANISME" />
+						            <f:selectItem itemLabel="CLINIQUE" itemValue="ROLE_CLINIQUE" />
+						        	
+						        	<f:selectItem itemLabel="MEDECIN" itemValue="ROLE_MEDECIN" />
+						        	<f:selectItem itemLabel="PATIENT" itemValue="ROLE_PATIENT" />
+						        	<f:selectItem itemLabel="ADMIN" itemValue="ROLE_ADMIN" />
+						        	<f:selectItem itemLabel="BIOLOGISTE" itemValue="ROLE_BIOLOGISTE" />
+						        	
+						        </p:selectOneMenu>
+						        
+						    
+				
+				
+			         <p:outputLabel>Pays</p:outputLabel>
+					<p:selectOneMenu value="#{userBean.utilisateur.delegation.paysGouvernorat.pays.id}"  required="true" requiredMessage="Pays Obligatoire" filter="true">
+						<f:selectItem itemLabel="select"  itemValue="" />
+						<f:selectItems value="#{BeanPays.listPayss}"
+						var="item2"
+						itemValue="#{item2.id}"
+						itemLabel="#{item2.libelle}"/>
+						
+						
+								<p:ajax update="paysGouvernorat" listener="#{oneMenu.changePaysGouvernorat(userBean.utilisateur.delegation.paysGouvernorat.pays.id)}" />
+
+					 </p:selectOneMenu>
+					
+			
+							         <p:outputLabel>Gouvernorat</p:outputLabel>
+
+				<p:selectOneMenu id="paysGouvernorat" value="#{userBean.utilisateur.delegation.paysGouvernorat.id}"  required="true" requiredMessage="Gouvernorat Obligatoire" filter="true">
+						<f:selectItem itemLabel="select"  itemValue="" />
+						<f:selectItems value="#{oneMenu.listPaysGouvernorat}"
+						var="item1"
+						itemValue="#{item1.id}"
+						itemLabel="#{item1.libelle}"/>
+	
+				
+			<p:ajax update="delegation" listener="#{oneMenu.changeDelegation(userBean.utilisateur.delegation.paysGouvernorat.id)}" />
+	
+	
+					</p:selectOneMenu>
+					
+					
+								         <p:outputLabel>Délégation</p:outputLabel>
+
+				<p:selectOneMenu id="delegation" value="#{userBean.utilisateur.delegation.id}"  required="true" requiredMessage="Gouvernorat Obligatoire" filter="true">
+						<f:selectItem itemLabel="select"  itemValue="" />
+						<f:selectItems value="#{oneMenu.listDelegations}"
+						var="item1"
+						itemValue="#{item1.id}"
+						itemLabel="#{item1.libelle}"/>
+	
+					</p:selectOneMenu>
+						</p:panelGrid> 
+						
+						<p:panelGrid columns="2">	
+							  <h:outputText value="Adresse "/>
+					<p:inputText value="#{userBean.utilisateur.adresse}" style="width:98%"    />
+					
+					 <h:outputText value="Qui Suis-je "/>
+					<p:inputText value="#{userBean.utilisateur.quiSuisJe}" style="width:98%"    />
+				
+				</p:panelGrid>
+				</p:panelGrid> 
+				<f:facet name="footer">
+					<p:commandButton value="Enregistrer" action="#{userBean.adding(userBean.utilisateur)}"
+					update=":form" oncomplete="if(!args.validationFailed){PF('ADDING').hide();}" icon="ui-icon-circle-check"/>
+							
+					<p:commandButton value="Annuler" action="#{userBean.initialization}" type="reset"
+					update=":form2" onclick="PF('ADDING').hide()" icon="ui-icon-circle-minus"/>
+				</f:facet>
+			</p:dialog>
+		</h:form>
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->
+		<!-- DATA TABLE LIST ALL USERS -->
+		<h:form id="form">
+			<p:growl id="msg" showDetail="false"/>
+			<p:dataTable id="users" var="item" value="#{userBean.users}"
+			    	paginator="true" rows="10"
+			    	style="width:90%; font-size:12px;margin-left:auto;margin-right:auto"
+			    	filteredValue="#{userBean.filter}" widgetVar="usersTable"
+			    	emptyMessage="0 Utilisateur(s)">
+			    
+			    		  <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('usersTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet>        	  		
+                    	
+		
+			    	
+			    <p:column filterBy="#{item.nomUser}" headerText="Nom">
+			    	<h:outputText value="#{item.nomUser}"/>
+			    </p:column>
+			    	
+			    <p:column filterBy="#{item.prenomUser}" headerText="Prénom">
+			    	<h:outputText value="#{item.prenomUser}"/>
+			    </p:column>
+			    
+			    <p:column filterBy="#{item.authorities.email}" headerText="Login">
+			    	<h:outputText value="#{item.authorities.email}"/>
+			    </p:column>
+			    	
+		
+			    	
+			    <p:column filterBy="#{item.telephone}" headerText="email ou Téléphone ">
+			    	<h:outputText value="#{item.telephone}"/>
+			    </p:column>
+			    	
+	
+	 		  <p:column  headerText="Nature">
+			    	<h:outputText value="#{item.authorities.authority}"/>
+			    </p:column>
+			    
+			  
+			  	 <h:outputText value="Qui Suis-je "/>
+					<p:inputText value="#{userBean.utilisateur.quiSuisJe}" style="width:98%"    />
+					
+			    	
+			    <p:column style="width:30%;">
+			    	<f:facet name="header">
+		        		<p:commandButton value="Nouveau" action="#{userBean.initialization}" update=":form2" oncomplete="PF('ADDING').show()"
+		        	icon="ui-icon-circle-plus"/>
+		        	</f:facet>
+			    	 
+		        	<p:panelGrid columns="2">		
+		        		<p:commandButton value="Editer" update=":form3" oncomplete="PF('UPDATING').show()"  icon="ui-icon-pencil" >
+		        					<f:setPropertyActionListener value="#{item}"
+										target="#{userBean.utilisateur}" />
+									
+									<f:actionListener binding="#{oneMenu.changeDelegation(userBean.utilisateur.delegation.paysGouvernorat.id)}" />		
+								
+		        		
+		        		</p:commandButton>
+		        		
+		        				            <p:commandButton  actionListener="#{userBean.removing(item)}"   update="@form"
+															        		icon="ui-icon-trash">
+															        		 <p:confirm header="Confirmation" message="Vous voulez Supprimer ?" icon="ui-icon-alert"  />  
+													    </p:commandButton>  
+															        	</p:panelGrid>
+															        	 <p:confirmDialog global="true" >  
+													        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+													        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+													    </p:confirmDialog> 
+		      
+		        </p:column>
+			</p:dataTable>
+		</h:form>
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->		
+<!-- ******************************************************************************************************************************************************************* -->
+		<!-- UPDATING userBean -->
+		<h:form id="form3" onreset="reset()">
+			<p:dialog header="Mise à Jour" widgetVar="UPDATING" onLoad="reset()">
+				<p:panelGrid columns="2">		
+			
+					<p:panelGrid columns="2">	
+					<h:outputText value="Nom *"/>
+					<p:inputText value="#{userBean.utilisateur.nomUser}" required="true" requiredMessage="Nom obligatoire" style="width:98%"  validatorMessage=" Nom invalide format">
+						            	  <f:validateRegex pattern="^[_A-Za-z0-9\p{javaLowerCase}*\p{javaUpperCase}*\s*\-*]*$"  />
+				</p:inputText>
+					<h:outputText value="Prénom "/>
+					<p:inputText value="#{userBean.utilisateur.prenomUser}"  style="width:98%"  validatorMessage=" Prenom invalide format">
+				   <f:validateRegex pattern="^[_A-Za-z0-9\p{javaLowerCase}*\p{javaUpperCase}*\s*\-*]*$"  />
+				</p:inputText>
+						
+					<h:outputText value="email "/>
+					<p:inputText value="#{userBean.utilisateur.email}" required="true" requiredMessage="Votre email " style="width:98%"  >
+						
+					</p:inputText>
+					
+					
+					
+							  <h:outputText value="Email ou Telephone "/>
+					<p:inputText value="#{userBean.utilisateur.telephone}" style="width:98%"    />
+			      		
+						</p:panelGrid>
+					<p:panelGrid columns="2">				
+					<h:outputText value="Téléphone *"/>
+					<p:inputText value="#{userBean.utilisateur.authorities.email}" required="true" requiredMessage="Téléphone obligatoire" style="width:98%"  validatorMessage="Téléphone invalide">
+						
+					</p:inputText>
+						
+						
+							<h:outputText value="Path Home "/>
+					<p:inputText value="#{userBean.utilisateur.authorities.pathHome}" required="true" requiredMessage="Path Home obligatoire" style="width:98%"  validatorMessage="Path Home invalide">
+						
+							</p:inputText>	
+			
+					<h:outputText value="Mot de passe *"/>
+					<p:inputText value="#{userBean.utilisateur.authorities.password}" required="true" requiredMessage="Mot de passe obligatoire" style="width:98%"  />
+						
+					</p:panelGrid>
+					<p:panelGrid columns="2">	
+						<h:outputText value="Nature *"/>	
+						 <p:selectOneMenu  value="#{userBean.utilisateur.authorities.authority}" required="true">
+					 
+						            <f:selectItem itemLabel="Select One" itemValue="" />
+						            <f:selectItem itemLabel="ORGANISME" itemValue="ROLE_ORGANISME" />
+						            <f:selectItem itemLabel="CLINIQUE" itemValue="ROLE_CLINIQUE" />
+						        	
+						        	<f:selectItem itemLabel="MEDECIN" itemValue="ROLE_MEDECIN" />
+						        	<f:selectItem itemLabel="PATIENT" itemValue="ROLE_PATIENT" />
+						        	<f:selectItem itemLabel="ADMIN" itemValue="ROLE_ADMIN" />
+						        	<f:selectItem itemLabel="BIOLOGISTE" itemValue="ROLE_BIOLOGISTE" />
+						        	
+						        </p:selectOneMenu>
+						        
+						</p:panelGrid>   
+			</p:panelGrid>	
+				<p:panelGrid columns="2">			  
+		     <p:panelGrid columns="2" rendered="#{not empty userBean.utilisateur.delegation}">
+		     
+		                 <p:outputLabel>Pays</p:outputLabel>
+					<p:selectOneMenu value="#{userBean.utilisateur.delegation.paysGouvernorat.pays.id}"  required="true" requiredMessage="Type Annonce Obligatoire" filter="true">
+						<f:selectItem itemLabel="select"  itemValue="" />
+						<f:selectItems value="#{BeanPays.listPayss}"
+						var="item2"
+						itemValue="#{item2.id}"
+						itemLabel="#{item2.libelle}"/>
+						
+						
+								<p:ajax update="paysGouvernorat" listener="#{oneMenu.changePaysGouvernorat(userBean.utilisateur.delegation.paysGouvernorat.pays.id)}" />
+
+					 </p:selectOneMenu>
+					
+			
+							         <p:outputLabel>Gouvernorat</p:outputLabel>
+
+				<p:selectOneMenu id="paysGouvernorat" value="#{userBean.utilisateur.delegation.paysGouvernorat.id}"  required="true" requiredMessage="Gouvernorat Obligatoire" filter="true">
+						<f:selectItem itemLabel="select"  itemValue="" />
+						<f:selectItems value="#{oneMenu.listPaysGouvernorat}"
+						var="item1"
+						itemValue="#{item1.id}"
+						itemLabel="#{item1.libelle}"/>
+	
+				
+			<p:ajax update="delegation" listener="#{oneMenu.changeDelegation(userBean.utilisateur.delegation.paysGouvernorat.id)}" />
+	
+	
+					</p:selectOneMenu>
+					
+					
+								         <p:outputLabel>Délégation</p:outputLabel>
+
+				<p:selectOneMenu id="delegation" value="#{userBean.utilisateur.delegation.id}"  required="true" requiredMessage="Gouvernorat Obligatoire" filter="true">
+						<f:selectItem itemLabel="select"  itemValue="" />
+						<f:selectItems value="#{oneMenu.listDelegations}"
+						var="item1"
+						itemValue="#{item1.id}"
+						itemLabel="#{item1.libelle}"/>
+	
+					</p:selectOneMenu>
+			
+				</p:panelGrid>
+				
+				
+				
+				
+				<p:panelGrid columns="2" rendered="#{! not empty userBean.utilisateur.delegation}">
+		     
+		                 <p:outputLabel>Pays</p:outputLabel>
+					<p:selectOneMenu value="#{userBean.delegation.paysGouvernorat.pays.id}"  required="true" requiredMessage="Type Annonce Obligatoire" filter="true">
+						<f:selectItem itemLabel="select"  itemValue="" />
+						<f:selectItems value="#{BeanPays.listPayss}"
+						var="item2"
+						itemValue="#{item2.id}"
+						itemLabel="#{item2.libelle}"/>
+						
+						
+								<p:ajax update="paysGouvernorat2" listener="#{oneMenu.changePaysGouvernorat(userBean.delegation.paysGouvernorat.pays.id)}" />
+
+					 </p:selectOneMenu>
+					
+			
+							         <p:outputLabel>Gouvernorat</p:outputLabel>
+
+				<p:selectOneMenu id="paysGouvernorat2" value="#{userBean.delegation.paysGouvernorat.id}"  required="true" requiredMessage="Gouvernorat Obligatoire" filter="true">
+						<f:selectItem itemLabel="select"  itemValue="" />
+						<f:selectItems value="#{oneMenu.listPaysGouvernorat}"
+						var="item1"
+						itemValue="#{item1.id}"
+						itemLabel="#{item1.libelle}"/>
+	
+				
+			<p:ajax update="delegation3" listener="#{oneMenu.changeDelegation(userBean.delegation.paysGouvernorat.id)}" />
+	
+	
+					</p:selectOneMenu>
+					
+					
+								         <p:outputLabel>Délégation</p:outputLabel>
+
+				<p:selectOneMenu id="delegation3" value="#{userBean.delegation.id}"  required="true" requiredMessage="Gouvernorat Obligatoire" filter="true">
+						<f:selectItem itemLabel="select"  itemValue="" />
+						<f:selectItems value="#{oneMenu.listDelegations}"
+						var="item11"
+						itemValue="#{item11.id}"
+						itemLabel="#{item11.libelle}"/>
+	
+					</p:selectOneMenu>
+			
+				</p:panelGrid>
+				
+				<p:panelGrid columns="2">
+				
+		
+							  <h:outputText value="Adresse "/>
+					<p:inputText value="#{userBean.utilisateur.adresse}" style="width:98%"    />
+					
+					
+					
+			  	 <h:outputText value="Qui Suis-je "/>
+					<p:inputText value="#{userBean.utilisateur.quiSuisJe}" style="width:98%"    />
+					
+					
+					 	 <h:outputText value="Date Fin Contrat De Maintenance "/>
+					<p:calendar value="#{userBean.utilisateur.dateFinContratDeMaintenance}"  pattern="dd-MM-yyyy" />
+					
+					
+								
+					 	 <h:outputText value="Date Realisation Visite "/>
+				    <p:calendar value="#{userBean.utilisateur.dateRealisationVisite}"  pattern="dd-MM-yyyy" />
+					
+						 <h:outputText value="Date Viste Prévu"/>
+					<p:calendar value="#{userBean.utilisateur.dateVistePrevu}"   pattern="dd-MM-yyyy"/>
+					
+					</p:panelGrid>
+				</p:panelGrid>
+				
+				
+				
+				
+				<f:facet name="footer">
+					<p:commandButton value="Enregistrer" action="#{userBean.updating(userBean.utilisateur)}"
+					update=":form" oncomplete="if(!args.validationFailed){PF('UPDATING').hide();}" icon="ui-icon-circle-check"/>
+							
+					<p:commandButton value="Annuler" action="#{userBean.initialization}" type="reset"
+					update=":form3" onclick="PF('UPDATING').hide()" icon="ui-icon-circle-minus"/>
+				</f:facet>
+			</p:dialog>
+		</h:form>
+		
+		
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+   					<ui:include src="/WebFrontOffice/templates/footer/footer.xhtml" />
+        
+    </div>
+  
+  
+  
+  
+  
+  
+ </h:body>
+
+
+
+</html>
+
+     	

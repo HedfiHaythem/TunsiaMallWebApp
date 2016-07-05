@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+     
+      
+      
+      
+      
+ 
+    <composite:interface>
+ 
+	<composite:attribute name="urlPhoto" />
+	
+	<composite:attribute name="grandTitre" />
+	<composite:attribute name="titre1" />
+	<composite:attribute name="desc1" />
+	
+	<composite:attribute name="titre2" />
+	<composite:attribute name="desc2" />
+ 	 
+ 	 
+    </composite:interface>
+
+    <composite:implementation>
+ 		
+ 		<!-- 
+				  <div data-thumb="#{request.contextPath}/#{cc.attrs.urlPhotoThumbs}" data-src="#{request.contextPath}/#{cc.attrs.urlPhoto}">
+                <div class="camera_caption fadeFromBottom">
+                    #{cc.attrs.descriptionPhoto}
+                </div>
+            </div>
+          		
+        -->   		
+          		
+          		
+                
+                  <div class="block">
+                    <div class="heading">#{cc.attrs.grandTitre}</div>
+                    	<div class="comment">
+                        	<h3> #{cc.attrs.titre1}</h3>
+                        	<blockquote>
+                                <span>
+                                       #{cc.attrs.desc1}
+                                </span>
+                            </blockquote>
+                            <span class="tip"></span>
+                        </div>
+                        <div class="comment_snap">	<h:graphicImage  value="/PublicImage/Block/#{cc.attrs.urlPhoto}"    />
+				</div>
+                        <ul class="patient">
+                        	<li><strong>#{cc.attrs.titre2}</strong></li>
+                            <li> #{cc.attrs.desc2} <span class="blue_text"></span></li>
+                        </ul>
+                </div>
+           
+               
+    </composite:implementation>
+ 
+</html>

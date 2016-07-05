@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+ 		xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:panel="http://java.sun.com/jsf/composite/component">
+    <h:head>
+    
+   
+
+	</h:head>
+
+ 	<h:body> 
+ 	
+ 	
+	
+     
+			   		
+	
+	
+		
+	
+	
+	  <div class="container">
+        <div class="page-banner">
+          <div class="banner-image"> <img src="#{request.contextPath}/PublicImage/Block/#{BlockBean.blockServiceBanner.photoBanner}" alt="" /> </div>
+          <div class="content darkgray_text">
+         
+          </div>
+        </div>
+        <!-- page banner ends -->
+    </div>
+    <div id="page-full" class="typography_page">
+      <div class="breadcrumbs">
+        <ul>
+          <li><a href="#"><img width="14" height="13" alt="" src="#{request.contextPath}/resources/images/home_icon.png" /></a></li>
+          <li><a href="#">Home</a></li>
+          <li class="last-child"><a href="#">Services</a></li>
+        </ul>
+      </div>
+      <!-- breadcrumbs end -->
+      
+      <div class="container2">
+        <h3><a href="#">#{BlockBean.blockServiceBanner.titre1}</a> </h3>
+         <h:outputText value="#{BlockBean.blockServiceBanner.desc1} " escape="false" />
+  
+       
+         <ui:repeat var="item" value="#{BlockBean.listBlockService}"> 
+        
+					          <panel:BlockService
+					          grandTitre="#{item.grandTitre}"
+					          urlPhoto="#{item.urlPhoto}"
+					          titre1="#{item.titre1}"
+					          desc1="#{item.desc1}"
+					          titre2="#{item.titre2}"
+					          desc2="#{item.desc2}"
+					          type="#{item.type}"
+					          date1="#{item.date1}"
+					          date2="#{item.date2}"
+					          emplacement="#{item.emplacement}"
+					          heure="#{item.heure}"
+					           />
+		           
+					           
+					           
+					    </ui:repeat> 
+       
+       
+       
+      </div>
+  
+
+     </div>
+      
+
+
+
+        
+   </h:body>   
+     </html>

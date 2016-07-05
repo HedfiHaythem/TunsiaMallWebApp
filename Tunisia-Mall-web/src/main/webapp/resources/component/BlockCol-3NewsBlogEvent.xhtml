@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+     
+      
+      
+      
+      
+ 
+    <composite:interface>
+ 
+	<composite:attribute name="urlPhoto" />
+	
+	<composite:attribute name="grandTitre" />
+	
+	<composite:attribute name="titre1" />
+	<composite:attribute name="desc1" />
+	<composite:attribute name="date1" />
+		
+	<composite:attribute name="titre2" />
+	<composite:attribute name="desc2" />
+	<composite:attribute name="date2" />
+		
+	<composite:attribute name="type" />
+ 	 
+ 	 <composite:attribute name="emplacement" />
+ 	 <composite:attribute name="heure" />
+ 	 
+    </composite:interface>
+
+    <composite:implementation>
+ 		
+ 		<!-- 
+				  <div data-thumb="#{request.contextPath}/#{cc.attrs.urlPhotoThumbs}" data-src="#{request.contextPath}/#{cc.attrs.urlPhoto}">
+                <div class="camera_caption fadeFromBottom">
+                    #{cc.attrs.descriptionPhoto}
+                </div>
+            </div>
+          		
+        -->   
+		<h:panelGroup rendered="#{cc.attrs.type == 'Blog'}">  
+         
+        
+		          <div class="block" style="background: #ffa65a;color: #1A472A;border-radius: 69px;padding: 30px;">
+		                    <div class="heading">#{cc.attrs.grandTitre}</div>
+		                    <div class="blog">
+		                        <div class="image">
+		                            <a href="#">	<h:graphicImage  value="/PublicImage/Block/#{cc.attrs.urlPhoto}"  alt=""   />
+				</a>
+		                            <div class="image_hover">
+		                                <h3>#{cc.attrs.titre1}</h3>
+
+		                            </div>
+		                        </div>
+		                        <div class="post">
+		                            <div class="matter">
+		                                <h3><a href="#">#{cc.attrs.titre1}</a></h3>
+		                                <h:outputText value="#{cc.attrs.desc1} " escape="false" />
+		                            </div>
+		                        </div>
+		                        <div class="post">
+		                            <div class="matter">
+		                                <h3><a href="#">#{cc.attrs.titre2}</a></h3>
+		                                <h:outputText value="#{cc.attrs.desc2} " escape="false" />
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>		
+          		
+          		
+           </h:panelGroup> 
+           
+           
+           
+           
+           
+           <h:panelGroup rendered="#{cc.attrs.type == 'News'}">  
+      
+               <div class="block" style="background: #ff7a85;color: #1A472A;border-radius: 69px;padding: 30px;">
+                           <div class="heading">#{cc.attrs.grandTitre}</div>
+		                    <div class="blog">
+		                        <div class="image">
+		                            <a href="#"><h:graphicImage  value="/PublicImage/Block/#{cc.attrs.urlPhoto}"  alt=""   /></a>
+		                            <div class="image_hover">
+		                                <h3>#{cc.attrs.titre1}</h3>
+
+		                            </div>
+		                        </div>
+		                        <div class="post">
+		                            <div class="matter">
+		                                <h3><a href="#">#{cc.attrs.titre1}</a></h3>
+		                                <h:outputText value="#{cc.attrs.desc1} " escape="false" />
+		                            </div>
+		                        </div>
+		                        <div class="post">
+		                            <div class="matter">
+		                                <h3><a href="#">#{cc.attrs.titre2}</a></h3>
+		                                <h:outputText value="#{cc.attrs.desc2} " escape="false" />
+		                            </div>
+		                        </div>
+		                    </div>
+                </div>
+      
+           
+           </h:panelGroup> 
+           
+           
+           
+           <h:panelGroup rendered="#{cc.attrs.type == 'Event'}">  
+           
+           
+		            <div class="block" style="background:#5bb1fc;color: #1A472A;border-radius: 69px;padding: 30px;">
+		                  <div class="heading">#{cc.attrs.grandTitre}</div>
+		                    <div class="blog">
+		                        <div class="image">
+		                            <a href="#"><h:graphicImage  value="/PublicImage/Block/#{cc.attrs.urlPhoto}"  alt=""   /></a>
+		                            <div class="image_hover">
+		                                <h3>#{cc.attrs.titre1}</h3>
+
+		                            </div>
+		                        </div>
+		                        <div class="post">
+		                            <div class="matter">
+		                                <h3><a href="#">#{cc.attrs.titre1}</a></h3>
+		                                <h:outputText value="#{cc.attrs.desc1} " escape="false" />
+		                            </div>
+		                        </div>
+		                        <div class="post">
+		                            <div class="matter">
+		                                <h3><a href="#">#{cc.attrs.titre2}</a></h3>
+		                                <h:outputText value="#{cc.attrs.desc2} " escape="false" />
+		                            </div>
+		                        </div>
+		                    </div>
+	                </div>
+		                <!-- Block ends --> 
+		           
+           
+           
+            </h:panelGroup> 
+               
+    </composite:implementation>
+ 
+</html>

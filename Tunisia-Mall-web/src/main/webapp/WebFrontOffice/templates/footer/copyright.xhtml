@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+    
+   
+
+	</h:head>
+
+ 	<h:body> 
+
+
+   <div id="copyrightarea">
+            <div id="copyrighttext"> &copy; 2014 Labo Mariem Bahloule  Powred by <a href="http://www.sama-consulting.com/"  target="_blank">Sama Consulting</a>, all rights reserved. </div>
+            <div id="socialicons">
+                <ul class="social-icon">
+                <c:if test="${infoSite.infoSite.urlFcb !=null }">   
+                    <li><a href="#{infoSite.infoSite.urlFcb} "  class="facebook_link" target="_blank" ></a></li>
+                </c:if>  
+                <c:if test="${infoSite.infoSite.urlLinkedIn !=null }">     
+                    <li><a href="#{infoSite.infoSite.urlLinkedIn} " class="linkedin_link" target="_blank"></a></li>
+                </c:if>    
+                 	 <c:if test="${infoSite.infoSite.urlTwiter !=null }"> 
+                   		 <li><a href="#{infoSite.infoSite.urlTwiter} " class="twiter_link" target="_blank"></a></li>
+        			</c:if>	
+                </ul>
+            </div>
+        </div>
+
+   </h:body>   
+   
+   
+  
+     </html>

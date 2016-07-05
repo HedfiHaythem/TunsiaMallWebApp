@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:panel="http://java.sun.com/jsf/composite/component">
+    <h:head>
+    	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/normalize.css" />
+
+		<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/component.css" />
+		<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/content.css" />
+		<script src="#{request.contextPath}/resources/js/modernizr.custom.js"></script>
+   
+
+	</h:head>
+
+ 	<h:body> 
+ 	
+ 		<div class="container">
+		
+		
+		
+			<section>
+		
+				<div class="mockup-content">
+					<span></span><span></span><span></span><span></span>
+					<div class="morph-button morph-button-modal morph-button-modal-1 morph-button-fixed">
+						<button type="button">Terms &amp; Conditions</button>
+						<div class="morph-content">
+							<div>
+								<div class="content-style-text">
+									<span class="icon icon-close">Close the dialog</span>
+									<h2>Terms &amp; Conditions</h2>
+									<p>Pea horseradish azuki bean lettuce avocado asparagus okra. Kohlrabi radish okra azuki bean corn fava bean mustard tigernut juccama green bean celtuce collard greens avocado quandong <strong>fennel gumbo</strong> black-eyed pea. Grape silver beet watercress potato tigernut corn groundnut. Chickweed okra pea winter purslane coriander yarrow sweet pepper radish garlic brussels sprout groundnut summer purslane earthnut pea <strong>tomato spring onion</strong> azuki bean gourd.</p>
+									<p><input id="terms" type="checkbox" /><label for="terms">I accept the terms &amp; conditions.</label></p>
+								</div>
+							</div>
+						</div>
+					</div><!-- morph-button -->
+					<span></span>
+					<span></span>
+				</div><!-- /form-mockup -->
+			</section>
+	
+		</div><!-- /container -->
+		<script src="#{request.contextPath}/resources/js/classie.js"></script>
+		<script src="#{request.contextPath}/resources/js/uiMorphingButton_fixed.js"></script>
+		<script>
+			(function() {	
+				var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+				// trick to prevent scrolling when opening/closing button
+				function noScrollFn() {
+					window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+				}
+
+				function noScroll() {
+					window.removeEventListener( 'scroll', scrollHandler );
+					window.addEventListener( 'scroll', noScrollFn );
+				}
+
+				function scrollFn() {
+					window.addEventListener( 'scroll', scrollHandler );
+				}
+
+				function canScroll() {
+					window.removeEventListener( 'scroll', noScrollFn );
+					scrollFn();
+				}
+
+				function scrollHandler() {
+					if( !didScroll ) {
+						didScroll = true;
+						setTimeout( function() { scrollPage(); }, 60 );
+					}
+				};
+
+				function scrollPage() {
+					scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+					didScroll = false;
+				};
+
+				scrollFn();
+
+				var UIBtnn = new UIMorphingButton( document.querySelector( '.morph-button' ), {
+					closeEl : '.icon-close',
+					onBeforeOpen : function() {
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterOpen : function() {
+						// can scroll again
+						canScroll();
+					},
+					onBeforeClose : function() {
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterClose : function() {
+						// can scroll again
+						canScroll();
+					}
+				} );
+
+				
+			})();
+		</script>
+
+
+
+        
+   </h:body>   
+     </html>

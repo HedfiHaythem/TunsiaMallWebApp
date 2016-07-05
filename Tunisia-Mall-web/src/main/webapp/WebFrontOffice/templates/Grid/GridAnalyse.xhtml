@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:panel="http://java.sun.com/jsf/composite/component">
+    <h:head>
+    	
+   
+  	 	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/component.css" />
+		<script src="#{request.contextPath}/resources/js/modernizr.custom.js"></script>
+
+<style>
+
+ .ui-widget{font-family: 'Lato', Calibri, Arial, sans-serif};
+ .openscroll{width: 200px; !important};
+</style>
+	</h:head>
+
+ 	<h:body> 
+ <h:form>
+ 
+       
+ 	 <h:panelGrid columns="3" cellpadding="5">
+    
+        <p:autoComplete id="acSimple" value="#{AnalyseBean.txt1}" maxResults="5" minQueryLength="2" forceSelection="true" completeMethod="#{AnalyseBean.completeText}"  placeholder="Recherche">
+           <p:ajax  update=":FORMKX"/>
+        </p:autoComplete>
+        
+         <p:commandButton value="Initialiser" icon="ui-icon-check" update=":FORMKX"  actionListener="#{AnalyseBean.initialization()}" style="top: -12px;"/> 
+ 	</h:panelGrid>
+ 	</h:form>	
+ 	
+ 	<h:form id="FORMKX" prependId="true" >
+ 	<p:scrollPanel style="width:102%;height:400px;" mode="">
+ 		<div class="container ">
+		
+			<div id="grid-gallery" class="grid-gallery">
+				<section class="grid-wrap">
+					<ul class="grid">
+						<li class="grid-sizer"></li><!-- for Masonry column width -->
+							<ui:repeat var="item" value="#{AnalyseBean.listAnlayses}">
+									<li>
+										<figure>
+											<img src="#{request.contextPath}/resources/imgAnalyse/img#{AnalyseBean.getRandomNumberForImg()}.jpg"  class="lazy" />
+											<figcaption><h3>	<h:outputText value="#{item.libelle}" style="color:#47a3da" escape="false"/></h3></figcaption>
+										</figure>
+									</li>
+									
+						</ui:repeat>
+					</ul>
+				</section><!-- // grid-wrap -->
+				<section class="slideshow gridAnalyse">
+					<ul>
+					<ui:repeat var="item" value="#{AnalyseBean.listAnlayses}">
+						<li>
+							<figure style="box-sizing: border-box;">
+								<figcaption>
+								<p:panel header="#{item.libelle}">
+									<p:accordionPanel style="width: 100%; overflow-y: auto;height: 600px;" activeIndex="null">
+									  
+									        
+									           
+									            <p:tab title="Description"  titleStyle="height: 21px;font-size: 20px;" >
+									       
+									             	
+									  				     <h:outputText value="#{item.description}" style="color:#47a3da" escape="false"/> 
+									 
+									      		  </p:tab>
+									      		  
+									      		  
+									      		    <p:tab title="Recommandations" titleStyle="height: 21px;font-size: 20px;" >
+									       
+									             	
+									  				     <h:outputText value="#{item.recommandations}" style="color:#47a3da" escape="false"/> 
+									 
+									      		  </p:tab>
+									      		  
+									      		    <p:tab title="Prélèvement" titleStyle="height: 21px;font-size: 20px;" >
+									       
+									             	
+									  				     <h:outputText value="#{item.prelevement}" style="color:#47a3da" escape="false"/> 
+									 
+									      		  </p:tab>
+									      		  
+									      		     <p:tab title="Définition" titleStyle="height: 21px;font-size: 20px;" >
+									       
+									             	
+									  				     <h:outputText value="#{item.definition}" style="color:#47a3da" escape="false"/> 
+									 
+									      		  </p:tab>
+									      		    
+									      		     <p:tab title="Technique" titleStyle="height: 21px;font-size: 20px;" >
+									       
+									             	
+									  				     <h:outputText value="#{item.technique}" style="color:#47a3da" escape="false"/> 
+									 
+									      		  </p:tab>
+									      		  
+									      		  	     <p:tab title="Délais" titleStyle="height: 21px;font-size: 20px;" >
+									       
+									             	
+									  				     <h:outputText value="#{item.delais}" style="color:#47a3da" escape="false"/> 
+									 
+									      		  </p:tab>
+									      		  
+									        
+									 </p:accordionPanel>       
+								</p:panel>
+									
+							
+							
+									
+								 
+						
+								
+							
+								
+									
+									
+									
+									
+								</figcaption>
+								<!--<img src="#{request.contextPath}/resources/imgAnalyse/img#{AnalyseBean.getRandomNumberForImg()}.jpg" />  -->
+							</figure>
+						</li>
+					</ui:repeat>
+						
+					</ul>
+					<nav>
+						<span class="icon nav-prev"></span>
+						<span class="icon nav-next"></span>
+						<span class="icon nav-close"></span>
+					</nav>
+					<div class="info-keys icon">Naviguez avec les touches fléchées</div>
+				</section><!-- // slideshow -->
+			</div><!-- // grid-gallery -->
+		</div>
+</p:scrollPanel>		
+		<script src="#{request.contextPath}/resources/js/imagesloaded.pkgd.min.js"></script>
+		<script src="#{request.contextPath}/resources/js/masonry.pkgd.min.js"></script>
+		<script src="#{request.contextPath}/resources/js/classie.js"></script>
+		<script src="#{request.contextPath}/resources/js/cbpGridGallery.js"></script>
+		<script>
+			new CBPGridGallery( document.getElementById( 'grid-gallery' ) );
+		</script>
+    </h:form>   
+   </h:body>   
+     </html>

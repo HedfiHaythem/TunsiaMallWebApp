@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+    
+
+	</h:head>
+
+ 	<h:body> 
+ 	
+ 	    <div id="advsearch" class="container relative">
+        <div id="letwelcareknow">Information </div>
+ <h:form >
+ 
+ 	<p:dialog  widgetVar="CONTACT" onLoad="reset()"  width="625" height="400" draggable="false" resizable="false" modal="true"  position="center top" >
+ 	<p:graphicImage value="PublicImage/Help/Contact.png"  width="500" height="350" />
+ 	</p:dialog>
+ 
+ 	<p:dialog  widgetVar="CONNECT" onLoad="reset()"  width="625" height="400" draggable="false" resizable="false" modal="true"  position="center top" >
+ 	<p:graphicImage value="PublicImage/Help/Connect.png"  width="500" height="350" />
+ 	</p:dialog>
+ 	
+            <div id="iam"> <span>je suis </span>
+                <select name="" id="select-iam">
+                    <option >Qui suis je ?</option>
+                    <option >un visiteur</option>
+                    <option >un patient</option>
+                    <option >un Confrère</option>
+                    <option >un Médecin </option>
+                 
+                </select>
+                
+                
+            </div>
+            <div id="helpme"> <span>Aidez moi</span>
+                <select  id="select-helpme" name="select-helpme" >
+                    <option >Contactez-Nous</option>
+                    <option >Comment je peux me connecter?</option>
+             
+                </select>
+            </div>
+            <span class="go">
+            <p:commandButton styleClass="submit" actionListener="#{infoSite.SelectValue()}" value="GO" ajax="true" />
+            </span>
+</h:form>
+        <div class="clear"></div>
+    </div>
+    <div class="grids">
+      <ui:include src="/WebFrontOffice/templates/actualites/Actualites.xhtml" />
+         </div>
+
+    <div class="container">
+        <div class="tabs">
+            <ul id="tabMenu">
+                <li class="tab_1 selected"> <a href="javascript:void(0);"> <span class="image"> <img src="#{request.contextPath}/resources/images/icon_find.png" alt="" /> </span> <span class="up">Catalogue  </span> <span class="down">des analyses</span> </a> <span class="poparr"></span> </li>
+                <li class="tab_2"> <a href="javascript:void(0);"> <span class="image"> <img src="#{request.contextPath}/resources/images/icon-appointment.png" alt="" /> </span> <span class="up">Nos  </span> <span class="down">travaux </span> </a> <span class="poparr"></span> </li>
+                <li class="tab_3"> <a href="javascript:void(0);"> <span class="image"> <img src="#{request.contextPath}/resources/images/icon-admin.png" alt="" /> </span> <span class="up">Actualités  </span> <span class="down">adresses </span> </a> <span class="poparr"></span> </li>
+                <li class="tab_4"> <a href="javascript:void(0);"> <span class="image"> <img src="#{request.contextPath}/resources/images/icon_onlinetest.png" alt="" /> </span> <span class="up">Cas </span> <span class="down">cliniques</span> </a> <span class="poparr"></span> </li>
+                <li class="tab_5"> <a href="javascript:void(0);"> <span class="image"> <img src="#{request.contextPath}/resources/images/icon-symptomchecker.png" alt="" /> </span> <span class="up"> Vos  </span> <span class="down">Réclamations</span> </a> <span class="poparr"></span> </li>
+            </ul>
+        </div>
+        <div class="boxBody">
+            <div id="tab_1" class="show parent tab_bg1">
+            <h:body>
+       			
+				<ui:include src="/WebFrontOffice/templates/Grid/GridAnalyse.xhtml" />
+				
+				
+			</h:body>		
+            </div>
+            <div id="tab_2" class="parent">
+            
+                         <ui:include src="/WebFrontOffice/Page/NosTravaux/NosTravaux.xhtml" /> 
+          
+            </div>
+           			 <div id="tab_3" class="parent">
+            	  <ui:include src="/WebFrontOffice/templates/Block/BlockCol-3.xhtml" />
+              
+                 	 </div>
+          
+            <div id="tab_4" class="parent">
+            
+           
+          <h:form>	        		 
+
+			<!-- DATA TABLE LIST ALL MARQUE -->
+			<p:dataTable var="item" value="#{BlockBean.listCasClinique}" 
+			 paginator="true" rows="3" 	 widgetVar="CasCliniqueTab"		filteredValue="#{BlockBean.listFilterCasClinique}" 
+			 style="width:100%; font-size:12px;margin-left:auto;margin-top:3%;margin-right:auto"
+			 emptyMessage="0 Slider(s)">
+			 	<f:facet name="header">
+						   <p:outputPanel>
+			            
+			                <p:inputText id="globalFilter" onkeyup="PF('CasCliniqueTab').filter()" style="width:150px" placeholder="saisir un mot clé"/>
+			            </p:outputPanel>
+			 </f:facet>
+					 <p:column  headerText="Images"  style="width:45%;" >
+					 
+					 #{BlockBean.GetMultumiByBlock(item.id+'')}
+			  <p:fieldset legend="#{item.grandTitre}" toggleable="true" toggleSpeed="500" collapsed="true">
+							 
+								<p:dataGrid  id="mop" var="multi" value="#{BlockBean.listMultimedia}" columns="3" layout="grid"
+				      				  rows="12" paginator="true" 
+				      				  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				      				  rowsPerPageTemplate="6,12,16">
+				      				   <f:facet name="header">
+				
+				
+				       				  </f:facet>
+				      				  
+				      		
+				      				  
+							
+										
+										
+					
+						<img id="#{multi.id}" src="#{request.contextPath}/PublicImage/Block/#{multi.url}"  data-zoom-image="#{request.contextPath}/PublicImage/Block/#{multi.url}"  style="max-width: none; width: 100px; height: 67px;" />
+					
+
+	
+						<script>
+						
+										
+											jQuery(function($){
+											
+												$("##{multi.id}").elevateZoom({zoomWindowPosition: 1}); 
+											})
+										
+						</script>
+					
+
+				      				  
+				      				  
+				      				
+				 
+							 	
+							  	</p:dataGrid>
+	
+					 </p:fieldset>
+					 
+			    	 </p:column>
+			    	 
+			    	  
+					  	<p:column  headerText="Titre"   filterBy="#{item.grandTitre}" filterMatchMode="contains"  >
+					    	
+					    	
+							 <a href="CasClinique/#{item.desc2}"> <p:outputLabel value="#{item.grandTitre}"
+								style="width:80px;height:80pxwidth: 80px;height: 80px;cursor: pointer;color: blue;" /></a>		
+					    </p:column>
+		
+					   
+					   <p:column  headerText="Description "  filterBy="#{item.desc1}" filterMatchMode="contains"  >
+					    	
+					    	<p:outputLabel value="#{item.desc1}"
+								style="width:80px;height:80px" />
+								
+					    </p:column>
+	
+	
+			</p:dataTable>
+			
+			
+			
+					
+			
+			
+		
+         </h:form> 	     
+            </div>
+            
+            <div id="tab_5" class="parent">
+                <div class="col-3">
+             
+                    <div class="block">
+                        <h:form >
+                            
+                             <p:growl showDetail="true" life="3000"   /> 
+                             <p:panel header="Réclamations" style="width:300%">
+                      <p:panelGrid columns="2" cellspacing="1"  style="width:100%"> 
+                               <p:outputLabel  value="Nom Prénom"  />
+                               <p:inputText required="true" requiredMessage="Nom Prénom champ obligatoire" style="width:100%" label="nomPrenom" id="nomPrenom" value="#{ContactBean.contact.nomPrenom}" onfocus="if(this.value == 'nom Prénom ') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'nom Prénom '; }"/>  
+                              
+                                                                <p:outputLabel  value="Email"  />
+                               <h:inputText style="width:100%" label="email"  id="email"  value="#{ContactBean.contact.email}"  onfocus="if(this.value == 'email ') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'email '; }" />  
+
+                                   
+                                         <p:outputLabel  value="Votre réclamation"  />  
+                                          <p:inputTextarea  required="true" requiredMessage="Votre réclamation champ obligatoire"  style="width:100%"  id="desc" cols="5" rows="5" value="#{ContactBean.contact.description}" onfocus="if(this.value == 'Description ') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'Description'; }" /> 
+                                   <f:facet name="footer">
+                                   
+                                      <p:commandButton  style="width:100%;padding: 5px;" value="envoyer" actionListener="#{ContactBean.adding(ContactBean.contact)}" update="@form"  />
+                                
+                                   </f:facet>      
+                                  
+                               </p:panelGrid>     
+                            </p:panel>    
+                                    <div class="clear"></div>
+                                </h:form>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   </h:body>   
+     </html>

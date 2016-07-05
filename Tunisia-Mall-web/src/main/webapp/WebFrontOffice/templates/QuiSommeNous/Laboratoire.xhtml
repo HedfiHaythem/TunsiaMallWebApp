@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:panel="http://java.sun.com/jsf/composite/component">
+    <h:head>
+    
+   
+
+	</h:head>
+
+ 	<h:body> 
+ 	
+ 	
+ 
+	<!-- Header -->
+
+ 
+   
+    
+	
+	<div class="container">
+		<div class="page-banner">
+			<div class="banner-image"> <img src="#{request.contextPath}/PublicImage/Block/#{BlockBean.blockLaboraoitre.photoBanner}" alt="" /> </div>
+		
+		</div>
+		<!-- page banner ends -->
+        <div class="breadcrumbs">
+            <ul>
+                <li><a href="#"><img width="14" height="13" alt="" src="#{request.contextPath}/resources/images/home_icon.png" /></a></li>
+                <li><a href="#">Qui Somme Nous ?</a></li>
+                   <li class="last-child"><a href="#"> Laboratoire</a></li>
+             
+            </ul>
+        </div><!-- breadcrumbs end -->
+		<div id="contents_area">
+		
+		
+			<div class="contents">   
+			
+			 
+					          <panel:BlockArticle
+					          grandTitre="#{BlockBean.blockLaboraoitre.grandTitre}"
+					          urlPhoto="#{BlockBean.blockLaboraoitre.urlPhoto}"
+					          titre1="#{BlockBean.blockLaboraoitre.titre1}" 
+					          desc1="#{BlockBean.blockLaboraoitre.desc1}"
+					          titre2="#{BlockBean.blockLaboraoitre.titre2}"
+					          desc2="#{BlockBean.blockLaboraoitre.desc2}"
+					          type="#{BlockBean.blockLaboraoitre.type}"
+					          date1="#{BlockBean.blockLaboraoitre.date1}"
+					          date2="#{BlockBean.blockLaboraoitre.date2}"
+					          emplacement="#{BlockBean.blockLaboraoitre.emplacement}"
+					          heure="#{BlockBean.blockLaboraoitre.heure}"
+					           />
+			 
+
+		
+				
+			
+			
+			</div><!-- contents end -->
+			
+			
+		</div><!-- Content Area ends -->
+		
+			<div id="side_bar">
+        	<div class="block">
+		
+                <div class="recent_post">
+       
+                <div class="post_in">
+                            <div class="fb-like-box" data-href="https://www.facebook.com/pages/Laboratoire-danalyses-m%C3%A9dicales/152445758170133?fref=ts"   data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"> </div>
+  
+                    <!-- post ends --> 
+                </div><!-- post_in ends -->
+                
+                     <div class="post_in">
+		       			<script type="text/javascript">
+								    google_ad_client = "ca-pub-9786120886451268";
+								    google_ad_slot = "5353017635";
+								    google_ad_width = 336;
+								    google_ad_height = 280;
+								</script>
+								<!-- articles -->
+								<script type="text/javascript"
+								src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+								</script>
+     		    </div>
+        
+                <!-- post_in ends --> 
+            </div>
+			</div>
+	</div>
+		
+	
+	</div>
+
+	
+	
+		
+	
+
+
+
+        
+   </h:body>   
+     </html>

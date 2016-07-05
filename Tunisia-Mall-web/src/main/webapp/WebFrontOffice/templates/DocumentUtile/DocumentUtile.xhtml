@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+ 		xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:panel="http://java.sun.com/jsf/composite/component">
+    <h:head>
+    
+   
+
+	</h:head>
+
+ 	<h:body> 
+ 	
+ 	
+	
+     
+			   		
+	
+	
+		
+	
+	
+	  <div class="container">
+        <div class="page-banner">
+          <div class="banner-image"> <img src="#{request.contextPath}/PublicImage/Block/#{BlockBean.blockBlockDocumentBanner.photoBanner}" alt="" /> </div>
+          <div class="content darkgray_text">
+         
+          </div>
+        </div>
+        <!-- page banner ends -->
+    </div>
+    <div id="page-full" class="typography_page">
+      <div class="breadcrumbs">
+        <ul>
+          <li><a href="#"><img width="14" height="13" alt="" src="#{request.contextPath}/resources/images/home_icon.png" /></a></li>
+          <li><a href="#">Home</a></li>
+          <li class="last-child"><a href="#"> Informations utiles </a></li>
+        </ul>
+      </div>
+    
+      
+     <div class="container2"> 
+     
+       <div class="collleft">
+        <h3><a href="#">#{BlockBean.blockBlockDocumentBanner.titre1}</a> </h3>
+         <h:outputText value="#{BlockBean.blockBlockDocumentBanner.desc1} " escape="false" />
+  
+       
+         <ui:repeat var="item" value="#{BlockBean.listBlockDocument}"> 
+					          <panel:BlockDocumentUtile
+					          grandTitre="#{item.grandTitre}"
+					          urlPhoto="#{item.urlPhoto}"
+					          titre1="#{item.titre1}"
+					          desc1="#{item.desc1}"
+					          titre2="#{item.titre2}"
+					          desc2="#{item.desc2}"
+					          type="#{item.type}"
+					          date1="#{item.date1}"
+					          date2="#{item.date2}"
+					          emplacement="#{item.emplacement}"
+					          heure="#{item.heure}"
+					           />
+					    </ui:repeat> 
+   
+       
+     </div>
+   
+   <div class="collright">
+
+ 			<h3><a href="#">Formulaires à télécharger </a> </h3>
+   
+   	<h:form id="form111" >
+			<p:growl id="msg" showDetail="false"  enctype="multipart/form-data"/>
+			<!-- DATA TABLE LIST ALL MARQUE -->
+			<p:dataTable var="item" value="#{NosFormulaireBean.listNosFormulaire}" 
+			 paginator="true" rows="3"
+			 style="width: 150%;font-size:12px;margin-left:auto;margin-top:3%;margin-right:auto"
+			 emptyMessage="0 Formulaire(s)">
+			    	
+			 
+					<p:column >
+			 				 <p:commandButton style="height: 100%;width: 100%;" value="Télécharger" ajax="false" actionListener="#{NosFormulaireBean.FileDownloadView(item.urlPhoto)}"  icon="ui-icon-arrowthick-1-s" >
+			        				<p:fileDownload value="#{NosFormulaireBean.file}" />
+			   				 </p:commandButton>
+					</p:column>
+		
+			 
+			 	<p:column rendered="#{NosFormulaireBean.DetrminerExtension(item.urlPhoto) eq 'pdf'}" >
+								<p:commandButton style="height: 100%;width: 100%;"  value="Visualiser"  update=":formUpdatePdf" 
+									oncomplete="PF('PDF').show()"
+									icon="ui-icon-document" >
+									<f:setPropertyActionListener value="#{item}"
+										target="#{NosFormulaireBean.nosFormulaire}" />
+								</p:commandButton>
+				</p:column>
+				
+				
+				 	<p:column rendered="#{NosFormulaireBean.DetrminerExtension(item.urlPhoto) eq 'img'}" >
+								<p:commandButton style="height: 100%;width: 100%;"  value="Visualiser"  update=":formUpdateIMG" 
+									oncomplete="PF('IMG').show()"
+									icon="ui-icon-document" >
+									<f:setPropertyActionListener value="#{item}"
+										target="#{NosFormulaireBean.nosFormulaire}" />
+								</p:commandButton>
+					</p:column>
+					
+					 	<p:column rendered="#{NosFormulaireBean.DetrminerExtension(item.urlPhoto) eq 'null'}" >
+							
+						</p:column>
+				
+				
+					
+			    
+			    	<p:column  headerText="description" >
+			    	
+			    	 <p:outputLabel value="#{item.description}"/>
+						
+			    </p:column>
+			    	
+	
+		   
+			
+			</p:dataTable>
+		</h:form>
+		
+		       <div class="post_in" style="margin-left: 44%;">
+		       			<script type="text/javascript">
+								    google_ad_client = "ca-pub-9786120886451268";
+								    google_ad_slot = "5353017635";
+								    google_ad_width = 336;
+								    google_ad_height = 280;
+								</script>
+								<!-- articles -->
+								<script type="text/javascript"
+								src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+								</script>
+								
+				   <div class="fb-like-box" data-href="https://www.facebook.com/pages/Laboratoire-danalyses-m%C3%A9dicales/152445758170133?fref=ts"   data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"> </div>
+  				
+     		    </div>
+		
+		                
+		
+			<h:form id="formUpdatePdf" onreset="reset()">
+			<p:dialog header="PDF" widgetVar="PDF" modal="true"
+			 width="80%" height="700"	onLoad="reset()">
+				
+
+	
+
+	
+		<object type="application/pdf" data="#{request.contextPath}/PublicImage/NosFormulaire/#{NosFormulaireBean.nosFormulaire.urlPhoto}" height="500px" width="100%" />
+							        
+ 	
+
+
+
+			</p:dialog>
+		</h:form>
+		
+		
+			<h:form id="formUpdateIMG" onreset="reset()">
+			<p:dialog  widgetVar="IMG" modal="true"
+			 width="80%" height="700"	onLoad="reset()">
+				
+
+	
+
+	
+		<img src="#{request.contextPath}/PublicImage/NosFormulaire/#{NosFormulaireBean.nosFormulaire.urlPhoto}"  style="max-width: 730px;" />
+							        
+ 	
+
+
+
+			</p:dialog>
+		</h:form>
+	   </div>	
+       </div>
+      </div>
+  
+
+  
+
+
+        
+   </h:body>   
+     </html>

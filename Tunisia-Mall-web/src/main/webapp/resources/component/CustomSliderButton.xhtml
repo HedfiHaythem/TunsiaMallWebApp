@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+     
+      
+      
+      
+      
+ 
+      
+      
+ 
+    <composite:interface>
+ 
+	<composite:attribute name="nb" />
+
+ 	 
+ 	 
+    </composite:interface>
+
+    <composite:implementation>
+ 		
+ 		<!-- 
+				  <div data-thumb="#{request.contextPath}/#{cc.attrs.urlPhotoThumbs}" data-src="#{request.contextPath}/#{cc.attrs.urlPhoto}">
+                <div class="camera_caption fadeFromBottom">
+                    #{cc.attrs.descriptionPhoto}
+                </div>
+            </div>
+          		
+        -->   		
+          		
+          		
+                  <input id="button-#{cc.attrs.nb}"  type="radio" name="radio-set" class="sp-selector-#{cc.attrs.nb}"  checked="checked" />
+                    <label for="button-#{cc.attrs.nb}"  class="button-label-#{cc.attrs.nb}" ></label>
+                    
+                
+               
+    </composite:implementation>
+ 
+</html>

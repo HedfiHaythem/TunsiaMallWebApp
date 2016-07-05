@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+     
+      
+      
+      
+      
+ 
+    <composite:interface>
+ 
+	<composite:attribute name="urlPhoto" />
+	
+	<composite:attribute name="grandTitre" />
+	
+	<composite:attribute name="titre1" />
+	<composite:attribute name="desc1" />
+	<composite:attribute name="date1" />
+		
+	<composite:attribute name="titre2" />
+	<composite:attribute name="desc2" />
+	<composite:attribute name="date2" />
+		
+	<composite:attribute name="type" />
+ 	 
+ 	 <composite:attribute name="emplacement" />
+ 	 <composite:attribute name="heure" />
+ 	 
+    </composite:interface>
+
+    <composite:implementation>
+ 		
+     
+           
+           		<div class="block">
+                	<div class="head_section">
+                     	<div class="post_date">
+                        	<div class="day_month">
+                            	<span class="day">#{cc.attrs.date1}</span>
+                                <span class="month">#{cc.attrs.titre2}</span>
+                            </div>
+                            <span class="post_year">#{cc.attrs.date2}</span>
+                        </div>
+                        <h1>#{cc.attrs.grandTitre}</h1>
+                        <div class="contact_bar">
+                            <ul>
+                                <li class="first-child"><a href="#" class="doctor_icon">#{cc.attrs.titre1}</a></li>
+                              
+                               <li style="margin-left: 23%;" ><div class="fb-share-button" data-href="#{request.contextPath}/article/#{cc.attrs.desc2}" data-layout="link" ></div></li>
+                         
+                            </ul>
+                        </div>
+                        <!-- contact bar ends -->
+                    </div>
+					<h:graphicImage  value="/PublicImage/Block/#{cc.attrs.urlPhoto}"  alt=""  styleClass="frame" />
+					<div class="details">
+						        <h:outputText value="#{cc.attrs.desc1} " escape="false" />        
+                    
+					</div>
+					<!-- details end -->
+				</div><!-- block ends --> 
+ 
+            
+            
+            
+            
+            
+               
+    </composite:implementation>
+ 
+</html>

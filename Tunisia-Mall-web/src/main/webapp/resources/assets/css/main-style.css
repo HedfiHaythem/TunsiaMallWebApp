@@ -1,0 +1,36 @@
+ /* Core Stylesheets
+================================================== */
+@import url("#{resource['assets:css/layout.css']}");
+@import url("#{resource['assets:css/widget.css']}");
+@import url("#{resource['assets:css/form.css']}");
+@import url("#{resource['assets:css/table.css']}");
+@import url("#{resource['assets:css/button.css']}");
+@import url("#{resource['assets:css/misc.css']}");
+@import url("#{resource['assets:css/utils.css']}");
+
+/* Elements Stylesheets
+================================================== */
+@import url("#{resource['assets:css/ui.css']}");
+@import url("#{resource['assets:css/icons.css']}");
+@import url("#{resource['assets:css/statistic.css']}");
+@import url("#{resource['assets:css/invoice.css']}");
+
+/* Extra Stylesheets
+================================================== */
+@import url("#{resource['assets:css/mail.css']}");
+@import url("#{resource['assets:css/profile.css']}");
+@import url("#{resource['assets:css/gallery.css']}");
+
+/* Plugin Stylesheets
+================================================== */
+@import url("#{resource['assets:css/plugins/elfinder.css']}");
+@import url("#{resource['assets:css/plugins/fullcalendar.css']}");
+
+/* IE Stylesheets
+================================================== */
+@import url("#{resource['assets:css/lt-ie9.css']}");
+
+/* Demo Stylesheets
+================================================== */
+@import url("#{resource['assets:css/demo.css']}");
+@import url("#{resource['assets:css/customizer.css']}");

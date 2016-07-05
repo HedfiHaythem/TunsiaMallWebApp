@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+    
+   
+
+	</h:head>
+
+ 	<h:body> 
+ 	       
+       <header id="header" class="navbar navbar-inverse">
+            <div class="navbar-inner">
+                <div class="container">
+					<div class="brand-wrap pull-left">
+						<div class="brand-img">
+							<a class="brand" href="#{request.contextPath}/">
+								<img src="#{request.contextPath}/PublicImage/logo.png" alt="" style="width: 167px;height: 41px;" />
+							</a>
+						</div>
+					</div>
+                    
+                    <div id="header-right" class="clearfix">
+						<div id="nav-toggle" data-toggle="collapse" data-target="#navigation" class="collapsed">
+							<i class="icon-caret-down"></i>
+						</div>
+
+                        <div id="header-functions" class="pull-right">
+                        	<div id="user-info" class="clearfix">
+                                <span class="info">
+                                	Bienvenue
+                                    <span class="name"> <h:outputText value="#{sessionScope.user.prenom} " /> <h:outputText value="#{sessionScope.user.nom} " />  </span>
+                                </span>
+                            	<div class="avatar">
+                                	<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                    	 <img src="#{request.contextPath}/PublicImage/photoProfile.jpg" />
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                    	<li><a href="#{request.contextPath}/profile"><i class="icol-user"></i> My Profile</a></li>
+                                    <!-- <li><a href="#"><i class="icol-layout"></i> My Invoices</a></li>       -->	                                  
+                                        <li class="divider"></li>
+                                        <li><h:form> <h:commandLink actionListener="#{loginBeanTn.logout()}" > <i class="icol-key"></i> Déconnexion</h:commandLink></h:form></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="logout-ribbon">
+                            	<h:form> <h:commandLink actionListener="#{loginBeanTn.logout()}" ><i class="icon-off"></i></h:commandLink></h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        
+   </h:body>   
+   
+     </html>

@@ -1,0 +1,185 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:p="http://primefaces.org/ui"
+     xmlns:c="http://java.sun.com/jsp/jstl/core">
+ 
+    <h:head>
+	 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+	<ui:insert name="title" >
+	Tunisia MAll
+	
+	</ui:insert>
+</title>
+
+
+
+<ui:include src="/WebFrontOffice/templates/UrlCssJSIMG/UrlCssJSIMGOther.xhtml" />
+
+
+      <script type="text/javascript" >
+      
+      
+      jQuery(document).ready(function () {
+    	  jQuery('.Profile').addClass('active');
+ 		
+      });
+      
+      
+      function active(param) {
+    	  
+    	  jQuery('.allact').removeClass('active'); 
+    	  jQuery('.'+param).addClass('active'); 
+    	  
+      }
+   
+	  
+
+    </script>
+   
+    
+
+
+    </h:head>
+ 
+ 
+	
+	
+	  <h:body data-show-sidebar-toggle-button="true" data-fixed-sidebar="true" >
+
+
+    <div id="wrapper">
+  	<ui:include src="/WebFrontOffice/templates/header/header.xhtml" />
+        
+        <div id="content-wrap">
+        	<div id="content">
+            	<div id="content-outer">
+                	<div id="content-inner">
+                  	
+                  	<ui:include src="/WebFrontOffice/templates/Menu/LeftMenu.xhtml" />
+
+                        <div id="sidebar-separator"></div>
+                        
+                        <section id="main" class="clearfix">
+                     	<ui:include src="/WebFrontOffice/templates/Menu/breadCrumb.xhtml" />
+                          
+                            
+                            <div id="main-content">
+                            <ui:insert name="content">
+	   <div class="profile">
+	 
+                            
+                                    <div class="clearfix">
+                             
+                                        <div class="profile-sidebar">
+                                            <div class="thumbnail">
+                            
+                                                <p:graphicImage value="PublicImage/photoProfile.jpg" />
+                                            </div>
+                                            <ul class="nav nav-tabs nav-stacked">
+                                                <li class="Profile allact"  onclick="active('Profile');"><a href="#" ><i class="icos-"></i>Profile </a></li>
+                                                <li class="Settings allact" onclick="active('Settings');"><a href="#"  ><i class="icos-cog"></i> Settings</a></li>
+                                      
+                                            </ul>
+                                        </div>
+                                        <div class="profile-content" style="min-height: 100px;">
+                                            <div class="tab-content">
+                                            
+                                            
+                                                <div class="tab-pane Profile allact" id="profile" >
+                                                <h:form id="FrmProfile">
+                                                           <div class="profile-head clearfix">
+                                            <div class="profile-info pull-left">
+                                                <h1 class="profile-name">#{ProfileBean.utilisateur.prenom} #{ProfileBean.utilisateur.nom}  </h1>
+                                                <ul class="profile-attributes">
+                                                 </ul>
+                                            </div>
+                                          	<!--    
+                                            <div class="btn-toolbar pull-right">
+                                                <a href="#" class="btn btn-primary"><i class="icon-envelope"></i> Send Message</a>
+                                                <a href="#" class="btn btn-success"><i class="icon-s"></i> Hire Me</a>
+                                            </div>
+                                            -->
+                                        </div>
+                                         <h:panelGroup rendered="#{not empty ProfileBean.utilisateur.quiSuisJe }">
+                                                    <h4 class="sub"><span>À PROPOS DE VOUS</span></h4>
+                                                    <p> #{ProfileBean.utilisateur.quiSuisJe}</p>
+                                          </h:panelGroup>   
+                                                    <h4 class="sub"><span>Contact </span></h4>
+                                                    <address>
+                                              
+                                                        #{ProfileBean.utilisateur.adresse}	<br/><br/>											
+                                                        <abbr title="Phone">P:</abbr> #{ProfileBean.utilisateur.tel}<br/>
+                                                        <abbr title="Email">E:</abbr> <a href="#">#{ProfileBean.utilisateur.email}</a>
+                                                    </address>
+                                                  </h:form>  
+                                                </div>
+                                                
+                                                 <div class="tab-pane  Settings allact"  >
+                     <h:form id="frm">
+                                           
+                        	    <p:growl id="growl" life="2000" />                   
+                                      
+                                                
+                                              			
+						
+					
+						   <p:panel>
+						     	 <h4 class="sub"><span>Nom</span></h4>
+                                                    
+                                                     <h:inputText  value="#{ProfileBean.utilisateur.nom}" style="width:98%"  styleClass="span12"  />
+                                                    
+                                                 <h4 class="sub"><span>Prénom</span></h4>
+                                                    
+                                                    <h:inputText value="#{ProfileBean.utilisateur.prenom}" style="width:98%"  styleClass="span12"  />
+                                                    
+                                                 
+                                                    <h4 class="sub"><span>À PROPOS DE VOUS</span></h4>
+                                                    
+                                                    <h:inputTextarea value="#{ProfileBean.utilisateur.quiSuisJe}" style="width:98%"  styleClass="span12"  />
+                                             
+                                                    
+                                                    
+					<f:facet name="footer">
+						<p:commandButton value="mise à jour" ajax="true" actionListener="#{ProfileBean.updating(ProfileBean.utilisateur)}"  process="frm" update=":frm,:FrmProfile" icon="ui-icon-circle-check"/>
+					</f:facet>
+			</p:panel> 
+
+	
+
+					</h:form> 
+					
+
+                                                </div>
+                                                
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+	
+							</ui:insert>
+                            </div>
+                       
+                       
+                       
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+   					<ui:include src="/WebFrontOffice/templates/footer/footer.xhtml" />
+        
+    </div>
+  
+  
+  
+  
+  
+  
+ </h:body>
+</html>

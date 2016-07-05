@@ -1,0 +1,30 @@
+.shadow{
+	-moz-box-shadow:0px 0px 44px 7px blue;
+	-webkit-box-shadow:0px 0px 44px 7px blue;
+	box-shadow:0px 0px 44px 7px blue;
+ 	border:0px white;
+  	-moz-border-radius:8px;
+  	-webkit-border-radius:8px;
+  	border-radius:8px;
+}
+
+.class1{
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: smaller;
+	font-style: normal; 
+	font-weight: bold
+}
+
+.table{
+-moz-border-radius: 0px 19px 19px;
+-webkit-border-radius: 0px 19px 19px 19px;/*This is the correct shorthand for webkit*/
+border-radius: 0px 19px 19px;
+/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+-moz-box-shadow: 0px 0px 20px #217aff;
+-webkit-box-shadow: 0px 0px 20px #217aff;
+box-shadow: 0px 0px 20px #217aff;
+/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+
+
+}
+

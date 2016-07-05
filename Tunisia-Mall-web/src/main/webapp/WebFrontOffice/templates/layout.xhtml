@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:p="http://primefaces.org/ui"
+     xmlns:sec="http://www.springframework.org/security/tags">
+
+   
+       <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+              
+            </f:facet>
+            
+      
+
+        </h:head>
+        
+      
+   
+    <h:body>
+    	<f:view>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65" header="  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        #{menuBean.title}" resizable="true" closable="false" collapsible="true" >
+               
+      
+            
+    
+ 		
+            
+          
+              
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="150" header="Menu" resizable="true" closable="false" collapsible="true"   rendered="#{not leftMenu}">
+               
+                    <ui:include src="../templates/tiles/LeftMenu.xhtml" />
+                    
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" styleClass="myLayoutStyleClass">
+        
+                <ui:insert name="content">Put default content here, if any.</ui:insert>
+         		
+            </p:layoutUnit>
+            
+            
+    
+    
+        </p:layout>
+        <ui:insert name="dialogs"/>
+
+	</f:view>		
+    </h:body>
+    
+    
+</html>
+          
+          
+           
+               
+      
+            
+                
+            
+          
+     

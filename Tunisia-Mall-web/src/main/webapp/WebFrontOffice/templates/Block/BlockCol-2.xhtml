@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:panel="http://java.sun.com/jsf/composite/component">
+    <h:head>
+    
+   
+
+	</h:head>
+
+ 	<h:body> 
+
+
+ 
+          <div class="double_column ">
+                <div class="block">
+                <div class="heading"></div>
+                <div class="blog">
+                
+               
+                     <ui:repeat var="item" value="#{BlockBean.listBlockCol2}"> 
+					          <panel:BlockCol-2
+					          urlPhoto="#{item.urlPhoto}"
+					          titre="#{item.titre1}"
+					          desc="#{item.desc1}"
+					           />
+          
+         </ui:repeat> 
+                
+                
+               
+                </div>
+                </div>
+                <!-- Block ends --> 
+            </div>
+            
+            
+        
+   </h:body>   
+     </html>

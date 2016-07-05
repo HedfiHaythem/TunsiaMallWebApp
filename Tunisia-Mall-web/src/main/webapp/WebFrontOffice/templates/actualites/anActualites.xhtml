@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:panel="http://java.sun.com/jsf/composite/component">
+<h:head>
+<style>
+.wrapper {
+	width:100%;
+	
+}
+
+.demof ul {
+
+list-style: none;
+}
+.demof li {
+
+border-bottom: 1px dashed #ccc;
+}
+.demof li.odd {
+background: #fafafa;
+}
+.demof li:after {
+
+display: block;
+clear: both;
+}
+
+.titleAct {
+font-family: Arial, sans-serif;
+font-size: 20px;
+font-weight: bold;
+color: #06f;
+}
+.ui-panel-titlebar{
+background: #2ecc71 !important;
+color: white  !important;
+}
+
+</style>
+
+
+</h:head>
+
+<h:body>
+
+ <p:panel header="ACTUALITÉS">		
+ 		<div class="wrapper">
+
+
+<div class="demo1 demof">
+<ul>
+
+<ui:repeat var="blnews" value="#{BlockBean.listBlockNews}">
+
+
+<li >
+<div style="display: block;min-height: 122px;">
+<img src="#{request.contextPath}/PublicImage/Block/#{blnews.urlPhoto}"  style="width: 120px;height: 120px;vertical-align: -90px;" />
+<h:outputText value="#{blnews.titre1}" escape="false"  styleClass="titleAct" /> 
+<p style="margin: -73px 121px 10px 139px;"><h:outputText value="#{blnews.desc1}" escape="false" /></p>
+</div>
+
+</li>
+
+
+</ui:repeat>
+
+</ul>
+</div>
+
+
+
+</div>
+
+</p:panel>
+
+<script src="#{request.contextPath}/resources/js/jquery.easy-ticker.js"></script> 
+<script>
+jQuery(document).ready(function(jQuery){
+	jQuery('.demo1').easyTicker({
+		direction: 'up',
+		easing: 'easeOutBounce',
+		visible: 1
+	});
+
+});
+</script>
+ 
+ <br/> <br/> <br/>
+
+</h:body>
+</html>

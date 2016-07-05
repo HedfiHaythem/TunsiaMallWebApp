@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:panel="http://java.sun.com/jsf/composite/component">
+    <h:head>
+    
+      <li class="signin"> <a href="#" id="signin">Connexion</a> 
+                        
+                        <!-- SignIn Dialog -->
+                        <div id="signinbox" class="gray_gradient"> <img src="#{request.contextPath}/resources/images/sign_in_arrow.png" alt="" class="boxArrow" />
+                            <div id="signin_menu">
+                                <div class="box_heading">Connectez-vous.<a href="#" class="close"><img id="fadeouta" src="#{request.contextPath}/resources/images/close.png" alt="" width="16" height="16" /></a> </div>
+                                <h:form > 
+                                    <p:growl id="growl" showDetail="true" life="3000"   /> 
+                                       
+                                    	<p:inputText styleClass="textbox" value="#{loginBeanTn.username}"  id="username"  onfocus="if(this.value == 'Email adresse ou numéro de téléphone ') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'Email adresse ou numéro de téléphone '; }" name="s"    required="true" validatorMessage="Adresse électronique incorrecte L’adresse électronique que vous avez saisie n’est associée à aucun compte. Vous pouvez vous connecter en utilisant l’adresse électronique, le nom d’utilisateur ou le numéro de téléphone mobile associé(e) à votre compte. Assurez-vous qu’il/elle soit tapée correctement." />                                   	
+                                   		<h:inputSecret  styleClass="textbox" value="#{loginBeanTn.password}" id="password"  label="password"  onfocus="if(this.value == 'Search best hospital') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'Search best hospital'; }" name="s"  required="true" validatorMessage="Adresse électronique incorrecte L’adresse électronique que vous avez saisie n’est associée à aucun compte. Vous pouvez vous connecter en utilisant l’adresse électronique, le nom d’utilisateur ou le numéro de téléphone mobile associé(e) à votre compte. Assurez-vous qu’il/elle soit tapée correctement." />
+                                   		
+                                    <div class="signinStrip">
+                              
+                                        <input id="remember" name="remember_me" value="1" type="checkbox" />
+                                        <label for="remember">Garder ma session active</label>
+                                           <!--    
+                                        <span class="forgot"> <a href="#" id="resend_password_link">Forgot password?</a> </span>
+                                      --> 
+                                        	<p:commandButton styleClass="signin_submit" id="loginButton" value="Connectez-vous" update="@form" actionListener="#{loginBeanTn.connect}" />
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </li>
+    
+   
+
+	</h:head>
+
+ 	<h:body> 
+ 	
+ 	
+ 
+
+
+        
+   </h:body>   
+     </html>
