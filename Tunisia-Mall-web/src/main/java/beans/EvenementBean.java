@@ -71,6 +71,7 @@ public class EvenementBean implements Serializable {
 
 		(null, msg);
 	}
+	
 
 	/*----------------------------------------------------------------------------------------------------------*/
 	public void updating(Evenement ta) {

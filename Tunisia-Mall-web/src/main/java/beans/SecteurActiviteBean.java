@@ -34,6 +34,7 @@ public class SecteurActiviteBean implements Serializable {
 	 * --------------------------------------------------------
 	 */
 
+
 	
 	private List<SecteurActivite> listSecteurActivites ;
 	private List<SecteurActivite> listSelectedSecteurActivites=new ArrayList<SecteurActivite>() ;
