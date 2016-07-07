@@ -34,8 +34,6 @@ public class SecteurActiviteBean implements Serializable {
 	 * --------------------------------------------------------
 	 */
 
-
-	
 	private List<SecteurActivite> listSecteurActivites ;
 	private List<SecteurActivite> listSelectedSecteurActivites=new ArrayList<SecteurActivite>() ;
 	private List<SecteurActivite> listFilterSecteurActivites ;
@@ -89,7 +87,7 @@ public class SecteurActiviteBean implements Serializable {
 	public void removing(SecteurActivite ta) {
 		try {
 
-			
+			System.out.println(ta.getId());
 			serviceSecteurActivite.delete(new SecteurActivite(),"id",ta.getId()+"");
 			initialization();
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
