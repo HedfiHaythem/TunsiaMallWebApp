@@ -13,19 +13,19 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import com.esprit.entity.SecteurActivite;
+import com.esprit.entity.Evenement;
 import com.esprit.entity.Utilisateur;
 import com.esprit.service.UserServiceLocal;
 
 
 
 @SessionScoped
-@ManagedBean(name = "SecteurActiviteBean")
-public class SecteurActiviteBean implements Serializable {
+@ManagedBean(name = "EvenementBean")
+public class EvenementBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	private UserServiceLocal<SecteurActivite>  serviceSecteurActivite;
+	private UserServiceLocal<Evenement>  ServiceEvenement;
 	
 
 
@@ -34,13 +34,12 @@ public class SecteurActiviteBean implements Serializable {
 	 * --------------------------------------------------------
 	 */
 
-	
-	private List<SecteurActivite> listSecteurActivites ;
-	private List<SecteurActivite> listSelectedSecteurActivites=new ArrayList<SecteurActivite>() ;
-	private List<SecteurActivite> listFilterSecteurActivites ;
-	private SecteurActivite secteurActivite;
+	private List<Evenement> listEvenements ;
+	private List<Evenement> listSelectedEvenements=new ArrayList<Evenement>() ;
+	private List<Evenement> listFilterEvenements ;
+	private Evenement Evenement;
 	private List<String> listSTanlayses ;
-	private List<String> listSelectedStSecteurActivites ;
+	private List<String> listSelectedStEvenements ;
 	
 	private String txt1;
 
@@ -51,9 +50,10 @@ public class SecteurActiviteBean implements Serializable {
 	@PostConstruct
 	public void initialization() {
 		
-		setListSecteurActivites(serviceSecteurActivite.findAll(new SecteurActivite()));
-		setListFilterSecteurActivites(serviceSecteurActivite.findAll(new SecteurActivite()));	
-		secteurActivite=new SecteurActivite();
+		
+		setListEvenements(ServiceEvenement.findAll(new Evenement()));
+		setListFilterEvenements(ServiceEvenement.findAll(new Evenement()));	
+		Evenement=new Evenement();
 			}
 
 	
@@ -62,8 +62,8 @@ public class SecteurActiviteBean implements Serializable {
 	 
 	 
 	 
-	public void adding(SecteurActivite ta) {
-				serviceSecteurActivite.create(ta);
+	public void adding(Evenement ta) {
+		ServiceEvenement.create(ta);
 		initialization();
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"Enregistré(e) avec succés", "");
@@ -73,9 +73,9 @@ public class SecteurActiviteBean implements Serializable {
 	}
 
 	/*----------------------------------------------------------------------------------------------------------*/
-	public void updating(SecteurActivite ta) {
+	public void updating(Evenement ta) {
 
-		serviceSecteurActivite.update(ta);
+		ServiceEvenement.update(ta);
 		initialization();
 
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -85,11 +85,11 @@ public class SecteurActiviteBean implements Serializable {
 	}
 
 	/*----------------------------------------------------------------------------------------------------------*/
-	public void removing(SecteurActivite ta) {
+	public void removing(Evenement ta) {
 		try {
 
 			
-			serviceSecteurActivite.delete(new SecteurActivite(),"id",ta.getId()+"");
+			ServiceEvenement.delete(new Evenement(),"id",ta.getId()+"");
 			initialization();
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"Supprimé(e) avec succés", "");
@@ -108,8 +108,8 @@ public class SecteurActiviteBean implements Serializable {
 
 
 
-	public UserServiceLocal<SecteurActivite> getServiceSecteurActivite() {
-		return serviceSecteurActivite;
+	public UserServiceLocal<Evenement> getServiceEvenement() {
+		return ServiceEvenement;
 	}
 
 
@@ -118,8 +118,8 @@ public class SecteurActiviteBean implements Serializable {
 
 
 
-	public void setServiceSecteurActivite(UserServiceLocal<SecteurActivite> serviceSecteurActivite) {
-		this.serviceSecteurActivite = serviceSecteurActivite;
+	public void setServiceEvenement(UserServiceLocal<Evenement> serviceEvenement) {
+		this.ServiceEvenement = serviceEvenement;
 	}
 
 
@@ -128,8 +128,8 @@ public class SecteurActiviteBean implements Serializable {
 
 
 
-	public List<SecteurActivite> getListSecteurActivites() {
-		return listSecteurActivites;
+	public List<Evenement> getListEvenements() {
+		return listEvenements;
 	}
 
 
@@ -138,8 +138,8 @@ public class SecteurActiviteBean implements Serializable {
 
 
 
-	public void setListSecteurActivites(List<SecteurActivite> listSecteurActivites) {
-		this.listSecteurActivites = listSecteurActivites;
+	public void setListEvenements(List<Evenement> listEvenements) {
+		this.listEvenements = listEvenements;
 	}
 
 
@@ -148,8 +148,8 @@ public class SecteurActiviteBean implements Serializable {
 
 
 
-	public List<SecteurActivite> getListSelectedSecteurActivites() {
-		return listSelectedSecteurActivites;
+	public List<Evenement> getListSelectedEvenements() {
+		return listSelectedEvenements;
 	}
 
 
@@ -158,8 +158,8 @@ public class SecteurActiviteBean implements Serializable {
 
 
 
-	public void setListSelectedSecteurActivites(List<SecteurActivite> listSelectedSecteurActivites) {
-		this.listSelectedSecteurActivites = listSelectedSecteurActivites;
+	public void setListSelectedEvenements(List<Evenement> listSelectedEvenements) {
+		this.listSelectedEvenements = listSelectedEvenements;
 	}
 
 
@@ -168,8 +168,8 @@ public class SecteurActiviteBean implements Serializable {
 
 
 
-	public List<SecteurActivite> getListFilterSecteurActivites() {
-		return listFilterSecteurActivites;
+	public List<Evenement> getListFilterEvenements() {
+		return listFilterEvenements;
 	}
 
 
@@ -178,8 +178,8 @@ public class SecteurActiviteBean implements Serializable {
 
 
 
-	public void setListFilterSecteurActivites(List<SecteurActivite> listFilterSecteurActivites) {
-		this.listFilterSecteurActivites = listFilterSecteurActivites;
+	public void setListFilterEvenements(List<Evenement> listFilterEvenements) {
+		this.listFilterEvenements = listFilterEvenements;
 	}
 
 
@@ -188,8 +188,8 @@ public class SecteurActiviteBean implements Serializable {
 
 
 
-	public SecteurActivite getSecteurActivite() {
-		return secteurActivite;
+	public Evenement getEvenement() {
+		return Evenement;
 	}
 
 
@@ -198,8 +198,8 @@ public class SecteurActiviteBean implements Serializable {
 
 
 
-	public void setSecteurActivite(SecteurActivite secteurActivite) {
-		this.secteurActivite = secteurActivite;
+	public void setEvenement(Evenement evenement) {
+		this.Evenement = evenement;
 	}
 
 
@@ -228,8 +228,8 @@ public class SecteurActiviteBean implements Serializable {
 
 
 
-	public List<String> getListSelectedStSecteurActivites() {
-		return listSelectedStSecteurActivites;
+	public List<String> getListSelectedStEvenements() {
+		return listSelectedStEvenements;
 	}
 
 
@@ -238,8 +238,8 @@ public class SecteurActiviteBean implements Serializable {
 
 
 
-	public void setListSelectedStSecteurActivites(List<String> listSelectedStSecteurActivites) {
-		this.listSelectedStSecteurActivites = listSelectedStSecteurActivites;
+	public void setListSelectedStEvenements(List<String> listSelectedStEvenements) {
+		this.listSelectedStEvenements = listSelectedStEvenements;
 	}
 
 
