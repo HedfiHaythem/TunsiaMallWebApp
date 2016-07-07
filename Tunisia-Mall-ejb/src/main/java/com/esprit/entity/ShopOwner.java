@@ -16,6 +16,12 @@ public class ShopOwner extends Utilisateur {
 	private Date DateApprouver;
 	private SecteurActivite secteurActiviter;
 	private Boutique boutique;
+	
+	public ShopOwner() {
+		secteurActiviter=new SecteurActivite();
+		boutique=new Boutique();
+	}
+	
 	public boolean isDemande() {
 		return Demande;
 	}

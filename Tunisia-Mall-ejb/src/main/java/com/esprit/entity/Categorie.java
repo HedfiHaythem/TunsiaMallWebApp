@@ -21,7 +21,9 @@ public class Categorie implements Serializable {
 	private String description;
 	private SecteurActivite secteurActivite;
 	
-
+public Categorie() {
+	secteurActivite=new SecteurActivite();
+}
 
 	
 	@Id
