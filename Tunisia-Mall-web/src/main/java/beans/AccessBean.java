@@ -52,10 +52,10 @@ public class AccessBean {
 		
 		SuperAdmin found = (SuperAdmin) authentificationServiceLocal.auth(u);
 		
-		ShopOwner found1 = (ShopOwner) authentificationServiceLocal.auth(u);
+		ShopOwner found1 = (ShopOwner) authentificationServiceLocal.auth(shopOwner);
 		
 		
-		Client found2 = (Client) authentificationServiceLocal.auth(u);
+		Client found2 = (Client) authentificationServiceLocal.auth(client);
 
 
 		if (found instanceof SuperAdmin || found1 instanceof ShopOwner || found2 instanceof Client) {
@@ -65,7 +65,7 @@ public class AccessBean {
 					Map<String, Object> sessionMap = externalContext.getSessionMap();
 				 sessionMap.put("superAdmin", found);
 				 sessionMap.put("shopOwner", found1);
-				 sessionMap.put("shopOwner", found2);
+				 sessionMap.put("client", found2);
 				 }catch(Exception e){
 					 
 					 
@@ -100,7 +100,7 @@ public class AccessBean {
 		.getExternalContext()
 		.getSessionMap()
 		.clear();
-		navigateTo = "/login?faces-redirect=true";
+		navigateTo = "/PublicPage/Login/login?faces-redirect=true";
 		return navigateTo;
 	}
 

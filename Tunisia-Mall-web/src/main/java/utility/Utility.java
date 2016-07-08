@@ -93,7 +93,13 @@ public class Utility implements Iutility {
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 
 		try{
-		return (Utilisateur) sessionMap.get("user");
+			if(sessionMap.get("superAdmin")!=null)
+		return (Utilisateur) sessionMap.get("superAdmin");
+			if(sessionMap.get("shopOwner")!=null)
+				return (Utilisateur) sessionMap.get("shopOwner");
+			if(sessionMap.get("client")!=null)
+				return (Utilisateur) sessionMap.get("client");
+			return null;
 		}catch(Exception e){
 			
 			return null;	

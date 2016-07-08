@@ -1,7 +1,9 @@
 <ui:composition  
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
    template="/WebFrontOffice/squelette/squelette.xhtml" >
 
+	<f:view beforePhase="#{access.doLogout()}" />
 <ui:define name="title">
 test
 </ui:define>

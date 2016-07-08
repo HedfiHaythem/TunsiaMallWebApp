@@ -48,7 +48,7 @@
 			<div id="login-circle">
 				<section id="login-form" class="login-inner-form">
 					<h1>Login #{access.name()} </h1>
-					<h:form styleClass="form-vertical"  prependId="false">
+					<h:form styleClass="form-vertical" >
 					   <p:growl id="growl" showDetail="true" life="3000"   /> 
 						<div class="control-group-merged">
 							<div class="control-group">
@@ -69,7 +69,7 @@
 								</div>
 						 -->
 						<div class="form-actions">
-					  							<p:commandButton value="login" action="#{access.doLogin}" ajax="false"/>
+					  							<p:commandButton value="login" action="#{access.doLogin}" ajax="false" />
 								  	
 								</div>
 					</h:form>
@@ -78,7 +78,7 @@
 				<section id="register-form" class="login-inner-form">
 					<h1>Register Shop Owner</h1>
 						
-								
+		<h:form>					
 <p:panelGrid columns="2" style="width:110%">
 		 <h:outputText  value="nom"  />
 			    	<p:inputText value="#{ShopOwnerBean.shopOwner.nom}"
@@ -159,11 +159,11 @@
 			<p:commandButton value="Enregistrer"  
 					oncomplete="if(!args.validationFailed){PF('UPDATE').hide();}" actionListener="#{ShopOwnerBean.updating(ShopOwnerBean.shopOwner)}"  icon="ui-icon-circle-check"   update="@this" />
 			
-				
+				</h:form>	
 				</section>
 				<section id="forget-form" class="login-inner-form">
 					<h1>Register Client</h1>
-					
+				<h:form>
 					
 						
 <p:panelGrid columns="2" style="width:110%">
@@ -218,7 +218,7 @@
 					oncomplete="if(!args.validationFailed){PF('ADDING').hide();}"  actionListener="#{ClientBean.adding(ClientBean.client)}"  icon="ui-icon-circle-check" update="@this" />
 					
 					
-					
+					</h:form>	
 				</section>
 			
 			</div>

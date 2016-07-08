@@ -46,12 +46,12 @@
                                     	<li><a href="#{request.contextPath}/profile"><i class="icol-user"></i> My Profile</a></li>
                                     <!-- <li><a href="#"><i class="icol-layout"></i> My Invoices</a></li>       -->	                                  
                                         <li class="divider"></li>
-                                        <li><h:form> <h:commandLink actionListener="#{loginBeanTn.logout()}" > <i class="icol-key"></i> Déconnexion</h:commandLink></h:form></li>
+                                        <li><h:form> <h:commandLink actionListener="#{access.doLogout()}" > <i class="icol-key"></i> Déconnexion</h:commandLink></h:form></li>
                                     </ul>
                                 </div>
                             </div>
                             <div id="logout-ribbon">
-                            	<h:form> <h:commandLink actionListener="#{loginBeanTn.logout()}" ><i class="icon-off"></i></h:commandLink></h:form>
+                            	<h:form> <h:commandLink actionListener="#{access.doLogout()}"  ><i class="icon-off"></i></h:commandLink></h:form>
                             </div>
                         </div>
                     </div>

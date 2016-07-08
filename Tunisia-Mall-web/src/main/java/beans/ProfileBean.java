@@ -52,6 +52,8 @@ public class ProfileBean implements Serializable {
 	@PostConstruct
 	public void initialization() {
 	
+		
+		
 		utilisateur = ut.getUserfromMapSession();
 			
 		

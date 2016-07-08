@@ -6,6 +6,13 @@
      xmlns:c="http://java.sun.com/jsp/jstl/core">
  
     <h:head>
+    
+    <f:metadata>
+   	
+    	<f:viewAction action="#{access.doLogout()}" />
+    	<f:view beforePhase="#{access.doLogout()}" />
+	</f:metadata>
+
 	 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>
 	<ui:insert name="title" >
