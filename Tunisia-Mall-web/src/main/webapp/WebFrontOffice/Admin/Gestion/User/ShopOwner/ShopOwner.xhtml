@@ -8,6 +8,9 @@
      xmlns:h="http://java.sun.com/jsf/html"
    template="/WebFrontOffice/squelette/squelette.xhtml" >
 
+<h:head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
 <ui:define name="title">
 Shop Owner Crud
 </ui:define>     	
@@ -22,7 +25,7 @@ Shop Owner Crud
 			<p:dataTable var="item" value="#{ShopOwnerBean.listShopOwners}" 
 			 paginator="true" rows="10"
 			 
-			 style="width:80%; font-size:12px;margin-left:auto;margin-top:3%;margin-right:auto"
+			 style="width:100%; font-size:12px;margin-left:auto;margin-top:3%;margin-right:auto"
 			 emptyMessage="0 Analyse(s)">
 			
 			    	
@@ -33,7 +36,7 @@ Shop Owner Crud
 						
 			    </p:column>
 	
-	 			<p:column  headerText=" Prénom"  >
+	 			<p:column  headerText=" PrÃ©nom"  >
 			    	
 			    	<p:outputLabel value="#{item.prenom}"
 						style="width:80px;height:80px" />
@@ -107,9 +110,9 @@ Shop Owner Crud
 			    
 			    
 			    
-			      <p:column  headerText="Approuver"  >
+			      <p:column  headerText="approuver"  >
 			    	
-			  			<p:outputLabel value="#{item.Approuver}"
+			  			<p:outputLabel value="#{item.approuver}"
 						style="width:80px;height:80px" />
 						
 			    </p:column>	
@@ -117,7 +120,7 @@ Shop Owner Crud
 			    
 			    
 			        
-			      <p:column  headerText="Numéro de boutique"  >
+			      <p:column  headerText="NumÃ©ro de boutique"  >
 			    	
 			  			<p:outputLabel value="#{item.boutique.num}"
 						style="width:80px;height:80px" />
@@ -172,93 +175,77 @@ Shop Owner Crud
 			
 			    
 
-				    
-		  
-		 <h:outputText  headerText="nom"  />
+		
+<p:panelGrid columns="2" style="width:110%">
+		 <h:outputText  value="nom"  />
 			    	<p:inputText value="#{ShopOwnerBean.shopOwner.nom}"
-						style="width:80px;height:80px" />
-						
+						style="width:100%" />
+	
 			   
 	
-			  <h:outputText  headerText="prenom"  />   	
+			  <h:outputText  value="prenom"  />   	
 			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.prenom}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 			
 			    
-			<h:outputText  headerText="Login"  />     	
+			<h:outputText  value="Login"  />     	
 			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.login}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 						
 			  
 		
 					
-			<h:outputText  headerText="Password"  />     	
+			<h:outputText  value="Password"  />     	
 			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.password}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 						
 			    
 			    
 			
-			  <h:outputText  headerText="Email"  />    	
+			  <h:outputText  value="Email"  />    	
 			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.email}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 						
 			    
-			<h:outputText  headerText="Adresse"  />  
+			<h:outputText  value="Adresse"  />  
 			    	
 			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.adresse}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 						
-			    </p:column>		
-			    	
-			    	
-			<h:outputText  headerText="Enabled"  />  
+			<h:outputText  value="Enabled"  />  
 			    	
 			  			<p:inputText  value="#{ShopOwnerBean.shopOwner.enabled}"
-						style="width:80px;height:80px" />
-						
-			    </p:column>	
-									      		  
-			   
-			<h:outputText  headerText="Tel"  />  
+						style="width:100%" />
+			<h:outputText  value="Tel"  />  
 			    	
 			  			<p:inputText  value="#{ShopOwnerBean.shopOwner.tel}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 						
-			    </p:column>	
 			    
 			    
-			    
-	<h:outputText  headerText="Qui Suis Je"  />  
+	<h:outputText  value="Qui Suis Je"  />  
 			    	
 			  		 <p:editor  value="#{ShopOwnerBean.shopOwner.quiSuisJe}"
-						style="width:80px;height:80px" />
-						
-			    </p:column>	
+						style="width:100%" />
 			    
 			    
-			    <h:outputText  headerText="Notification"  />  
+			    <h:outputText  value="Notification"  />  
 		
 			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.notification}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 						
 			  
 			    
-			     <h:outputText  headerText="Approuver"  />  
+			     <h:outputText  value="approuver"  />  
 			    	
-			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.Approuver}"
-						style="width:80px;height:80px" />
+			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.approuver}"
+						style="width:100%" />
+
 						
-			    </p:column>	
-			    
-			    
-			    
-			   
-			 
+		</p:panelGrid>	  
 						
-						
-						  <p:outputLabel>Numéro de boutique</p:outputLabel>Z
-					<p:selectOneMenu value="#{ShopOwnerBean.shopOwner.boutique.id}"  required="true" requiredMessage="Numéro de Boutique Obligatoire" filter="true">
+						  <p:outputLabel>NumÃ©ro de boutique</p:outputLabel>
+					<p:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.boutique.id}"  required="true" requiredMessage="NumÃ©ro de Boutique Obligatoire" filter="true">
 						<f:selectItem itemLabel="select"  itemValue="" />
 						<f:selectItems value="#{ShopOwnerBean.listBoutique}"
 						var="item2"
@@ -271,7 +258,7 @@ Shop Owner Crud
 			
 			 			
 						  <p:outputLabel>Secteur Activiter</p:outputLabel>
-					<p:selectOneMenu value="#{ShopOwnerBean.shopOwner.secteurActiviter.id}"  required="true" requiredMessage="Secteur Activiter Obligatoire" filter="true">
+					<p:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.secteurActiviter.id}"  required="true" requiredMessage="Secteur Activiter Obligatoire" filter="true">
 						<f:selectItem itemLabel="select"  itemValue="" />
 						<f:selectItems value="#{ShopOwnerBean.listSecteurActivite}"
 						var="item2"
@@ -280,6 +267,7 @@ Shop Owner Crud
 						
 											</p:selectOneMenu>	
 			    
+		
 
   
   					<f:facet name="footer">
@@ -302,93 +290,81 @@ Shop Owner Crud
 			<p:dialog header="Nouveau" widgetVar="ADDING" onLoad="reset()" modal="true"  width="500" height="500" >
 			
 			
-				    
-		  
-		 <h:outputText  headerText="nom"  />
+	
+<p:panelGrid columns="2" style="width:110%">
+		 <h:outputText  value="nom"  />
 			    	<p:inputText value="#{ShopOwnerBean.shopOwner.nom}"
-						style="width:80px;height:80px" />
-						
+						style="width:100%" />
+	
 			   
 	
-			  <h:outputText  headerText="prenom"  />   	
+			  <h:outputText  value="prenom"  />   	
 			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.prenom}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 			
 			    
-			<h:outputText  headerText="Login"  />     	
+			<h:outputText  value="Login"  />     	
 			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.login}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 						
 			  
 		
 					
-			<h:outputText  headerText="Password"  />     	
+			<h:outputText  value="Password"  />     	
 			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.password}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 						
 			    
 			    
 			
-			  <h:outputText  headerText="Email"  />    	
+			  <h:outputText  value="Email"  />    	
 			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.email}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 						
 			    
-			<h:outputText  headerText="Adresse"  />  
+			<h:outputText  value="Adresse"  />  
 			    	
 			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.adresse}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 						
-			    </p:column>		
-			    	
-			    	
-			<h:outputText  headerText="Enabled"  />  
-			    	
-			  			<p:inputText  value="#{ShopOwnerBean.shopOwner.enabled}"
-						style="width:80px;height:80px" />
-						
-			    </p:column>	
-									      		  
-			   
-			<h:outputText  headerText="Tel"  />  
+		
+			<h:outputText  value="Tel"  />  
 			    	
 			  			<p:inputText  value="#{ShopOwnerBean.shopOwner.tel}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 						
-			    </p:column>	
 			    
 			    
-			    
-	<h:outputText  headerText="Qui Suis Je"  />  
+	<h:outputText  value="Qui Suis Je"  />  
 			    	
 			  		 <p:editor  value="#{ShopOwnerBean.shopOwner.quiSuisJe}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
+			    
+			    
+			    
+			    	<h:outputText  value="Enabled"  />  
+			    	
+			  			<p:selectBooleanCheckbox   value="#{ShopOwnerBean.shopOwner.enabled}"
+						style="width:100%" />
 						
-			    </p:column>	
 			    
-			    
-			    <h:outputText  headerText="Notification"  />  
+			    <h:outputText  value="Notification"  />  
 		
 			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.notification}"
-						style="width:80px;height:80px" />
+						style="width:100%" />
 						
 			  
 			    
-			     <h:outputText  headerText="Approuver"  />  
+			     <h:outputText  value="approuver"  />  
 			    	
-			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.Approuver}"
-						style="width:80px;height:80px" />
+			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.approuver}"
+						style="width:100%" />
+
 						
-			    </p:column>	
-			    
-			    
-			    
-			   
-			 
+		</p:panelGrid>	  
 						
-						
-						  <p:outputLabel>Numéro de boutique</p:outputLabel>Z
-					<p:selectOneMenu value="#{ShopOwnerBean.shopOwner.boutique.id}"  required="true" requiredMessage="Numéro de Boutique Obligatoire" filter="true">
+						  <p:outputLabel>NumÃ©ro de boutique</p:outputLabel>
+					<p:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.boutique.id}"  required="true" requiredMessage="NumÃ©ro de Boutique Obligatoire" filter="true">
 						<f:selectItem itemLabel="select"  itemValue="" />
 						<f:selectItems value="#{ShopOwnerBean.listBoutique}"
 						var="item2"
@@ -401,7 +377,7 @@ Shop Owner Crud
 			
 			 			
 						  <p:outputLabel>Secteur Activiter</p:outputLabel>
-					<p:selectOneMenu value="#{ShopOwnerBean.shopOwner.secteurActiviter.id}"  required="true" requiredMessage="Secteur Activiter Obligatoire" filter="true">
+					<p:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.secteurActiviter.id}"  required="true" requiredMessage="Secteur Activiter Obligatoire" filter="true">
 						<f:selectItem itemLabel="select"  itemValue="" />
 						<f:selectItems value="#{ShopOwnerBean.listSecteurActivite}"
 						var="item2"
