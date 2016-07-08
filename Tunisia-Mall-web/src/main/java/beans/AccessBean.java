@@ -10,6 +10,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import com.esprit.entity.Client;
+import com.esprit.entity.ShopOwner;
 import com.esprit.entity.SuperAdmin;
 import com.esprit.entity.Utilisateur;
 import com.esprit.service.UserServiceLocal;
@@ -35,17 +37,35 @@ public class AccessBean {
 	public String doLogin(){
 		String navigateTo="";
 		SuperAdmin u = new SuperAdmin();
+		ShopOwner shopOwner=new ShopOwner();
+		Client client=new Client();
+		
 		u.setLogin(email);
 		u.setPassword(password);
 		
+		shopOwner.setLogin(email);
+		shopOwner.setPassword(password);
+		
+		
+		client.setLogin(email);
+		client.setPassword(password);
+		
 		SuperAdmin found = (SuperAdmin) authentificationServiceLocal.auth(u);
+		
+		ShopOwner found1 = (ShopOwner) authentificationServiceLocal.auth(u);
+		
+		
+		Client found2 = (Client) authentificationServiceLocal.auth(u);
 
-		if (found instanceof SuperAdmin) {
+
+		if (found instanceof SuperAdmin || found1 instanceof ShopOwner || found2 instanceof Client) {
 			
 			 try{
 					ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 					Map<String, Object> sessionMap = externalContext.getSessionMap();
-				 sessionMap.put("user", found);
+				 sessionMap.put("superAdmin", found);
+				 sessionMap.put("shopOwner", found1);
+				 sessionMap.put("shopOwner", found2);
 				 }catch(Exception e){
 					 
 					 

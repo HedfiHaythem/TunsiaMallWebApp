@@ -33,14 +33,14 @@
 			<div class="btn-wrap">
 				<button type="button" class="btn" data-target="#login-form"><i class="icon-key"></i></button>
 			</div>
-			<!-- 
+			
 			<div class="btn-wrap">
 				<button type="button" class="btn" data-target="#register-form"><i class="icon-edit"></i></button>
 			</div>
 			<div class="btn-wrap">
-				<button type="button" class="btn" data-target="#forget-form"><i class="icon-question-sign"></i></button>
+				<button type="button" class="btn" data-target="#forget-form"><i class="icon-edit"></i></button>
 			</div>
-			 -->
+			
 		</div>
 
 		<div id="login-inner" class="login-inset">
@@ -74,56 +74,153 @@
 								</div>
 					</h:form>
 				</section>
-				<!-- 
+				
 				<section id="register-form" class="login-inner-form">
-					<h1>Register</h1>
-					<form class="form-vertical" action="dashboard.html">
-						<div class="control-group">
-							<label class="control-label">Email</label>
-							<div class="controls">
-								<input type="text" name="Register[email]" class="required email" />
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label">Password</label>
-							<div class="controls">
-								<input type="password" name="Register[password]" class="required" />
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label">Fullname</label>
-							<div class="controls">
-								<input type="text" name="Register[fullname]" class="required" />
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label">Payment Method</label>
-							<div class="controls">
-								<select class="required" name="Register[payment]">
-									<option>PayPal</option>
-									<option>Credit Card</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-actions">
-							<button type="submit" class="btn btn-danger btn-block btn-large">Register</button>
-						</div>
-					</form>
+					<h1>Register Shop Owner</h1>
+						
+								
+<p:panelGrid columns="2" style="width:110%">
+		 <h:outputText  value="nom"  />
+			    	<p:inputText value="#{ShopOwnerBean.shopOwner.nom}"
+						style="width:100%" />
+	
+			   
+	
+			  <h:outputText  value="prenom"  />   	
+			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.prenom}"
+						style="width:100%" />
+			
+			    
+			<h:outputText  value="Login"  />     	
+			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.login}"
+						style="width:100%" />
+						
+			  
+		
+					
+			<h:outputText  value="Password"  />     	
+			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.password}"
+						style="width:100%" />
+						
+			    
+			    
+			
+			  <h:outputText  value="Email"  />    	
+			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.email}"
+						style="width:100%" />
+						
+			    
+			<h:outputText  value="Adresse"  />  
+			    	
+			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.adresse}"
+						style="width:100%" />
+						
+			
+			    
+			    
+			    <h:outputText  value="Notification"  />  
+		
+			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.notification}"
+						style="width:100%" />
+						
+			  
+			    
+			     <h:outputText  value="approuver"  />  
+			    	
+			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.approuver}"
+						style="width:100%" />
+
+						
+		</p:panelGrid>	  
+						
+						  <p:outputLabel>Numéro de boutique</p:outputLabel>
+					<p:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.boutique.id}"  required="true" requiredMessage="Numéro de Boutique Obligatoire" filter="true">
+						<f:selectItem itemLabel="select"  itemValue="" />
+						<f:selectItems value="#{ShopOwnerBean.listBoutique}"
+						var="item2"
+						itemValue="#{item2.id}"
+						itemLabel="#{item2.num}"/>
+						
+											</p:selectOneMenu>
+					
+						
+			
+			 			
+						  <p:outputLabel>Secteur Activiter</p:outputLabel>
+					<p:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.secteurActiviter.id}"  required="true" requiredMessage="Secteur Activiter Obligatoire" filter="true">
+						<f:selectItem itemLabel="select"  itemValue="" />
+						<f:selectItems value="#{ShopOwnerBean.listSecteurActivite}"
+						var="item2"
+						itemValue="#{item2.id}"
+						itemLabel="#{item2.libelle}"/>
+						
+											</p:selectOneMenu>	
+			    
+			<p:commandButton value="Enregistrer"  
+					oncomplete="if(!args.validationFailed){PF('UPDATE').hide();}" actionListener="#{ShopOwnerBean.updating(ShopOwnerBean.shopOwner)}"  icon="ui-icon-circle-check"   update="@this" />
+			
+				
 				</section>
 				<section id="forget-form" class="login-inner-form">
-					<h1>Reset Password</h1>
-					<form class="form-vertical" action="dashboard.html">
-						<div class="control-group">
-							<div class="controls">
-								<input type="text" name="Reset[email]" class="big required email" placeholder="Enter Your Email..." />
-							</div>
-						</div>
-						<div class="form-actions">
-							<button type="submit" class="btn btn-danger btn-block btn-large">Reset</button>
-						</div>
-					</form>
+					<h1>Register Client</h1>
+					
+					
+						
+<p:panelGrid columns="2" style="width:110%">
+		 <h:outputText  value="nom"  />
+			    	<p:inputText value="#{ClientBean.client.nom}"
+						style="width:100%" />
+	
+			   
+	
+			  <h:outputText  value="prenom"  />   	
+			    	<p:inputText  value="#{ClientBean.client.prenom}"
+						style="width:100%" />
+			
+			    
+			<h:outputText  value="Login"  />     	
+			    	<p:inputText  value="#{ClientBean.client.login}"
+						style="width:100%" />
+						
+			  
+		
+					
+			<h:outputText  value="Password"  />     	
+			    	<p:inputText  value="#{ClientBean.client.password}"
+						style="width:100%" />
+						
+			    
+			    
+			
+			  <h:outputText  value="Email"  />    	
+			    	<p:inputText  value="#{ClientBean.client.email}"
+						style="width:100%" />
+						
+			    
+			<h:outputText  value="Adresse"  />  
+			    	
+			    	<p:inputText  value="#{ClientBean.client.adresse}"
+						style="width:100%" />
+						
+		
+			<h:outputText  value="Tel"  />  
+			    	
+			  			<p:inputText  value="#{ClientBean.client.tel}"
+						style="width:100%" />
+							    
+			    <h:outputText  value="Notification"  />  
+		
+			  			<p:selectBooleanCheckbox value="#{ClientBean.client.notification}"
+						style="width:100%" />
+			
+			</p:panelGrid>			
+	<p:commandButton value="Enregistrer"  
+					oncomplete="if(!args.validationFailed){PF('ADDING').hide();}"  actionListener="#{ClientBean.adding(ClientBean.client)}"  icon="ui-icon-circle-check" update="@this" />
+					
+					
+					
 				</section>
-				 -->
+			
 			</div>
 
 		</div>

@@ -12,7 +12,7 @@
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </h:head>
 <ui:define name="title">
-Shop Owner Crud
+Super Admin Crud
 </ui:define>     	
 	<ui:define name="content">
    
@@ -22,7 +22,7 @@ Shop Owner Crud
 		<h:form id="formDataTableSlider">
 			<p:growl id="msg" showDetail="false" />
 			<!-- DATA TABLE LIST ALL MARQUE -->
-			<p:dataTable var="item" value="#{ShopOwnerBean.listShopOwners}" 
+			<p:dataTable var="item" value="#{SuperAdminBean.listSuperAdmins}" 
 			 paginator="true" rows="10"
 			 
 			 style="width:100%; font-size:12px;margin-left:auto;margin-top:3%;margin-right:auto"
@@ -109,38 +109,13 @@ Shop Owner Crud
 			    </p:column>	
 			    
 			    
-			    
-			      <p:column  headerText="approuver"  >
-			    	
-			  			<p:outputLabel value="#{item.approuver}"
-						style="width:80px;height:80px" />
-						
-			    </p:column>	
-			    
-			    
+			 
 			    
 			        
-			      <p:column  headerText="Numéro de boutique"  >
-			    	
-			  			<p:outputLabel value="#{item.boutique.num}"
-						style="width:80px;height:80px" />
-						
-			    </p:column>	
-			    
-			    
-			     <p:column  headerText="Secteur Activiter"  >
-			    	
-			  			<p:outputLabel value="#{item.secteurActiviter.libelle}"
-						style="width:80px;height:80px" />
-						
-			    </p:column>	
-			    
-			    
-			      
 			    <p:column>
 			    	<f:facet name="header">
 		        		<p:commandButton  oncomplete="PF('ADDING').show()"  
-		        		action="#{ShopOwnerBean.initialization}" icon="ui-icon-circle-plus" update=":formNew" style="width:100%"/>
+		        		action="#{SuperAdminBean.initialization}" icon="ui-icon-circle-plus" update=":formNew" style="width:100%"/>
 		        	</f:facet>
 			    	 
 		        	<p:panelGrid columns="2" cellspacing="1">        		
@@ -149,12 +124,12 @@ Shop Owner Crud
 									style="align:center;" oncomplete="PF('UPDATE').show()"
 									icon="ui-icon-pencil">
 									<f:setPropertyActionListener value="#{item}"
-										target="#{ShopOwnerBean.shopOwner}" />
+										target="#{SuperAdminBean.superAdmin}" />
 								</p:commandButton>
    
 		        				
 		        	
-			            		<p:commandButton  actionListener="#{ShopOwnerBean.removing(item)}"   update=":formDataTableSlider"
+			            		<p:commandButton  actionListener="#{SuperAdminBean.removing(item)}"   update=":formDataTableSlider"
 		        		icon="ui-icon-trash">
 		        		 <p:confirm header="Confirmation" message="Vous voulez Supprimer ?" icon="ui-icon-alert" />  
     </p:commandButton>  
@@ -178,101 +153,69 @@ Shop Owner Crud
 		
 <p:panelGrid columns="2" style="width:110%">
 		 <h:outputText  value="nom"  />
-			    	<p:inputText value="#{ShopOwnerBean.shopOwner.nom}"
+			    	<p:inputText value="#{SuperAdminBean.superAdmin.nom}"
 						style="width:100%" />
 	
 			   
 	
 			  <h:outputText  value="prenom"  />   	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.prenom}"
+			    	<p:inputText  value="#{SuperAdminBean.superAdmin.prenom}"
 						style="width:100%" />
 			
 			    
 			<h:outputText  value="Login"  />     	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.login}"
+			    	<p:inputText  value="#{SuperAdminBean.superAdmin.login}"
 						style="width:100%" />
 						
 			  
 		
 					
 			<h:outputText  value="Password"  />     	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.password}"
+			    	<p:inputText  value="#{SuperAdminBean.superAdmin.password}"
 						style="width:100%" />
 						
 			    
 			    
 			
 			  <h:outputText  value="Email"  />    	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.email}"
+			    	<p:inputText  value="#{SuperAdminBean.superAdmin.email}"
 						style="width:100%" />
 						
 			    
 			<h:outputText  value="Adresse"  />  
 			    	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.adresse}"
+			    	<p:inputText  value="#{SuperAdminBean.superAdmin.adresse}"
 						style="width:100%" />
 						
 			<h:outputText  value="Enabled"  />  
 			    	
-			  			<p:inputText  value="#{ShopOwnerBean.shopOwner.enabled}"
+			  			<p:inputText  value="#{SuperAdminBean.superAdmin.enabled}"
 						style="width:100%" />
 			<h:outputText  value="Tel"  />  
 			    	
-			  			<p:inputText  value="#{ShopOwnerBean.shopOwner.tel}"
+			  			<p:inputText  value="#{SuperAdminBean.superAdmin.tel}"
 						style="width:100%" />
 						
 			    
 			    
 	<h:outputText  value="Qui Suis Je"  />  
 			    	
-			  		 <p:editor  value="#{ShopOwnerBean.shopOwner.quiSuisJe}"
+			  		 <p:editor  value="#{SuperAdminBean.superAdmin.quiSuisJe}"
 						style="width:100%" />
 			    
 			    
 			    <h:outputText  value="Notification"  />  
 		
-			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.notification}"
+			  			<p:selectBooleanCheckbox value="#{SuperAdminBean.superAdmin.notification}"
 						style="width:100%" />
 						
-			  
-			    
-			     <h:outputText  value="approuver"  />  
-			    	
-			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.approuver}"
-						style="width:100%" />
-
-						
+					
 		</p:panelGrid>	  
 						
-						  <p:outputLabel>Numéro de boutique</p:outputLabel>
-					<p:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.boutique.id}"  required="true" requiredMessage="Numéro de Boutique Obligatoire" filter="true">
-						<f:selectItem itemLabel="select"  itemValue="" />
-						<f:selectItems value="#{ShopOwnerBean.listBoutique}"
-						var="item2"
-						itemValue="#{item2.id}"
-						itemLabel="#{item2.num}"/>
-						
-											</p:selectOneMenu>
-					
-						
-			
-			 			
-						  <p:outputLabel>Secteur Activiter</p:outputLabel>
-					<p:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.secteurActiviter.id}"  required="true" requiredMessage="Secteur Activiter Obligatoire" filter="true">
-						<f:selectItem itemLabel="select"  itemValue="" />
-						<f:selectItems value="#{ShopOwnerBean.listSecteurActivite}"
-						var="item2"
-						itemValue="#{item2.id}"
-						itemLabel="#{item2.libelle}"/>
-						
-											</p:selectOneMenu>	
-			    
-		
-
-  
+				  
   					<f:facet name="footer">
 					<p:commandButton value="Enregistrer"  
-					oncomplete="if(!args.validationFailed){PF('UPDATE').hide();}" actionListener="#{ShopOwnerBean.updating(ShopOwnerBean.shopOwner)}"  icon="ui-icon-circle-check"   update=":formDataTableSlider" />
+					oncomplete="if(!args.validationFailed){PF('UPDATE').hide();}" actionListener="#{SuperAdminBean.updating(SuperAdminBean.superAdmin)}"  icon="ui-icon-circle-check"   update=":formDataTableSlider" />
 				
 					
 								
@@ -293,104 +236,73 @@ Shop Owner Crud
 	
 <p:panelGrid columns="2" style="width:110%">
 		 <h:outputText  value="nom"  />
-			    	<p:inputText value="#{ShopOwnerBean.shopOwner.nom}"
+			    	<p:inputText value="#{SuperAdminBean.superAdmin.nom}"
 						style="width:100%" />
 	
 			   
 	
 			  <h:outputText  value="prenom"  />   	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.prenom}"
+			    	<p:inputText  value="#{SuperAdminBean.superAdmin.prenom}"
 						style="width:100%" />
 			
 			    
 			<h:outputText  value="Login"  />     	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.login}"
+			    	<p:inputText  value="#{SuperAdminBean.superAdmin.login}"
 						style="width:100%" />
 						
 			  
 		
 					
 			<h:outputText  value="Password"  />     	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.password}"
+			    	<p:inputText  value="#{SuperAdminBean.superAdmin.password}"
 						style="width:100%" />
 						
 			    
 			    
 			
 			  <h:outputText  value="Email"  />    	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.email}"
+			    	<p:inputText  value="#{SuperAdminBean.superAdmin.email}"
 						style="width:100%" />
 						
 			    
 			<h:outputText  value="Adresse"  />  
 			    	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.adresse}"
+			    	<p:inputText  value="#{SuperAdminBean.superAdmin.adresse}"
 						style="width:100%" />
 						
 		
 			<h:outputText  value="Tel"  />  
 			    	
-			  			<p:inputText  value="#{ShopOwnerBean.shopOwner.tel}"
+			  			<p:inputText  value="#{SuperAdminBean.superAdmin.tel}"
 						style="width:100%" />
 						
 			    
 			    
 	<h:outputText  value="Qui Suis Je"  />  
 			    	
-			  		 <p:editor  value="#{ShopOwnerBean.shopOwner.quiSuisJe}"
+			  		 <p:editor  value="#{SuperAdminBean.superAdmin.quiSuisJe}"
 						style="width:100%" />
 			    
 			    
 			    
 			    	<h:outputText  value="Enabled"  />  
 			    	
-			  			<p:selectBooleanCheckbox   value="#{ShopOwnerBean.shopOwner.enabled}"
+			  			<p:selectBooleanCheckbox   value="#{SuperAdminBean.superAdmin.enabled}"
 						style="width:100%" />
 						
 			    
 			    <h:outputText  value="Notification"  />  
 		
-			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.notification}"
+			  			<p:selectBooleanCheckbox value="#{SuperAdminBean.superAdmin.notification}"
 						style="width:100%" />
 						
 			  
 			    
-			     <h:outputText  value="approuver"  />  
-			    	
-			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.approuver}"
-						style="width:100%" />
-
-						
-		</p:panelGrid>	  
-						
-						  <p:outputLabel>Numéro de boutique</p:outputLabel>
-					<p:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.boutique.id}"  required="true" requiredMessage="Numéro de Boutique Obligatoire" filter="true">
-						<f:selectItem itemLabel="select"  itemValue="" />
-						<f:selectItems value="#{ShopOwnerBean.listBoutique}"
-						var="item2"
-						itemValue="#{item2.id}"
-						itemLabel="#{item2.num}"/>
-						
-											</p:selectOneMenu>
-					
-						
-			
-			 			
-						  <p:outputLabel>Secteur Activiter</p:outputLabel>
-					<p:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.secteurActiviter.id}"  required="true" requiredMessage="Secteur Activiter Obligatoire" filter="true">
-						<f:selectItem itemLabel="select"  itemValue="" />
-						<f:selectItems value="#{ShopOwnerBean.listSecteurActivite}"
-						var="item2"
-						itemValue="#{item2.id}"
-						itemLabel="#{item2.libelle}"/>
-						
-											</p:selectOneMenu>	
-			    
-
+			  </p:panelGrid>
   
   					<f:facet name="footer">
 					<p:commandButton value="Enregistrer"  
-					oncomplete="if(!args.validationFailed){PF('ADDING').hide();}"  actionListener="#{ShopOwnerBean.adding(ShopOwnerBean.shopOwner)}"  icon="ui-icon-circle-check" update=":formDataTableSlider" >
+					oncomplete="if(!args.validationFailed){PF('ADDING').hide();}"  actionListener="#{SuperAdminBean.adding(SuperAdminBean.superAdmin)}"  icon="ui-icon-circle-check" update=":formDataTableSlider" >
 					
 				
 					</p:commandButton>
