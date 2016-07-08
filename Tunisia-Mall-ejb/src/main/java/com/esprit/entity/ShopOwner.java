@@ -10,8 +10,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class ShopOwner extends Utilisateur {
 	
-	private boolean Demande ;
-	private String Approuver;
+	private boolean demande ;
+	private String approuver;
 	private Date DateDemande=new Date() ;
 	private Date DateApprouver;
 	private SecteurActivite secteurActiviter;
@@ -22,21 +22,8 @@ public class ShopOwner extends Utilisateur {
 		boutique=new Boutique();
 	}
 	
-	public boolean isDemande() {
-		return Demande;
-	}
+	
 
-	public void setDemande(boolean demande) {
-		Demande = demande;
-	}
-
-	public String getApprouver() {
-		return Approuver;
-	}
-
-	public void setApprouver(String approuver) {
-		Approuver = approuver;
-	}
 
 	public Date getDateDemande() {
 		return DateDemande;
@@ -71,6 +58,28 @@ public class ShopOwner extends Utilisateur {
 
 	public void setBoutique(Boutique boutique) {
 		this.boutique = boutique;
+	}
+
+	public String getApprouver() {
+		return approuver;
+	}
+
+	public void setApprouver(String approuver) {
+		this.approuver = approuver;
+	}
+
+
+
+
+	public boolean isDemande() {
+		return demande;
+	}
+
+
+
+
+	public void setDemande(boolean demande) {
+		this.demande = demande;
 	}
 
 }
