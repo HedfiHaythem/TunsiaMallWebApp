@@ -78,7 +78,9 @@
 				<section id="register-form" class="login-inner-form">
 					<h1>Register Shop Owner</h1>
 						
-		<h:form>					
+		<h:form>			
+		   <p:growl id="growl" showDetail="true" life="3000"   /> 
+							
 <p:panelGrid columns="2" style="width:110%">
 		 <h:outputText  value="nom"  />
 			    	<p:inputText value="#{ShopOwnerBean.shopOwner.nom}"
@@ -134,37 +136,38 @@
 		</p:panelGrid>	  
 						
 						  <p:outputLabel>Numéro de boutique</p:outputLabel>
-					<p:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.boutique.id}"  required="true" requiredMessage="Numéro de Boutique Obligatoire" filter="true">
+					<h:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.boutique.id}"  required="true" requiredMessage="Numéro de Boutique Obligatoire" filter="true">
 						<f:selectItem itemLabel="select"  itemValue="" />
 						<f:selectItems value="#{ShopOwnerBean.listBoutique}"
 						var="item2"
 						itemValue="#{item2.id}"
 						itemLabel="#{item2.num}"/>
 						
-											</p:selectOneMenu>
+											</h:selectOneMenu>
 					
 						
 			
 			 			
 						  <p:outputLabel>Secteur Activiter</p:outputLabel>
-					<p:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.secteurActiviter.id}"  required="true" requiredMessage="Secteur Activiter Obligatoire" filter="true">
+					<h:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.secteurActiviter.id}"  required="true" requiredMessage="Secteur Activiter Obligatoire" filter="true">
 						<f:selectItem itemLabel="select"  itemValue="" />
 						<f:selectItems value="#{ShopOwnerBean.listSecteurActivite}"
 						var="item2"
 						itemValue="#{item2.id}"
 						itemLabel="#{item2.libelle}"/>
 						
-											</p:selectOneMenu>	
+											</h:selectOneMenu>	
 			    
 			<p:commandButton value="Enregistrer"  
-					oncomplete="if(!args.validationFailed){PF('UPDATE').hide();}" actionListener="#{ShopOwnerBean.updating(ShopOwnerBean.shopOwner)}"  icon="ui-icon-circle-check"   update="@this" />
+					oncomplete="if(!args.validationFailed){PF('UPDATE').hide();}" actionListener="#{ShopOwnerBean.updating(ShopOwnerBean.shopOwner)}"  icon="ui-icon-circle-check"   update="@form" />
 			
 				</h:form>	
 				</section>
 				<section id="forget-form" class="login-inner-form">
 					<h1>Register Client</h1>
 				<h:form>
-					
+				   <p:growl id="growl" showDetail="true" life="3000"   /> 
+						
 						
 <p:panelGrid columns="2" style="width:110%">
 		 <h:outputText  value="nom"  />
@@ -215,7 +218,7 @@
 			
 			</p:panelGrid>			
 	<p:commandButton value="Enregistrer"  
-					oncomplete="if(!args.validationFailed){PF('ADDING').hide();}"  actionListener="#{ClientBean.adding(ClientBean.client)}"  icon="ui-icon-circle-check" update="@this" />
+					oncomplete="if(!args.validationFailed){PF('ADDING').hide();}"  actionListener="#{ClientBean.adding(ClientBean.client)}"  icon="ui-icon-circle-check" update="@form" />
 					
 					
 					</h:form>	

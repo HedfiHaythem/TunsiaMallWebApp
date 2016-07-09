@@ -9,8 +9,12 @@
     
     <f:metadata>
    	
-    	<f:viewAction action="#{access.doLogout()}" />
+    <!--  
     	<f:view beforePhase="#{access.doLogout()}" />
+    	<f:event type="preRenderView" listener="#{access.methodInManagedBean}" />
+    -->	
+    
+    <f:event type="preRenderView" listener="#{access.redirect()}" />
 	</f:metadata>
 
 	 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

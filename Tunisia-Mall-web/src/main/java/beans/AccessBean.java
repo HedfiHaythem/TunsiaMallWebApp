@@ -1,12 +1,15 @@
 package beans;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.ejb.EJB;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -18,13 +21,22 @@ import com.esprit.service.UserServiceLocal;
 
 
 @ManagedBean( name="access")
-@RequestScoped
+@SessionScoped
 public class AccessBean {
 	
 	@EJB
 	private UserServiceLocal<Utilisateur> authentificationServiceLocal;
 	
+	FacesContext fc = FacesContext.getCurrentInstance();
+    ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
 
+    public void redirect() throws IOException {
+    	System.out.println(connect());
+    	if(!connect()){
+        nav.performNavigation("/PublicPage/Login/login?faces-redirect=true");//add your URL here, instead of list.do
+    				}
+    	}
+    
 	
 	private String email;
 	private String password;
@@ -33,12 +45,15 @@ public class AccessBean {
 		
 		return "xxx :"+authentificationServiceLocal.findAll(new SuperAdmin()).size();
 	}
-	
-	public String doLogin(){
-		String navigateTo="";
-		SuperAdmin u = new SuperAdmin();
-		ShopOwner shopOwner=new ShopOwner();
-		Client client=new Client();
+	String navigateTo="";
+	SuperAdmin u = new SuperAdmin();
+	ShopOwner shopOwner=new ShopOwner();
+	Client client=new Client();
+	SuperAdmin found ;
+	ShopOwner found1;
+	Client found2 ;
+	public boolean connect(){
+		
 		
 		u.setLogin(email);
 		u.setPassword(password);
@@ -50,15 +65,26 @@ public class AccessBean {
 		client.setLogin(email);
 		client.setPassword(password);
 		
-		SuperAdmin found = (SuperAdmin) authentificationServiceLocal.auth(u);
+	 found = (SuperAdmin) authentificationServiceLocal.auth(u);
 		
-		ShopOwner found1 = (ShopOwner) authentificationServiceLocal.auth(shopOwner);
+		found1 = (ShopOwner) authentificationServiceLocal.auth(shopOwner);
 		
 		
-		Client found2 = (Client) authentificationServiceLocal.auth(client);
+		 found2 = (Client) authentificationServiceLocal.auth(client);
+		
+		if (found instanceof SuperAdmin || found1 instanceof ShopOwner || found2 instanceof Client)
+			return true;
+		else
+			return false;
+	}
+	
+	public String doLogin(){
+	
+		
+		
 
 
-		if (found instanceof SuperAdmin || found1 instanceof ShopOwner || found2 instanceof Client) {
+		if (connect()) {
 			
 			 try{
 					ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
