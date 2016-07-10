@@ -22,7 +22,11 @@ public class SousCategorie implements Serializable {
 	private String description;
 	private Categorie categorie;
 	private ShopOwner shopOwner;
-	
+
+	public SousCategorie() {
+		categorie =new Categorie();
+		shopOwner=new ShopOwner();
+	}
 	
 	
 	@Id

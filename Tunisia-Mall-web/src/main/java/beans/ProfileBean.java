@@ -2,6 +2,7 @@ package beans;
 
 
 
+import java.io.File;
 import java.io.Serializable;
 
 
@@ -12,6 +13,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.FileUploadEvent;
+
+import com.esprit.entity.Client;
+import com.esprit.entity.ShopOwner;
+import com.esprit.entity.SuperAdmin;
 import com.esprit.entity.Utilisateur;
 import com.esprit.service.UserServiceLocal;
 
@@ -22,7 +28,7 @@ import utility.Utility;
 
 
 @ViewScoped
-@ManagedBean(name = "ProfileBean")
+@ManagedBean(name = "profileBean")
 public class ProfileBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -53,10 +59,44 @@ public class ProfileBean implements Serializable {
 	public void initialization() {
 	
 		
+		if(ut.getUserfromMapSession() instanceof ShopOwner)
+		utilisateur = (Utilisateur) serviceUser.findById(new ShopOwner(), "id", ut.getUserfromMapSession().getId().toString()) ;
 		
-		utilisateur = ut.getUserfromMapSession();
-			
+
+		if(ut.getUserfromMapSession() instanceof SuperAdmin)
+		utilisateur = (Utilisateur) serviceUser.findById(new SuperAdmin(), "id", ut.getUserfromMapSession().getId().toString()) ;
 		
+		if(ut.getUserfromMapSession() instanceof Client)
+			utilisateur = (Utilisateur) serviceUser.findById(new Client(), "id", ut.getUserfromMapSession().getId().toString()) ;
+		
+	}
+	
+	
+
+	public void fileUpload22(FileUploadEvent event) throws Exception {
+		Iutility traitementImgText =new Utility(); 
+		
+		
+		String path = FacesContext.getCurrentInstance().getExternalContext()
+				.getRealPath("/");
+		
+		File file=traitementImgText.writeFile(event, "PublicImage/");
+		
+	
+	
+		
+		
+		utilisateur.setUrlPhoto(file.getName());
+		// getNosFormulaire().setUrlPhotot("thumb"+file.getName());
+		
+		serviceUser.update(utilisateur);
+		 initialization();
+		FacesMessage msg = new FacesMessage("chargement avec succès ", event
+				.getFile().getFileName() + " is uploaded.");
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+
+
 	}
 
 

@@ -8,13 +8,11 @@
     <h:head>
     
     <f:metadata>
-   	
-    <!--  
-    	<f:view beforePhase="#{access.doLogout()}" />
-    	<f:event type="preRenderView" listener="#{access.methodInManagedBean}" />
-    -->	
+
+    
     
     <f:event type="preRenderView" listener="#{access.redirect()}" />
+		
 	</f:metadata>
 
 	 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -79,6 +77,16 @@
                             
                             <div id="main-content">
                             <ui:insert name="content">
+                            
+				<h:form id="formNewSliderUploadFile2" onreset="reset()">
+			<p:dialog header="Nouveau" widgetVar="ADDINGFILEBanner" onLoad="reset()" modal="true"  >
+			
+			
+			 <p:fileUpload fileUploadListener="#{profileBean.fileUpload22()}" mode="advanced" dragDropSupport="true"  multiple="false"
+             update=":FormPicture" sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />  
+  
+			</p:dialog>
+		</h:form>
 	   <div class="profile">
 	 
                             
@@ -86,8 +94,14 @@
                              
                                         <div class="profile-sidebar">
                                             <div class="thumbnail">
-                            
-                                                <p:graphicImage value="PublicImage/photoProfile.jpg" />
+                            					<h:form id="FormPicture">
+                            					<p:commandButton  value="Update Your Picture" oncomplete="PF('ADDINGFILEBanner').show()"  
+															        		 icon="ui-icon-circle-plus" />
+												
+												
+                                              	  <p:graphicImage value="/PublicImage/a.jpg" rendered="#{empty profileBean.utilisateur.urlPhoto}" />
+                                                  <p:graphicImage value="/PublicImage/#{profileBean.utilisateur.urlPhoto}" rendered="#{not empty profileBean.utilisateur.urlPhoto}" />
+                                        		</h:form>
                                             </div>
                                             <ul class="nav nav-tabs nav-stacked">
                                                 <li class="Profile allact"  onclick="active('Profile');"><a href="#" ><i class="icos-"></i>Profile </a></li>
@@ -103,7 +117,7 @@
                                                 <h:form id="FrmProfile">
                                                            <div class="profile-head clearfix">
                                             <div class="profile-info pull-left">
-                                                <h1 class="profile-name">#{ProfileBean.utilisateur.prenom} #{ProfileBean.utilisateur.nom}  </h1>
+                                                <h1 class="profile-name">#{profileBean.utilisateur.prenom} #{profileBean.utilisateur.nom}  </h1>
                                                 <ul class="profile-attributes">
                                                  </ul>
                                             </div>
@@ -114,16 +128,16 @@
                                             </div>
                                             -->
                                         </div>
-                                         <h:panelGroup rendered="#{not empty ProfileBean.utilisateur.quiSuisJe }">
+                                         <h:panelGroup rendered="#{not empty profileBean.utilisateur.quiSuisJe }">
                                                     <h4 class="sub"><span>À PROPOS DE VOUS</span></h4>
-                                                    <p> #{ProfileBean.utilisateur.quiSuisJe}</p>
+                                                    <p> #{profileBean.utilisateur.quiSuisJe}</p>
                                           </h:panelGroup>   
                                                     <h4 class="sub"><span>Contact </span></h4>
                                                     <address>
                                               
-                                                        #{ProfileBean.utilisateur.adresse}	<br/><br/>											
-                                                        <abbr title="Phone">P:</abbr> #{ProfileBean.utilisateur.tel}<br/>
-                                                        <abbr title="Email">E:</abbr> <a href="#">#{ProfileBean.utilisateur.email}</a>
+                                                        #{profileBean.utilisateur.adresse}	<br/><br/>											
+                                                        <abbr title="Phone">P:</abbr> #{profileBean.utilisateur.tel}<br/>
+                                                        <abbr title="Email">E:</abbr> <a href="#">#{profileBean.utilisateur.email}</a>
                                                     </address>
                                                   </h:form>  
                                                 </div>
@@ -140,21 +154,21 @@
 						   <p:panel>
 						     	 <h4 class="sub"><span>Nom</span></h4>
                                                     
-                                                     <h:inputText  value="#{ProfileBean.utilisateur.nom}" style="width:98%"  styleClass="span12"  />
+                                                     <h:inputText  value="#{profileBean.utilisateur.nom}" style="width:98%"  styleClass="span12"  />
                                                     
                                                  <h4 class="sub"><span>Prénom</span></h4>
                                                     
-                                                    <h:inputText value="#{ProfileBean.utilisateur.prenom}" style="width:98%"  styleClass="span12"  />
+                                                    <h:inputText value="#{profileBean.utilisateur.prenom}" style="width:98%"  styleClass="span12"  />
                                                     
                                                  
                                                     <h4 class="sub"><span>À PROPOS DE VOUS</span></h4>
                                                     
-                                                    <h:inputTextarea value="#{ProfileBean.utilisateur.quiSuisJe}" style="width:98%"  styleClass="span12"  />
+                                                    <h:inputTextarea value="#{profileBean.utilisateur.quiSuisJe}" style="width:98%"  styleClass="span12"  />
                                              
                                                     
                                                     
 					<f:facet name="footer">
-						<p:commandButton value="mise à jour" ajax="true" actionListener="#{ProfileBean.updating(ProfileBean.utilisateur)}"  process="frm" update=":frm,:FrmProfile" icon="ui-icon-circle-check"/>
+						<p:commandButton value="mise à jour" ajax="true" actionListener="#{profileBean.updating(profileBean.utilisateur)}"  process="frm" update=":frm,:FrmProfile" icon="ui-icon-circle-check"/>
 					</f:facet>
 			</p:panel> 
 

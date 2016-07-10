@@ -26,6 +26,7 @@ public class Utilisateur implements Serializable{
 	private boolean enabled;
 	private String  tel;
 	private String quiSuisJe;
+	private String urlPhoto;
 	private boolean notification;
 	
 	
@@ -110,6 +111,14 @@ public class Utilisateur implements Serializable{
 
 	public void setQuiSuisJe(String quiSuisJe) {
 		this.quiSuisJe = quiSuisJe;
+	}
+
+	public String getUrlPhoto() {
+		return urlPhoto;
+	}
+
+	public void setUrlPhoto(String urlPhoto) {
+		this.urlPhoto = urlPhoto;
 	}
 	
 	
