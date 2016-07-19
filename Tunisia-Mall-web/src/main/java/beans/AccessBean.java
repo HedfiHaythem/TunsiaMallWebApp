@@ -94,7 +94,7 @@ public class AccessBean {
 			} catch (Exception e) {
 
 			}
-			navigateTo = "/WebFrontOffice/Page/MonProfile/Profile.xhtml?faces-redirect=true";
+			navigateTo = "/WebBackOffice/Page/MonProfile/Profile.xhtml?faces-redirect=true";
 		}
 
 		else {
