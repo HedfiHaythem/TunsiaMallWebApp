@@ -214,14 +214,18 @@
             
             
             <!-- Sous Category -->
-            
-                <div class="col-md-2">
-                    <a class="banner-category" href="#">
+            <ui:repeat var="item" value="#{CategorieBean.listCategories}" >
+			 	<p:column>
+						<div class="col-md-2">
+                    	<a class="banner-category" href="#">
                         <img class="banner-category-img" src="#{request.contextPath}/resources/FrontOffice/img/100x100.png" alt="Image Alternative text" title="Image Title" />
-                        <h5 class="banner-category-title">Home And Garden</h5>
-                        <p class="banner-category-desc">152 products</p>
+                        <h5 class="banner-category-title"><p:outputLabel value="#{item.libelle}"/></h5>
                     </a>
                 </div>
+			    </p:column>
+			 
+			 </ui:repeat>
+                
                 
 			<!-- Sous Category -->		
 

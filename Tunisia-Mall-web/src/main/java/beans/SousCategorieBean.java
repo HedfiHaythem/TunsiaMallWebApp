@@ -43,10 +43,11 @@ public class SousCategorieBean implements Serializable {
 	 */
 	private List<Categorie> listCategorie ;
 	private List<SousCategorie> listSousCategories ;
-	private List<SousCategorie> listSelectedSousCategories=new ArrayList<SousCategorie>() ;
+	private List<SousCategorie> listSelectedSousCategories = new ArrayList<SousCategorie>() ;
 	private List<SousCategorie> listFilterSousCategories ;
 	private SousCategorie sousCategorie;
 	private List<String> listSelectedStSousCategories ;
+	private List<SousCategorie> listSousCategoriesByCategory = new ArrayList<SousCategorie>() ;
 	
 	private String txt1;
 
@@ -54,19 +55,22 @@ public class SousCategorieBean implements Serializable {
 
 	private ShopOwner shopOwner;
 
+
 	/**
 	 * ------------------------------------------------------------------------
 	 * --------------------------------------------------------
 	 */
 	@PostConstruct
-	public void initialization() {
+	public void initialization() 
+	{
 		shopOwner = (ShopOwner) ut.getUserfromMapSession();
 		setListCategorie(serviceCategorie.findAll(new Categorie()));
 	
 		setListSousCategories(serviceSousCategorie.findAll(new SousCategorie()));
 		setListFilterSousCategories(serviceSousCategorie.findAll(new SousCategorie()));	
+				
 		sousCategorie=new SousCategorie();
-			}
+	}
 
 	
 	
@@ -115,9 +119,14 @@ public class SousCategorieBean implements Serializable {
 		}
 	}
 
+	ArrayList<SousCategorie> a;
 
 
-
+	public ArrayList<SousCategorie> getCategorie(Categorie categorie){
+		
+		return  serviceSousCategorie.findReqList(new SousCategorie(), "categorie.id = "+categorie.getId());
+		
+	}
 
 
 
@@ -290,6 +299,53 @@ public class SousCategorieBean implements Serializable {
 	public void setListSousCategories(List<SousCategorie> listSousCategories) {
 		this.listSousCategories = listSousCategories;
 	}
+
+
+
+
+
+
+
+	public List<SousCategorie> getListSousCategoriesByCategory() {
+		return listSousCategoriesByCategory;
+	}
+
+
+
+
+
+
+
+	public ArrayList<SousCategorie> getA() {
+		return a;
+	}
+
+
+
+
+
+
+
+	public void setA(ArrayList<SousCategorie> a) {
+		this.a = a;
+	}
+
+
+
+
+
+
+
+	public void setListSousCategoriesByCategory(List<SousCategorie> listSousCategoriesByCategory) {
+		this.listSousCategoriesByCategory = listSousCategoriesByCategory;
+	}
+
+
+
+
+
+
+
 
 
 	
