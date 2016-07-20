@@ -124,7 +124,8 @@ public class SousCategorieBean implements Serializable {
 
 	public ArrayList<SousCategorie> getCategorie(Categorie categorie){
 		
-		return  serviceSousCategorie.findReqList(new SousCategorie(), "categorie.id = "+categorie.getId());
+		return  serviceSousCategorie.findAllByLimite(new SousCategorie(), "categorie.id = "+ categorie.getId(), 1, 1);
+				
 		
 	}
 

@@ -13,8 +13,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import com.esprit.entity.Produit;
 
+import com.esprit.entity.Categorie;
+import com.esprit.entity.Produit;
+import com.esprit.entity.SecteurActivite;
+import com.esprit.entity.SousCategorie;
 import com.esprit.service.UserServiceLocal;
 
 
@@ -26,7 +29,12 @@ public class ProduitBean implements Serializable {
 
 	@EJB
 	private UserServiceLocal<Produit>  serviceProduit;
-	
+	@EJB
+	private UserServiceLocal<SecteurActivite>  serviceSecteurActivite;
+	@EJB
+	private UserServiceLocal<Categorie>  serviceCategorie;
+	@EJB
+	private UserServiceLocal<SousCategorie>  serviceSousCategorie;
 	
 	private List<Produit> listProduits ;
 	private List<Produit> listSelectedProduits=new ArrayList<Produit>() ;
@@ -53,7 +61,7 @@ public class ProduitBean implements Serializable {
 				serviceProduit.create(ta);
 		initialization();
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Enregistré(e) avec succés", "");
+				"Enregistrï¿½(e) avec succï¿½s", "");
 		FacesContext.getCurrentInstance().addMessage
 
 		(null, msg);
@@ -66,7 +74,7 @@ public class ProduitBean implements Serializable {
 		initialization();
 
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"mis(e) à jour avec succés", "");
+				"mis(e) ï¿½ jour avec succï¿½s", "");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		
 	}
@@ -77,7 +85,7 @@ public class ProduitBean implements Serializable {
 			serviceProduit.delete(new Produit(),"id",ta.getId()+"");
 			initialization();
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"Supprimé(e) avec succés", "");
+					"Supprimï¿½(e) avec succï¿½s", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		} catch (Exception e) {
 			initialization();
@@ -155,5 +163,18 @@ public class ProduitBean implements Serializable {
 	public void setTxt1(String txt1) {
 		this.txt1 = txt1;
 	}
-
+	
+	public ArrayList<Categorie> getCategorie(SecteurActivite secteurActivite)
+	{
+		return  serviceCategorie.findReqList(new Categorie(), "secteurActivite.id = "+secteurActivite.getId());
+	}
+	public ArrayList<SousCategorie> getSousCategorie(Categorie categorie)
+	{
+		return  serviceSousCategorie.findReqList(new SousCategorie(), "categorie.id = "+categorie.getId());
+	}
+	public ArrayList<Produit> getProduct(SousCategorie sousCategorie){
+		
+		return  serviceProduit.findReqList(new Produit(), "categorie.id = "+sousCategorie.getId()+" LIMIT 3");
+		
+	}
 }

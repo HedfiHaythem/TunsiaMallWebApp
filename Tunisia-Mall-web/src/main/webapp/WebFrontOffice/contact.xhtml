@@ -9,16 +9,15 @@ Index
 </ui:define>     	
 	<ui:define name="principale-content">
 					
-			<p:panel id="details" header="product details">
+			<p:panel id="details" header="Contact details">
 				<h:form id="details_form">
+					<p:growl id="msg" showDetail="false" />
 				<h:panelGrid columns="3">
 						
-						<h:panelGrid columns="2">
+						<h:panelGrid columns="1">
 						
-							
-							
 							<h:outputText value="Name" />
-							<p:inputText value="#{ContactBean.contact.name}" styleClass="product-form-input"/>
+							<p:inputText value="#{ContactBean.contact.name}" styleClass="product-form-input" />
 							
 							<h:outputText value="Email" />
 							<p:inputText value="#{ContactBean.contact.email}" styleClass="product-form-input"/>
@@ -29,7 +28,7 @@ Index
 							<h:outputText value="Subject" />
 							<p:inputText value="#{ContactBean.contact.subject}" styleClass="product-form-input"/>						
 							
-							<p:commandButton value="Enregistrer"  actionListener="#{ContactBean.adding(ContactBean.contact)}"  >
+							<p:commandButton value="Enregistrer"  actionListener="#{ContactBean.adding(ContactBean.contact)}"  update=":details_form" >
 					
 				
 					</p:commandButton>

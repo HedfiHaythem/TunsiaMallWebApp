@@ -15,5 +15,5 @@ public interface CommanServiceRemote<T> {
 	void delete(T o,String field,String id);
 	void delete(T o);
 	void update(T o);
-
+	ArrayList<T> findAllByLimite(Object o, String req, int start, int fin);
 }

@@ -51,7 +51,7 @@ public class ContactBean implements Serializable {
 		serviceContact.create(ta);
 		initialization();
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Enregistr�(e) avec succ�s", "");
+				"Votre message a bien été envoyé, nous le traiterons dans les plus brefs délais.", "");
 		FacesContext.getCurrentInstance().addMessage
 
 		(null, msg);

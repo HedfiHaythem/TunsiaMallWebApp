@@ -74,7 +74,12 @@ public class CommanService<T> implements CommanServiceLocal,CommanServiceRemote{
 		
 	}
 	
-	
+	@Override
+	public ArrayList<Object> findAllByLimite(Object o,String req,int start,int fin) {
+		
+		return (ArrayList<Object>) em.createQuery("Select c from "+o.getClass().getSimpleName()+" c where "+req).setFirstResult(start).setMaxResults(fin).getResultList();
+
+	}
 
 
 }

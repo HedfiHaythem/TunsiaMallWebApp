@@ -15,5 +15,6 @@ public interface CommanServiceLocal<T> {
 	void delete(T o);
 	void update(T o);
 	ArrayList<T> findReqList(Object o, String req);
+	ArrayList<T> findAllByLimite(Object o, String req, int start, int fin);
 
 }
