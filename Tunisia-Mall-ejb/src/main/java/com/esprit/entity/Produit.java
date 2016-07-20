@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -21,13 +24,19 @@ public class Produit implements Serializable {
 	private float prixHt;
 	private Integer quantite;
 	private float tva;
+	private String img;
 	private List<Media> media;
 	private List<Commande> commandes;
 	private SousCategorie souscategories;
 	private Boutique boutique;
+	private ShopOwner shopOwner;
 	
+	public Produit() {
 	
-	
+		boutique=new Boutique();
+		souscategories=new SousCategorie();
+
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Integer getId() {
@@ -99,6 +108,21 @@ public class Produit implements Serializable {
 	}
 	public void setBoutique(Boutique boutique) {
 		this.boutique = boutique;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn
+	public ShopOwner getShopOwner() {
+		return shopOwner;
+	}
+	public void setShopOwner(ShopOwner shopOwner) {
+		this.shopOwner = shopOwner;
 	}
 
 }

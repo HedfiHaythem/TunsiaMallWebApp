@@ -1,5 +1,6 @@
 package beans;
 
+import java.io.File;
 import java.io.Serializable;
 
 
@@ -14,11 +15,21 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.FileUploadEvent;
+
+import com.esprit.comman.CommanServiceLocal;
 import com.esprit.entity.Categorie;
+import com.esprit.entity.Client;
 import com.esprit.entity.Produit;
 import com.esprit.entity.SecteurActivite;
+import com.esprit.entity.ShopOwner;
 import com.esprit.entity.SousCategorie;
+import com.esprit.entity.SuperAdmin;
+import com.esprit.entity.Utilisateur;
 import com.esprit.service.UserServiceLocal;
+
+import utility.Iutility;
+import utility.Utility;
 
 
 
@@ -28,13 +39,16 @@ public class ProduitBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
+	private CommanServiceLocal<SousCategorie>  serviceSousCategorie;
+	
+	
+	@EJB
 	private UserServiceLocal<Produit>  serviceProduit;
+	
 	@EJB
-	private UserServiceLocal<SecteurActivite>  serviceSecteurActivite;
-	@EJB
-	private UserServiceLocal<Categorie>  serviceCategorie;
-	@EJB
-	private UserServiceLocal<SousCategorie>  serviceSousCategorie;
+	private UserServiceLocal<Utilisateur>  serviceUser;
+	
+	
 	
 	private List<Produit> listProduits ;
 	private List<Produit> listSelectedProduits=new ArrayList<Produit>() ;
@@ -43,25 +57,83 @@ public class ProduitBean implements Serializable {
 	private List<String> listSTanlayses ;
 	private List<String> listSelectedStProduits ;
 	
+	private List<SousCategorie> listSousCategories ;
+	private ShopOwner shopOwner;
+
 	private String txt1;
 
 	/**
 	 * ------------------------------------------------------------------------
 	 * --------------------------------------------------------
 	 */
+	
+Iutility ut =new Utility();
+
+	
+	public Utilisateur utilisateur = new Utilisateur();
+
+
+	public void fileUpload22(FileUploadEvent event) throws Exception {
+		Iutility traitementImgText =new Utility(); 
+		
+		
+		String path = FacesContext.getCurrentInstance().getExternalContext()
+				.getRealPath("/");
+		
+		File file=traitementImgText.writeFile(event, "/PublicImage/");
+		
+	
+	
+		
+	
+		// getNosFormulaire().setUrlPhotot("thumb"+file.getName());
+		produit.setImg(file.getName());
+		serviceProduit.update(produit);
+		 initialization();
+		FacesMessage msg = new FacesMessage("chargement avec succès ", event
+				.getFile().getFileName() + " is uploaded.");
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+
+
+	}
+
+
+	
 	@PostConstruct
 	public void initialization() {
 		
-		setListProduits(serviceProduit.findAll(new Produit()));
-		setListFilterProduits(serviceProduit.findAll(new Produit()));	
+		
+		
+System.out.println(ut.getUserfromMapSession().getId());
+		
+		if(ut.getUserfromMapSession() instanceof ShopOwner){
+			System.out.println("shopOwner");
+			shopOwner=(ShopOwner) ut.getUserfromMapSession();
+			setListProduits(serviceProduit.findReqList(new Produit(),"shopOwner.id="+shopOwner.getId()));
+		}
+		
+
+		if(ut.getUserfromMapSession() instanceof SuperAdmin)
+			setListProduits(serviceProduit.findAll(new Produit()));
+		
+		if(ut.getUserfromMapSession() instanceof Client)
+			setListProduits(serviceProduit.findAll(new Produit()));
+
+		
+		
+		setListSousCategories(serviceSousCategorie.findReqList(new SousCategorie(),"shopOwner.id="+shopOwner.getId()));
+	
+		
 		produit=new Produit();
 			}
 	 
 	public void adding(Produit ta) {
+				ta.setShopOwner(shopOwner);
 				serviceProduit.create(ta);
 		initialization();
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Enregistrï¿½(e) avec succï¿½s", "");
+				"Enregistré(e) avec succés", "");
 		FacesContext.getCurrentInstance().addMessage
 
 		(null, msg);
@@ -74,7 +146,7 @@ public class ProduitBean implements Serializable {
 		initialization();
 
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"mis(e) ï¿½ jour avec succï¿½s", "");
+				"mis(e) à jour avec succés", "");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		
 	}
@@ -85,7 +157,7 @@ public class ProduitBean implements Serializable {
 			serviceProduit.delete(new Produit(),"id",ta.getId()+"");
 			initialization();
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"Supprimï¿½(e) avec succï¿½s", "");
+					"Supprimé(e) avec succés", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		} catch (Exception e) {
 			initialization();
@@ -163,18 +235,63 @@ public class ProduitBean implements Serializable {
 	public void setTxt1(String txt1) {
 		this.txt1 = txt1;
 	}
+
+	public List<SousCategorie> getListSousCategories() {
+		return listSousCategories;
+	}
+
+	public void setListSousCategories(List<SousCategorie> listSousCategorie) {
+		this.listSousCategories = listSousCategorie;
+	}
 	
-	public ArrayList<Categorie> getCategorie(SecteurActivite secteurActivite)
-	{
-		return  serviceCategorie.findReqList(new Categorie(), "secteurActivite.id = "+secteurActivite.getId());
+
+
+	public CommanServiceLocal<SousCategorie> getServiceSousCategorie() {
+		return serviceSousCategorie;
 	}
-	public ArrayList<SousCategorie> getSousCategorie(Categorie categorie)
-	{
-		return  serviceSousCategorie.findReqList(new SousCategorie(), "categorie.id = "+categorie.getId());
+
+
+
+	public UserServiceLocal<Utilisateur> getServiceUser() {
+		return serviceUser;
 	}
-	public ArrayList<Produit> getProduct(SousCategorie sousCategorie){
-		
-		return  serviceProduit.findReqList(new Produit(), "categorie.id = "+sousCategorie.getId()+" LIMIT 3");
-		
+
+
+
+	public void setServiceUser(UserServiceLocal<Utilisateur> serviceUser) {
+		this.serviceUser = serviceUser;
 	}
+
+
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+
+
+	public void setServiceSousCategorie(CommanServiceLocal<SousCategorie> serviceSousCategorie) {
+		this.serviceSousCategorie = serviceSousCategorie;
+	}
+
+
+
+	public ShopOwner getShopOwner() {
+		return shopOwner;
+	}
+
+
+
+	public void setShopOwner(ShopOwner shopOwner) {
+		this.shopOwner = shopOwner;
+	}
+
+
+
 }

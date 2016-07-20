@@ -66,7 +66,7 @@ public class Utility implements Iutility {
 		out.write(buf, 0, len);
 	is.close();
 	out.close();
-	
+	System.out.println(path + emplacement);
 	return file;
 	}
 	
