@@ -62,11 +62,15 @@ public class SousCategorieBean implements Serializable {
 	public void initialization() {
 		if(ut.getUserfromMapSession() instanceof ShopOwner){
 		shopOwner = (ShopOwner) ut.getUserfromMapSession();
+		setListSousCategories(serviceSousCategorie.findReqList(new SousCategorie(),"shopOwner.id="+shopOwner.getId()));
+
+		}else{
+			
+			setListSousCategories(serviceSousCategorie.findAll(new SousCategorie()));
 		}
 		setListCategorie(serviceCategorie.findAll(new Categorie()));
 	
-		setListSousCategories(serviceSousCategorie.findReqList(new SousCategorie(),"shopOwner.id="+shopOwner.getId()));
-
+		
 		
 		sousCategorie=new SousCategorie();
 			}
