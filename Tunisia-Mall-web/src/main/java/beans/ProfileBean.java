@@ -71,7 +71,19 @@ public class ProfileBean implements Serializable {
 		
 	}
 	
-	
+	public String howIsConnected(){
+		
+		if(ut.getUserfromMapSession() instanceof ShopOwner){
+			return "shopOwner";
+		}
+		if(ut.getUserfromMapSession() instanceof SuperAdmin){
+			return "superAdmin";
+			}
+		if(ut.getUserfromMapSession() instanceof Client){
+			return "client";
+			}
+		return null;
+	}
 
 	public void fileUpload22(FileUploadEvent event) throws Exception {
 		Iutility traitementImgText =new Utility(); 

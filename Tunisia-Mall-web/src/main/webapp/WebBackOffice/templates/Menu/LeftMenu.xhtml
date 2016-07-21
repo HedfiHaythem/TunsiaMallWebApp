@@ -57,36 +57,38 @@
 											<span class="nav-title"></span>
                                         </span>
                                     	<ul class="inner-nav">
-                                    	  
-                                          <li><a href="#{request.contextPath}/WebBackOffice/Admin/Gestion/SecteurActiviter/SecteurActiviter.jsf"><i class="icol-databases"></i> Secteur Activiter</a></li>
-                                          <li><a href="#{request.contextPath}/WebBackOffice/Admin/Gestion/Categorie/Categorie.jsf"><i class="icol-databases"></i>Categorie</a></li>
-                                        <li><a href="#{request.contextPath}/WebBackOffice/Admin/Gestion/Boutique/Boutique.jsf"><i class="icol-databases"></i>Boutique</a></li>
-                                        <li><a href="#{request.contextPath}/WebBackOffice/Admin/Gestion/Produit/Produit.jsf"><i class="icol-databases"></i>Produit</a></li>
-                                        <li><a href="#{request.contextPath}/WebBackOffice/Admin/Gestion/Evenement/Evenement.jsf"><i class="icol-databases"></i>Evenement</a></li>
+                                   <c:if test = "${ProfileBean.howIsConnected() eq 'superAdmin' }">    	  
+                                          <li><a href="#{request.contextPath}/WebBackOffice/SuperAdmin/Gestion/SecteurActiviter/SecteurActiviter.jsf"><i class="icol-databases"></i> Secteur Activiter</a></li>
+                                          <li><a href="#{request.contextPath}/WebBackOffice/SuperAdmin/Gestion/Categorie/Categorie.jsf"><i class="icol-databases"></i>Categorie</a></li>
+                                        <li><a href="#{request.contextPath}/WebBackOffice/SuperAdmin/Gestion/Boutique/Boutique.jsf"><i class="icol-databases"></i>Boutique</a></li>
+                                        <li><a href="#{request.contextPath}/WebBackOffice/SuperAdmin/Gestion/Evenement/Evenement.jsf"><i class="icol-databases"></i>Evenement</a></li>
+                                     </c:if>   
+                               
+                               <c:if test = "${ProfileBean.howIsConnected() eq 'shopOwner' }">
+                                     <li><a href="#{request.contextPath}/WebBackOffice/ShopOwner/Gestion/SousCategorie/SousCategorie.xhtml"><i class="icol-databases"></i>Sous Categorie</a></li>
                                         
-                                     <li><a href="#{request.contextPath}/WebBackOffice/Admin/Gestion/SousCategorie/SousCategorie.xhtml"><i class="icol-databases"></i>Sous Categorie</a></li>
-                                        
-                                 
+                                     <li><a href="#{request.contextPath}/WebBackOffice/ShopOwner/Gestion/Produit/Produit.jsf"><i class="icol-databases"></i>Produit</a></li>
+                                </c:if>    
                                 
                   
                                         </ul>
                                     </li>
                                     
-                                
+                                 <c:if test = "${ProfileBean.howIsConnected() eq 'superAdmin' }">    
                                     <li>
                                     	<span title="Table">
                                     		<i class="icon-table"></i>
 											<span class="nav-title"></span>
                                         </span>
                                     	<ul class="inner-nav">
-                                    	 <li><a href="#{request.contextPath}/WebBackOffice/Admin/Gestion/User/SuperAdmin/SuperAdmin.xhtml"><i class="icol-vcard"></i>Super Admin</a></li>
+                                    	 <li><a href="#{request.contextPath}/WebBackOffice/SuperAdmin/Gestion/User/SuperAdmin/SuperAdmin.xhtml"><i class="icol-vcard"></i>Super SuperAdmin</a></li>
                                         
-                                    	  <li><a href="#{request.contextPath}/WebBackOffice/Admin/Gestion/User/ShopOwner/ShopOwner.xhtml"><i class="icol-vcard"></i>Shop Owner</a></li>
-                                            <li><a href="#{request.contextPath}/WebBackOffice/Admin/Gestion/User/Client/Client.xhtml"><i class="icol-vcard"></i> Client</a></li>
+                                    	  <li><a href="#{request.contextPath}/WebBackOffice/SuperAdmin/Gestion/User/ShopOwner/ShopOwner.xhtml"><i class="icol-vcard"></i>Shop Owner</a></li>
+                                            <li><a href="#{request.contextPath}/WebBackOffice/SuperAdmin/Gestion/User/Client/Client.xhtml"><i class="icol-vcard"></i> Client</a></li>
          
                                         </ul>
                                     </li>
-                         
+                         		</c:if>
                                 </ul>
                             </nav>
                         </aside>
