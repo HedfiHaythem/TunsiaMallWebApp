@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("//WebBackOffice/SuperAdmin/*")
+@WebFilter("/WebBackOffice/SuperAdmin/*")
 public class AuthorizationFilterAdminstrateur implements Filter {
 
     private static final String AJAX_REDIRECT_XML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"

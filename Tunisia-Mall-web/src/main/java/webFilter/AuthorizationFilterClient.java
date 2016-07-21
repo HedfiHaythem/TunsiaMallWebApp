@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("/WebBackOffice/*")
-public class AuthorizationFilter implements Filter {
+@WebFilter("/WebBackOffice/Client/*")
+public class AuthorizationFilterClient implements Filter {
 
     private static final String AJAX_REDIRECT_XML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
         + "<partial-response><redirect url=\"%s\"></redirect></partial-response>";
@@ -27,7 +27,7 @@ public class AuthorizationFilter implements Filter {
         HttpSession session = request.getSession(false);
         String loginURL = request.getContextPath() + "/PublicPage/Login/login.xhtml";
 
-        boolean loggedIn = (session != null);
+        boolean loggedIn = (session != null) && ((session.getAttribute("client") != null));
         boolean loginRequest = request.getRequestURI().equals(loginURL);
         boolean resourceRequest = request.getRequestURI().startsWith(request.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER + "/");
         boolean ajaxRequest = "partial/ajax".equals(request.getHeader("Faces-Request"));
