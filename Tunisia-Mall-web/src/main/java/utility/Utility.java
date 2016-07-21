@@ -50,12 +50,12 @@ public class Utility implements Iutility {
 						.substring(
 								event.getFile().getFileName().lastIndexOf('.'));
 		
-		File file =new File(path + emplacement);
+		File file =new File(path + "/"+emplacement);
 		if (!file.exists()){file.mkdir();}
 		
-		file = new File(path +emplacement  );
+		file = new File(path +"/"+emplacement  );
 		if (!file.exists()){file.mkdir();}
-		file = new File(path + emplacement  + name);
+		file = new File(path + "/"+emplacement  + name);
 		
 		
 	InputStream is = event.getFile().getInputstream();

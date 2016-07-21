@@ -15,6 +15,20 @@
 
 
 		<h:body>
+		
+			<h:form id="formNewSliderUploadFile2" onreset="reset()">
+										<p:dialog header="Nouveau" widgetVar="ADDINGFILEBanner"
+											onLoad="reset()" modal="true">
+
+
+											<p:fileUpload
+												fileUploadListener="#{BoutiqueBean.fileUpload22}"
+												mode="advanced" dragDropSupport="true" multiple="false"
+												update=":formDataTableSlider" sizeLimit="1000000"
+												allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+										</p:dialog>
+									</h:form>
 
 			<h:form id="formDataTableSlider">
 				<p:growl id="msg" showDetail="false" enctype="multipart/form-data" />
@@ -50,6 +64,20 @@
 								icon="ui-icon-circle-plus" update=":formNew" style="width:100%" />
 						</f:facet>
 
+											<p:commandButton value="I"
+															oncomplete="PF('ADDINGFILEBanner').show()"
+															icon="ui-icon-circle-plus" >
+															<f:setPropertyActionListener value="#{item}"
+																target="#{BoutiqueBean.boutique}" />
+													  </p:commandButton>
+
+
+														<p:graphicImage value="/PublicImage/a.jpg"
+															rendered="#{empty item.img}" />
+														<p:graphicImage
+															value="/PublicImage/#{item.img}"
+															rendered="#{not empty item.img}" />
+															
 						<p:panelGrid columns="2" cellspacing="1">
 							<p:commandButton update=":formUpdate" style="align:center;"
 								oncomplete="PF('UPDATE').show()" icon="ui-icon-pencil">

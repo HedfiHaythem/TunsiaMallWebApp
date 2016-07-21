@@ -18,6 +18,7 @@ public class Boutique implements Serializable{
 	private Integer num;
 	private String tel;
 	private String etat;
+	private String img;
 	private ProprietaireBoutique pb;
 	private List <Produit> produit;
 	private SecteurActivite secteuractivite;
@@ -82,6 +83,12 @@ public class Boutique implements Serializable{
 	}
 	public void setNum(Integer num) {
 		this.num = num;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 }

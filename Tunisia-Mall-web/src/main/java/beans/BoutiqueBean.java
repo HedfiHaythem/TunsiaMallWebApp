@@ -1,5 +1,6 @@
 package beans;
 
+import java.io.File;
 import java.io.Serializable;
 
 
@@ -12,8 +13,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.event.FileUploadEvent;
+
 import com.esprit.entity.Boutique;
 import com.esprit.service.UserServiceLocal;
+
+import utility.Iutility;
+import utility.Utility;
 
 
 
@@ -44,6 +51,35 @@ public class BoutiqueBean implements Serializable {
 		boutique=new Boutique();
 			}
 
+	
+
+	public void fileUpload22(FileUploadEvent event) throws Exception {
+		Iutility traitementImgText =new Utility(); 
+		
+		
+		String path = FacesContext.getCurrentInstance().getExternalContext()
+				.getRealPath("/");
+		
+		File file=traitementImgText.writeFile(event, "PublicImage/");
+		
+	
+	
+		
+		
+		boutique.setImg(file.getName());
+		// getNosFormulaire().setUrlPhotot("thumb"+file.getName());
+		
+		serviceBoutique.update(boutique);
+		 initialization();
+		FacesMessage msg = new FacesMessage("chargement avec succès ", event
+				.getFile().getFileName() + " is uploaded.");
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+
+
+	}
+
+	
 	public void adding(Boutique ta) {
 				serviceBoutique.create(ta);
 		initialization();
