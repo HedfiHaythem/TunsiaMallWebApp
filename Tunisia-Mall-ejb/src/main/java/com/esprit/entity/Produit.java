@@ -26,7 +26,6 @@ public class Produit implements Serializable {
 	private float tva;
 	private String img;
 	private List<Media> media;
-	private List<Commande> commandes;
 	private SousCategorie souscategories;
 	private Boutique boutique;
 	private ShopOwner shopOwner;
@@ -86,14 +85,7 @@ public class Produit implements Serializable {
 		this.media = media;
 	}
 	
-	@ManyToMany
-	public List<Commande> getCommandes() {
-		return commandes;
-	}
-	public void setCommandes(List<Commande> commandes) {
-		this.commandes = commandes;
-	}
-	
+
 	@ManyToOne
 	public SousCategorie getSouscategories() {
 		return souscategories;

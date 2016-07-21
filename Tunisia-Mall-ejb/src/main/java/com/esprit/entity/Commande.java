@@ -2,14 +2,14 @@ package com.esprit.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Commande implements Serializable{
@@ -20,6 +20,7 @@ public class Commande implements Serializable{
 	private Date dateLivraison;
 	private String etat;
 	private Client client;
+	private  Set<Produit> produits;
 	
 	
 	@Id
@@ -63,11 +64,12 @@ public class Commande implements Serializable{
 		this.client = client;
 	}
 	
-	
-	
-	
-	
-	
-	
+	@OneToMany
+	public Set<Produit> getProduits() {
+		return produits;
+	}
+	public void setProduits(Set<Produit> produits) {
+		this.produits = produits;
+	}
 
 }
