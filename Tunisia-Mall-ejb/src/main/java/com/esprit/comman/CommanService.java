@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import com.esprit.entity.Boutique;
 
 
-
 @Stateless
 public class CommanService<T> implements CommanServiceLocal,CommanServiceRemote{
 
@@ -50,9 +49,9 @@ public class CommanService<T> implements CommanServiceLocal,CommanServiceRemote{
 	}
 
 	@Override
-	public ArrayList<Object> findAll(Object o) {
+	public ArrayList<T> findAll(Object o) {
 		
-		return (ArrayList<Object>) em.createQuery("Select u from "+o.getClass().getSimpleName()+" u",o.getClass()).getResultList();
+		return (ArrayList<T>) em.createQuery("Select u from "+o.getClass().getSimpleName()+" u",o.getClass()).getResultList();
 
 	}
 

@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -27,7 +28,7 @@ import utility.Utility;
 
 
 
-@ViewScoped
+@SessionScoped
 @ManagedBean(name = "profileBean")
 public class ProfileBean implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -53,18 +54,26 @@ public class ProfileBean implements Serializable {
 	private Boolean ok;
 	Iutility ut =new Utility();
 
+	private boolean superAdminISConnected;
+
+	private boolean shopOwnerIsConnected;
+
 	
 
 	@PostConstruct
 	public void initialization() {
 	
 		
-		if(ut.getUserfromMapSession() instanceof ShopOwner)
+		if(ut.getUserfromMapSession() instanceof ShopOwner){
 		utilisateur = (Utilisateur) serviceUser.findById(new ShopOwner(), "id", ut.getUserfromMapSession().getId().toString()) ;
+		shopOwnerIsConnected=true;
+		}
 		
 
-		if(ut.getUserfromMapSession() instanceof SuperAdmin)
+		if(ut.getUserfromMapSession() instanceof SuperAdmin){
 		utilisateur = (Utilisateur) serviceUser.findById(new SuperAdmin(), "id", ut.getUserfromMapSession().getId().toString()) ;
+		superAdminISConnected=true;
+		}
 		
 		if(ut.getUserfromMapSession() instanceof Client)
 			utilisateur = (Utilisateur) serviceUser.findById(new Client(), "id", ut.getUserfromMapSession().getId().toString()) ;
@@ -229,5 +238,21 @@ public class ProfileBean implements Serializable {
 
 	public void setServiceUser(UserServiceLocal<Utilisateur> serviceUser) {
 		this.serviceUser = serviceUser;
+	}
+
+	public boolean isSuperAdminISConnected() {
+		return superAdminISConnected;
+	}
+
+	public void setSuperAdminISConnected(boolean superAdminISConnected) {
+		this.superAdminISConnected = superAdminISConnected;
+	}
+
+	public boolean isShopOwnerIsConnected() {
+		return shopOwnerIsConnected;
+	}
+
+	public void setShopOwnerIsConnected(boolean shopOwnerIsConnected) {
+		this.shopOwnerIsConnected = shopOwnerIsConnected;
 	}
 }

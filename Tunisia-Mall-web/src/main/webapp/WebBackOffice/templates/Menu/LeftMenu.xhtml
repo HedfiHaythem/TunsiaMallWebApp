@@ -57,25 +57,21 @@
 											<span class="nav-title"></span>
                                         </span>
                                     	<ul class="inner-nav">
-                                   <c:if test = "${ProfileBean.howIsConnected() eq 'superAdmin' }">    	  
                                           <li><a href="#{request.contextPath}/WebBackOffice/SuperAdmin/Gestion/SecteurActiviter/SecteurActiviter.jsf"><i class="icol-databases"></i> Secteur Activiter</a></li>
                                           <li><a href="#{request.contextPath}/WebBackOffice/SuperAdmin/Gestion/Categorie/Categorie.jsf"><i class="icol-databases"></i>Categorie</a></li>
                                         <li><a href="#{request.contextPath}/WebBackOffice/SuperAdmin/Gestion/Boutique/Boutique.jsf"><i class="icol-databases"></i>Boutique</a></li>
                                         <li><a href="#{request.contextPath}/WebBackOffice/SuperAdmin/Gestion/Evenement/Evenement.jsf"><i class="icol-databases"></i>Evenement</a></li>
-                                     </c:if>   
+                                   
+                                   
                                
-                               <c:if test = "${ProfileBean.howIsConnected() eq 'shopOwner' }">
-                                     <li><a href="#{request.contextPath}/WebBackOffice/ShopOwner/Gestion/SousCategorie/SousCategorie.xhtml"><i class="icol-databases"></i>Sous Categorie</a></li>
+                                      <li><a href="#{request.contextPath}/WebBackOffice/ShopOwner/Gestion/SousCategorie/SousCategorie.xhtml"><i class="icol-databases"></i>Sous Categorie</a></li>
                                         
                                      <li><a href="#{request.contextPath}/WebBackOffice/ShopOwner/Gestion/Produit/Produit.jsf"><i class="icol-databases"></i>Produit</a></li>
-                                </c:if>    
-                                
+                              
                   
                                         </ul>
                                     </li>
-                                    
-                                 <c:if test = "${ProfileBean.howIsConnected() eq 'superAdmin' }">    
-                                    <li>
+                                     <li>
                                     	<span title="Table">
                                     		<i class="icon-table"></i>
 											<span class="nav-title"></span>
@@ -88,7 +84,7 @@
          
                                         </ul>
                                     </li>
-                         		</c:if>
+                         		
                                 </ul>
                             </nav>
                         </aside>
