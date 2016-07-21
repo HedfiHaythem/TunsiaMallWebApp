@@ -111,19 +111,24 @@ System.out.println(ut.getUserfromMapSession().getId());
 			System.out.println("shopOwner");
 			shopOwner=(ShopOwner) ut.getUserfromMapSession();
 			setListProduits(serviceProduit.findReqList(new Produit(),"shopOwner.id="+shopOwner.getId()));
+			setListSousCategories(serviceSousCategorie.findReqList(new SousCategorie(),"shopOwner.id="+shopOwner.getId()));
+			
 		}
 		
 
-		if(ut.getUserfromMapSession() instanceof SuperAdmin)
+		if (ut.getUserfromMapSession() instanceof SuperAdmin)
 			setListProduits(serviceProduit.findAll(new Produit()));
 		
 		if(ut.getUserfromMapSession() instanceof Client)
 			setListProduits(serviceProduit.findAll(new Produit()));
-
+		
+		if(ut.getUserfromMapSession()==null){
+			setListProduits(serviceProduit.findAll(new Produit()));
+			
+		}
 		
 		
-		setListSousCategories(serviceSousCategorie.findReqList(new SousCategorie(),"shopOwner.id="+shopOwner.getId()));
-	
+		
 		
 		produit=new Produit();
 			}

@@ -60,7 +60,9 @@ public class SousCategorieBean implements Serializable {
 	 */
 	@PostConstruct
 	public void initialization() {
+		if(ut.getUserfromMapSession() instanceof ShopOwner){
 		shopOwner = (ShopOwner) ut.getUserfromMapSession();
+		}
 		setListCategorie(serviceCategorie.findAll(new Categorie()));
 	
 		setListSousCategories(serviceSousCategorie.findReqList(new SousCategorie(),"shopOwner.id="+shopOwner.getId()));
