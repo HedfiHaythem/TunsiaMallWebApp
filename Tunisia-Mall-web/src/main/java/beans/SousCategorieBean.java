@@ -75,7 +75,11 @@ public class SousCategorieBean implements Serializable {
 		sousCategorie=new SousCategorie();
 			}
 
-	 
+	public ArrayList<SousCategorie> getCategorie(Categorie cat){
+		return serviceSousCategorie.findReqList(new SousCategorie(), "categorie.id = "+cat.getId() );
+				
+	} 
+	
 	public void adding(SousCategorie ta) {
 		ta.setShopOwner(shopOwner);
 		serviceSousCategorie.create(ta);

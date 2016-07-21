@@ -17,6 +17,7 @@ public class Evenement implements Serializable{
 	private Date dateDebut;
 	private Date dateFin;
 	private String description;
+	private String img;
 	private SuperAdmin administrateur;
 	
 	
@@ -52,6 +53,12 @@ public class Evenement implements Serializable{
 	}
 	public void setAdministrateur(SuperAdmin administrateur) {
 		this.administrateur = administrateur;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 	
 

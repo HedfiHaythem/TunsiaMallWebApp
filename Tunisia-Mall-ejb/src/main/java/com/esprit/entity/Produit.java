@@ -3,6 +3,7 @@ package com.esprit.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -85,16 +86,16 @@ public class Produit implements Serializable {
 		this.media = media;
 	}
 	
-
-	@ManyToOne
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn
 	public SousCategorie getSouscategories() {
 		return souscategories;
 	}
 	public void setSouscategories(SousCategorie souscategories) {
 		this.souscategories = souscategories;
 	}
-	
-	@ManyToOne
+	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn
 	public Boutique getBoutique() {
 		return boutique;
 	}

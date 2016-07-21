@@ -1,5 +1,6 @@
 package beans;
 
+import java.io.File;
 import java.io.Serializable;
 
 
@@ -13,9 +14,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.event.FileUploadEvent;
+
 import com.esprit.entity.Evenement;
 import com.esprit.entity.Utilisateur;
 import com.esprit.service.UserServiceLocal;
+
+import utility.Iutility;
+import utility.Utility;
 
 
 
@@ -57,6 +64,35 @@ public class EvenementBean implements Serializable {
 			}
 
 	
+	
+	
+
+	public void fileUpload22(FileUploadEvent event) throws Exception {
+		Iutility traitementImgText =new Utility(); 
+		
+		
+		String path = FacesContext.getCurrentInstance().getExternalContext()
+				.getRealPath("/");
+		
+		File file=traitementImgText.writeFile(event, "PublicImage/");
+		
+	
+	
+		
+		
+		Evenement.setImg(file.getName());
+		// getNosFormulaire().setUrlPhotot("thumb"+file.getName());
+		
+		ServiceEvenement.update(Evenement);
+		 initialization();
+		FacesMessage msg = new FacesMessage("chargement avec succès ", event
+				.getFile().getFileName() + " is uploaded.");
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+
+
+	}
+
 	
 
 	 
