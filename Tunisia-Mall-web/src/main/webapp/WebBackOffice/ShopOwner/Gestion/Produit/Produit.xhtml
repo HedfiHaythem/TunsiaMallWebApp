@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WebBackOffice/squelette/squelette.xhtml">
+
+	<ui:define name="title">
+		Produit
+	</ui:define>
+	<ui:define name="content">
+
+		<h:body>
+		
+							<h:form id="formNewSliderUploadFile2" onreset="reset()">
+										<p:dialog header="Nouveau" widgetVar="ADDINGFILEBanner"
+											onLoad="reset()" modal="true">
+
+
+											<p:fileUpload
+												fileUploadListener="#{ProduitBean.fileUpload22}"
+												mode="advanced" dragDropSupport="true" multiple="false"
+												update=":formDataTableSlider" sizeLimit="1000000"
+												allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+										</p:dialog>
+									</h:form>
+			<h:form id="formDataTableSlider">
+				<p:growl id="msg" showDetail="false" enctype="multipart/form-data" />
+				<!-- DATA TABLE LIST ALL MARQUE -->
+				<p:dataTable var="item"
+					value="#{ProduitBean.listProduits}"
+					paginator="true" rows="3"
+					style="width:80%; font-size:12px;margin-left:auto;margin-top:3%;margin-right:auto"
+					emptyMessage="0 Produit(s)">
+
+		
+		<p:column filterBy="#{item.libelle}" headerText="Libelle">
+						<p:outputLabel value="#{item.libelle}"
+							style="width:80px;height:80px" />
+					</p:column>
+					
+					<p:column headerText="Description">
+						<p:outputLabel value="#{item.description}"
+							style="width:80px;height:80px" />
+					</p:column>
+	              
+	              <p:column headerText="PrixHT">
+						<p:outputLabel value="#{item.prixHt}"
+							style="width:80px;height:80px" />
+					</p:column>
+
+                     <p:column headerText="Quantite">
+						<p:outputLabel value="#{item.quantite}"
+							style="width:80px;height:80px" />
+					</p:column>
+
+                   <p:column headerText="Tva">
+						<p:outputLabel value="#{item.tva}"
+							style="width:80px;height:80px" />
+					</p:column>
+
+	  <p:column  headerText=" Categorie"  >
+			    	<p:outputLabel value="#{item.souscategories.categorie.libelle}"
+						style="width:80px;height:80px" />
+			    </p:column>
+		
+		  <p:column  headerText=" Sous Categorie"  >
+			    	<p:outputLabel value="#{item.souscategories.libelle}"
+						style="width:80px;height:80px" />
+			    </p:column>
+		
+		
+
+
+					<p:column>
+						<f:facet name="header">
+							<p:commandButton oncomplete="PF('ADDING').show()"
+								action="#{ProduitBean.initialization}"
+								icon="ui-icon-circle-plus" update=":formNew" style="width:100%" />
+						</f:facet>
+
+						<p:panelGrid columns="2" cellspacing="1">
+											
+														<p:commandButton value="I"
+															oncomplete="PF('ADDINGFILEBanner').show()"
+															icon="ui-icon-circle-plus" >
+															<f:setPropertyActionListener value="#{item}"
+																target="#{ProduitBean.produit}" />
+													  </p:commandButton>
+
+
+														<p:graphicImage value="/PublicImage/a.jpg"
+															rendered="#{empty item.img}" />
+														<p:graphicImage
+															value="/PublicImage/#{item.img}"
+															rendered="#{not empty item.img}" />
+												
+	
+							<p:commandButton update=":formUpdate" style="align:center;"
+								oncomplete="PF('UPDATE').show()" icon="ui-icon-pencil">
+								<f:setPropertyActionListener value="#{item}"
+									target="#{ProduitBean.produit}" />
+							</p:commandButton>
+
+							<p:commandButton
+								actionListener="#{ProduitBean.removing(item)}"
+								update=":formDataTableSlider" icon="ui-icon-trash">
+								<p:confirm header="Confirmation"
+									message="Vous voulez Supprimer ?" icon="ui-icon-alert" />
+							</p:commandButton>
+						</p:panelGrid>
+						<p:confirmDialog global="true" showEffect="fade"
+							hideEffect="explode">
+							<p:commandButton value="Oui" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="Non" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</h:body>
+
+		<h:form id="formUpdate" onreset="reset()">
+			<p:dialog header="Update" widgetVar="UPDATE" onLoad="reset()"
+				modal="true" width="500" height="500">
+
+				<h:outputText value="Libelle *" />
+				<p:inputText required="true" label="libelle" style="width:98%"
+					value="#{ProduitBean.produit.libelle}" />
+
+				<h:outputText value="Description" />
+				<p:inputText label="description" style="width:98%"
+					value="#{ProduitBean.produit.description}" />
+
+				<h:outputText value="Prix HT" />
+				<p:inputText label="prixHt" style="width:98%"
+					value="#{ProduitBean.produit.prixHt}" />
+
+	            <h:outputText value="Quantite" />
+				<p:inputText label="quantite" style="width:98%"
+					value="#{ProduitBean.produit.quantite}" />
+
+				<h:outputText value="TVA" />
+				<p:inputText label="tva" style="width:98%"
+					value="#{ProduitBean.produit.tva}" />
+
+										
+<p:outputLabel>Sous Categorie</p:outputLabel>
+<p:selectOneMenu value="#{ProduitBean.produit.souscategories.id}" required="true" requiredMessage="Type Annonce Obligatoire" filter="true">
+<f:selectItem itemLabel="select"  itemValue="" />
+<f:selectItems value="#{ProduitBean.listSousCategories}"
+var="item2"
+itemValue="#{item2.id}"
+itemLabel="#{item2.libelle}"/>
+</p:selectOneMenu>
+							
+					
+
+				<f:facet name="footer">
+					<p:commandButton value="Enregistrer"
+						oncomplete="if(!args.validationFailed){PF('UPDATE').hide();}"
+						actionListener="#{ProduitBean.updating(ProduitBean.produit)}"
+						icon="ui-icon-circle-check" update=":formDataTableSlider" />
+				</f:facet>
+			</p:dialog>
+		</h:form>
+
+		<h:form id="formNew" onreset="reset()">
+			<p:dialog header="Nouveau" widgetVar="ADDING" onLoad="reset()"
+				modal="true" width="500" height="500">
+
+				<h:outputText value="Libelle *" />
+				<p:inputText label="libelle" style="width:98%"
+					value="#{ProduitBean.produit.libelle}" />
+
+				<h:outputText value="Description " />
+				<p:inputText label="description" style="width:98%"
+					value="#{ProduitBean.produit.description}" />
+
+	            <h:outputText value="Prix HT " />
+				<p:inputText label="prixHt" style="width:98%"
+					value="#{ProduitBean.produit.prixHt}" />
+
+	         <h:outputText value="Quantite" />
+				<p:inputText label="quantite" style="width:98%"
+					value="#{ProduitBean.produit.quantite}" />
+	         
+	              <h:outputText value="TVA " />
+				<p:inputText label="tva" style="width:98%"
+					value="#{ProduitBean.produit.tva}" />
+					
+					<p:outputLabel>Categorie</p:outputLabel>
+<p:selectOneMenu value="#{ProduitBean.produit.souscategories.id}" required="true" requiredMessage="Type Annonce Obligatoire" filter="true">
+<f:selectItem itemLabel="select"  itemValue="" />
+<f:selectItems value="#{ProduitBean.listSousCategories}"
+var="item2"
+itemValue="#{item2.id}"
+itemLabel="#{item2.libelle}"/>
+</p:selectOneMenu>
+					
+	         
+				<f:facet name="footer">
+					<p:commandButton value="Enregistrer"
+						oncomplete="if(!args.validationFailed){PF('ADDING').hide();}"
+						actionListener="#{ProduitBean.adding(ProduitBean.produit)}"
+						icon="ui-icon-circle-check" update=":formDataTableSlider">
+					</p:commandButton>
+				</f:facet>
+			</p:dialog>
+		</h:form>
+		<!-- ******************************************************************************************************************************************************************* -->
+	</ui:define>
+</ui:composition>
