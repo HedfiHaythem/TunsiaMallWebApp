@@ -63,6 +63,12 @@ public class ProduitIndexBean implements Serializable {
 			setListProduits(serviceProduit.findAll(new Produit()));
 	
 								}
+	
+	
+	
+	public void CommandeProduit(){
+		
+	}
 
 	public UserServiceLocal<Produit> getServiceProduit() {
 		return serviceProduit;
