@@ -1,24 +1,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	template="/Web/squelette/squelette.xhtml">
+<ui:composition  
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+            xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+ 	template="/Web/squelette/squelette.xhtml">
 
 	<ui:define name="PageTitle">
-		Boutique
-	</ui:define>
+	Boutique
+</ui:define>     	
 	<ui:define name="content">
-
-
+   
+   <h:head>
+   <script type="text/javascript">
+  jQuery.noConflict();
+  // Code that uses other library's $ can follow here.
+</script>
+   </h:head>
 
 		<h:body>
 		
 			<h:form id="formNewSliderUploadFile2" onreset="reset()">
 										<p:dialog header="Nouveau" widgetVar="ADDINGFILEBanner"
-											onLoad="reset()" modal="true">
+											onLoad="reset()" >
 
 
 											<p:fileUpload
@@ -109,7 +115,7 @@
 
 		<h:form id="formUpdate" onreset="reset()">
 			<p:dialog header="Update" widgetVar="UPDATE" onLoad="reset()"
-				modal="true" width="500" height="500">
+				 width="500" height="500">
 
 				<h:outputText value="Num *" />
 				<p:editor required="true" label="num" style="width:98%"
@@ -139,7 +145,7 @@
 
 		<h:form id="formNew" onreset="reset()">
 			<p:dialog header="Nouveau" widgetVar="ADDING" onLoad="reset()"
-				modal="true" width="500" height="500">
+				 width="500" height="500">
 
 				<h:outputText value="Num *" />
 				<p:editor label="num" style="width:98%"

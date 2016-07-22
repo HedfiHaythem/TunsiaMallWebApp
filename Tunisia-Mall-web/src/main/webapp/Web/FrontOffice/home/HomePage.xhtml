@@ -1,6 +1,7 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/Web/squelette/squelette.xhtml"
+	xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://java.sun.com/jsf/html">
 
 
@@ -19,29 +20,58 @@
 		<ui:repeat var="item" value="#{produitIndexBean.listProduits}">
 		
 								<div class="col-md-4">
-					
+								<h:form>
+									<p:growl  showDetail="false" />
 									<div class="dashboard-panel content-box remove-border bg-blue-alt">
 										<div class="content-box-wrapper">
 											<div class="header">
 											#{item.libelle} <span>#{item.libelle} </span>
 												#{item.dateMisEnLigne}
+												
+												
+											<h:outputText value="#{item.description}" />
 											</div>
 											<div class="sparkline-big">
 												
 												<img src="#{request.contextPath}/Web/PublicImage/#{item.img}"  width="277" height="80"	style="display: inline-block; width: 277px; height: 80px; vertical-align: top;" />
 											</div>
-										</div>
-										<div class="button-pane">
-											<div class="heading medium"><h:outputText value="#{item.description}" /></div>
-											<a href="javascript:;"
-												class="medium btn bg-blue float-right tooltip-button"
-												data-placement="top" title=""
-												data-original-title="Remove comment"> <i
-												class="glyph-icon icon-plus"></i>
-											</a>
-										</div>
+										
+									
+										
+											 <div class="float-right button-panel">
+                            <a href="javascript:;" title="" class="btn medium bg-blue" data-toggle="dropdown">
+                                <span class="button-content">
+                                    <i class="glyph-icon font-size-11 icon-cog"></i>
+                                    <i class="glyph-icon font-size-11 icon-chevron-down"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu float-right">
+
+                                <li>
+                                   
+                                       
+                                   	<p:commandLink  action="#{produitIndexBean.CommandeProduit(item.id)}" value="Commander" styleClass="glyph-icon icon-edit mrg5R" update="@parent"/>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" title="">
+                                        <i class="glyph-icon icon-calendar mrg5R"></i>
+                                        Signaler
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" title="">
+                                        <i class="glyph-icon icon-download mrg5R"></i>
+                                        Detail
+                                    </a>
+                                </li>
+                               
+                            </ul>
+                        </div>
+								
+								
 									</div>
-					
+									</div>
+								</h:form>
 								</div>
 								
 			</ui:repeat>					

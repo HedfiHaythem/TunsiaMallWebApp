@@ -10,14 +10,23 @@
 
 	<ui:define name="PageTitle">
 	Porduit
-</ui:define>     	
+</ui:define>
+
+<h:head>
+
+  <script type="text/javascript">
+  jQuery.noConflict();
+  // Code that uses other library's $ can follow here.
+</script>  
+</h:head>
+   	
 	<ui:define name="content">
 
 		<h:body>
 		
 							<h:form id="formNewSliderUploadFile2" onreset="reset()">
 										<p:dialog header="Nouveau" widgetVar="ADDINGFILEBanner"
-											onLoad="reset()" modal="true">
+											onLoad="reset()" >
 
 
 											<p:fileUpload
@@ -127,7 +136,7 @@
 
 		<h:form id="formUpdate" onreset="reset()">
 			<p:dialog header="Update" widgetVar="UPDATE" onLoad="reset()"
-				modal="true" width="500" height="500">
+				 width="500" height="500">
 
 				<h:outputText value="Libelle *" />
 				<p:inputText required="true" label="libelle" style="width:98%"
@@ -172,7 +181,7 @@ itemLabel="#{item2.libelle}"/>
 
 		<h:form id="formNew" onreset="reset()">
 			<p:dialog header="Nouveau" widgetVar="ADDING" onLoad="reset()"
-				modal="true" width="500" height="500">
+				 width="500" height="500">
 
 				<h:outputText value="Libelle *" />
 				<p:inputText label="libelle" style="width:98%"

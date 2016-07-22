@@ -12,7 +12,12 @@
 	Secteur D'activite
 </ui:define>     	
 	<ui:define name="content">
-   
+   <h:head>
+      <script type="text/javascript">
+  jQuery.noConflict();
+  // Code that uses other library's $ can follow here.
+</script>
+   </h:head>
 	
 	<h:body>
 	
@@ -79,12 +84,12 @@
 	 
 	 
 	 		<h:form id="formUpdate" onreset="reset()">
-			<p:dialog header="Update" widgetVar="UPDATE" onLoad="reset()" modal="true"  width="500" height="500" >
+			<p:dialog header="Update" widgetVar="UPDATE" onLoad="reset()"   width="500" height="500" >
 			
 			    
 
 				<h:outputText value=" libelle *" />
-				    <p:editor   required="true"  label="libelle"  style="width:98%"
+				    <p:inputText   required="true"  label="libelle"  style="width:98%"
 			        
 			         value="#{SecteurActiviteBean.secteurActivite.libelle}" />
 			    
@@ -113,7 +118,7 @@
 	
 		
 				<h:form id="formNew" onreset="reset()">
-			<p:dialog header="Nouveau" widgetVar="ADDING" onLoad="reset()" modal="true"  width="500" height="500" >
+			<p:dialog header="Nouveau" widgetVar="ADDING" onLoad="reset()"   width="500" height="500" >
 			
 				<h:outputText value=" libelle *" />
 				    <p:editor  label="libelle"  style="width:98%"

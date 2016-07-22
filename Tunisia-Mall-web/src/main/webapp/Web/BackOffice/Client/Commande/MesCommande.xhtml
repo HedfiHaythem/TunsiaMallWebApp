@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/Web/squelette/squelette.xhtml">
+
+	<ui:define name="PageTitle">
+	Commande -produit
+</ui:define>     	
+	<ui:define name="content">
+
+		<h:body>
+		
+		
+			<h:form id="formDataTableSlider">
+			<p:growl id="msg" showDetail="false" />
+			<!-- DATA TABLE LIST ALL MARQUE -->
+			<p:dataTable var="item" value="#{produitIndexBean.listProduitselected}" 
+			 paginator="true" rows="10"
+			 
+			 style="width:80%; font-size:12px;margin-left:auto;margin-top:3%;margin-right:auto"
+			 emptyMessage="0 commande en cours">
+			
+			    	
+			    	
+			<p:column filterBy="#{item.libelle}"  headerText="libelle" >
+			    	<p:outputLabel value="#{item.libelle}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>
+	
+	 			<p:column  headerText=" description"  >
+			    	
+			    	<p:outputLabel value="#{item.description}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>
+			    
+			  <p:column  headerText="prix"  >
+			    	
+			    	<p:outputLabel value="#{item.prixHt}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>
+		
+									
+									      		  
+			     
+			    <p:column>
+			    	<f:facet name="header">
+		        		<p:commandButton   value="Valider Commande"
+		        		action="#{produitIndexBean.validercommande()}" icon="ui-icon-circle-plus" update="@all" style="width:100%"/>
+		        	</f:facet>
+			    	 
+		        	<p:panelGrid columns="2" cellspacing="1">        		
+		        
+  		
+		        				
+		        	
+			            		<p:commandButton  actionListener="#{produitIndexBean.removeProduitDejaCommander(item.id)}"   update=":formDataTableSlider"
+		        		icon="ui-icon-trash">
+		        		 <p:confirm header="Confirmation" message="Vous voulez Supprimer ?" icon="ui-icon-alert" />  
+    </p:commandButton>  
+		        	</p:panelGrid>
+		        	 <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
+        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+    </p:confirmDialog> 
+		        </p:column>
+			</p:dataTable>
+			
+			
+			
+			
+			<p:commandButton   value="Refresh"
+		        		action="#{produitIndexBean.mesCommandesClient()}" icon="ui-icon-circle-plus" update="@all" style="width:100%"/>
+		        		
+				<p:dataTable var="item" value="#{produitIndexBean.mesCommandes}"  
+			 paginator="true" rows="10"
+			 
+			 style="width:80%; font-size:12px;margin-left:auto;margin-top:3%;margin-right:auto"
+			 emptyMessage="0 commande en cours">
+			
+		<p:column headerText="Commande numero  #{item.id}">    	
+			<p:dataTable value="#{item.produits}" var="item2">
+			
+				<p:column filterBy="#{item2.libelle}"  headerText="libelle" >
+			    	<p:outputLabel value="#{item2.libelle}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>
+	
+	 			<p:column  headerText=" description"  >
+			    	
+			    	<p:outputLabel value="#{item2.description}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>
+			    
+			  <p:column  headerText="prix"  >
+			    	
+			    	<p:outputLabel value="#{item2.prixHt}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>
+		
+		
+			<p:column filterBy="#{item.dateDemande}"  headerText="Date Demande" >
+			    	<p:outputLabel value="#{item.dateDemande}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>
+			    
+			    
+			    	<p:column filterBy="#{item.etat}"  headerText="Etat de Commande" >
+			    	<p:outputLabel value="#{item.etat}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>
+			
+			</p:dataTable>
+		</p:column>		    	
+		
+									
+			
+			 
+			</p:dataTable>
+		</h:form>
+	</h:body>	
+
+	 
+	
+				
+	
+		<!-- ******************************************************************************************************************************************************************* -->
+	</ui:define>
+</ui:composition>
