@@ -15,7 +15,7 @@
 	</h:head>
 
  	<h:body> 
-
+		
             <div id="page-header" class="clearfix">
                 <div id="header-logo">
                     <a href="javascript:;" class="tooltip-button" data-placement="bottom" title="Close sidebar" id="close-sidebar">
@@ -165,6 +165,18 @@
 
                     </div>
                 </div>
+             
+            	 <c:if test="${ empty sessionScope.superAdmin ||  empty sessionScope.client || empty sessionScope.shopOwner }">
+             		 <div class="user-profile dropdown">
+	             		<h:form>
+	                            <h:commandLink action="#{access.doLogin()}" value="Login">
+	                                <i class="glyph-icon icon-signin font-size-13 mrg5R"></i>
+	                                <span class="font-bold"></span>
+	                            </h:commandLink>
+	                         </h:form> 
+	                  </div>       
+             	</c:if>
+             	<c:if test="${not empty sessionScope.superAdmin || not empty sessionScope.client ||not empty sessionScope.shopOwner }">
                 <div class="user-profile dropdown">
                     <a href="javascript:;" title="" class="user-ico clearfix" data-toggle="dropdown">
                         <img width="36" src="#{request.contextPath}/resources/assets/images/gravatar.jpg" alt="" />
@@ -191,10 +203,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:;" title="">
+                        <h:form>
+                            <h:commandLink action="#{access.doLogout()}" value="Logout">
                                 <i class="glyph-icon icon-signout font-size-13 mrg5R"></i>
-                                <span class="font-bold">Logout</span>
-                            </a>
+                                <span class="font-bold"></span>
+                            </h:commandLink>
+                         </h:form>   
                         </li>
                         <li class="divider"></li>
                         <li class="dropdown-submenu float-left">
@@ -239,6 +253,8 @@
 
                     </ul>
                 </div>
+             	</c:if>
+             
                 <div class="dropdown dash-menu">
                     <a href="javascript:;" data-toggle="dropdown" data-placement="left" class="medium btn primary-bg float-right popover-button-header hidden-mobile tooltip-button" title="Example menu">
                         <i class="glyph-icon icon-th"></i>

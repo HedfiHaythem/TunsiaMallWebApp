@@ -50,7 +50,7 @@ public class AccessBean {
 		return "xxx :" + authentificationServiceLocal.findAll(new SuperAdmin()).size();
 	}
 
-	String navigateTo = "";
+	String navigateTo = "/Web/FrontOffice/Login/Login.xhtml?faces-redirect=true";
 	SuperAdmin u = new SuperAdmin();
 	ShopOwner shopOwner = new ShopOwner();
 	Client client = new Client();

@@ -23,12 +23,12 @@
  		
  		
 				
-  	
+  
             <div id="page-sidebar" class="scrollable-content">
 
                 <div id="sidebar-menu">
                     <ul>
-                    
+                    	<c:if test="${not empty sessionScope.superAdmin}">
                         <li>
                             <a href="javascript:;" title="Gestion-Mall">
                                 <i class="glyph-icon icon-laptop"></i>
@@ -92,7 +92,9 @@
                             </ul>
                         </li>
                         
-                        
+                        </c:if>
+                          
+                          <c:if test="${not empty sessionScope.shopOwner}">
                                    <li>
                             <a href="javascript:;" title="Gestion-Mall-Shop-Owner">
                                 <i class="glyph-icon icon-laptop"></i>
@@ -114,7 +116,7 @@
                                 
                             </ul>
                         </li>
-                      
+                      </c:if>
                             </ul>
                        
                
@@ -136,8 +138,7 @@
                 </div>
 
             </div><!-- #page-sidebar -->
-         
-       
+   
 
  		
     </h:body>
