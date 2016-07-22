@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition  
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+            xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+template="/Web/squelette/squelette.xhtml">
+
+<h:head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+	<ui:define name="PageTitle">
+Login 
+</ui:define>     	
+	<ui:define name="content">
+   
+	
+	<h:body>
+	
+	
+			<h:form styleClass="form-vertical" >
+					   <p:growl id="growl" showDetail="true" life="3000"   /> 
+						<div class="control-group-merged">
+							<div class="control-group">
+						
+								<h:inputText  styleClass="big required" value="#{access.email}"  id="input-username"    required="true" requiredMessage="Adresse électronique incorrecte L’adresse électronique que vous avez saisie n’est associée à aucun compte. Vous pouvez vous connecter en utilisant l’adresse électronique, le nom d’utilisateur ou le numéro de téléphone mobile associé(e) à votre compte. Assurez-vous qu’il/elle soit tapée correctement." />   
+
+							</div>
+							<div class="control-group">
+									<h:inputSecret  styleClass="big required" value="#{access.password}"   name="Login[password]" id="input-password" required="true" requiredMessage="Vous devez saisir votre mot de passe" /> 
+ 
+							</div>
+						</div>
+						<!-- 
+								<div class="control-group">
+									<label class="checkbox">
+										<input type="checkbox" name="Login[remember]" class="uniform" /> Remember me
+									</label>
+								</div>
+						 -->
+						<div class="form-actions">
+					  							<p:commandButton value="login" action="#{access.doLogin}" ajax="false" />
+								  	
+								</div>
+					</h:form>
+	
+	
+	</h:body>
+
+	
+	</ui:define>
+	</ui:composition>		

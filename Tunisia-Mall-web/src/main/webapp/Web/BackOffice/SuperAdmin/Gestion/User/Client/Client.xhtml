@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition  
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+            xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+	template="/Web/squelette/squelette.xhtml">
+
+<h:head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+	<ui:define name="PageTitle">
+	Client Crud
+</ui:define>     	
+	<ui:define name="content">
+Client Crud
+</ui:define>  
+
+   	
+	<ui:define name="content">
+   
+	
+	<h:body>
+	
+		<h:form id="formDataTableSlider">
+			<p:growl id="msg" showDetail="false" />
+			<!-- DATA TABLE LIST ALL MARQUE -->
+			<p:dataTable var="item" value="#{ClientBean.listClients}" 
+			 paginator="true" rows="10"
+			 
+			 style="width:100%; font-size:12px;margin-left:auto;margin-top:3%;margin-right:auto"
+			 emptyMessage="0 Analyse(s)">
+			
+			    	
+			    	
+			<p:column filterBy="#{item.nom}"  headerText="nom" >
+			    	<p:outputLabel value="#{item.nom}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>
+	
+	 			<p:column  headerText=" Prénom"  >
+			    	
+			    	<p:outputLabel value="#{item.prenom}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>
+			    
+			    
+			    	<p:column  headerText="Login"  >
+			    	
+			    	<p:outputLabel value="#{item.login}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>
+		
+					
+				<p:column  headerText="Password"  >
+			    	
+			    	<p:outputLabel value="#{item.password}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>
+			    
+			    
+			    <p:column  headerText="Email"  >
+			    	
+			    	<p:outputLabel value="#{item.email}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>			
+			    
+			    
+			      <p:column  headerText="Adresse"  >
+			    	
+			    	<p:outputLabel value="#{item.adresse}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>		
+			    	
+			    	
+			     <p:column  headerText="enabled"  >
+			    	
+			  			<p:outputLabel value="#{item.enabled}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>	
+									      		  
+			   
+			     <p:column  headerText="tel"  >
+			    	
+			  			<p:outputLabel value="#{item.tel}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>	
+			    
+			    
+			    
+			     <p:column  headerText="qui Suis Je"  >
+			    	
+			  			<p:outputLabel value="#{item.quiSuisJe}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>	
+			    
+			    
+			     <p:column  headerText="notification"  >
+			    	
+			  			<p:outputLabel value="#{item.notification}"
+						style="width:80px;height:80px" />
+						
+			    </p:column>	
+			    
+			    
+			 
+			    
+			        
+			    <p:column>
+			    	<f:facet name="header">
+		        		<p:commandButton  oncomplete="PF('ADDING').show()"  
+		        		action="#{ClientBean.initialization}" icon="ui-icon-circle-plus" update=":formNew" style="width:100%"/>
+		        	</f:facet>
+			    	 
+		        	<p:panelGrid columns="2" cellspacing="1">        		
+		        
+  							<p:commandButton update=":formUpdate"
+									style="align:center;" oncomplete="PF('UPDATE').show()"
+									icon="ui-icon-pencil">
+									<f:setPropertyActionListener value="#{item}"
+										target="#{ClientBean.client}" />
+								</p:commandButton>
+   
+		        				
+		        	
+			            		<p:commandButton  actionListener="#{ClientBean.removing(item)}"   update=":formDataTableSlider"
+		        		icon="ui-icon-trash">
+		        		 <p:confirm header="Confirmation" message="Vous voulez Supprimer ?" icon="ui-icon-alert" />  
+    </p:commandButton>  
+		        	</p:panelGrid>
+		        	 <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
+        <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+        <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+    </p:confirmDialog> 
+		        </p:column>
+			</p:dataTable>
+		</h:form>
+	</h:body>	
+
+	 
+	 
+	 		<h:form id="formUpdate" onreset="reset()">
+			<p:dialog header="Update" widgetVar="UPDATE" onLoad="reset()" modal="true"  width="500" height="500" >
+			
+			    
+
+		
+<p:panelGrid columns="2" style="width:110%">
+		 <h:outputText  value="nom"  />
+			    	<p:inputText value="#{ClientBean.client.nom}"
+						style="width:100%" />
+	
+			   
+	
+			  <h:outputText  value="prenom"  />   	
+			    	<p:inputText  value="#{ClientBean.client.prenom}"
+						style="width:100%" />
+			
+			    
+			<h:outputText  value="Login"  />     	
+			    	<p:inputText  value="#{ClientBean.client.login}"
+						style="width:100%" />
+						
+			  
+		
+					
+			<h:outputText  value="Password"  />     	
+			    	<p:inputText  value="#{ClientBean.client.password}"
+						style="width:100%" />
+						
+			    
+			    
+			
+			  <h:outputText  value="Email"  />    	
+			    	<p:inputText  value="#{ClientBean.client.email}"
+						style="width:100%" />
+						
+			    
+			<h:outputText  value="Adresse"  />  
+			    	
+			    	<p:inputText  value="#{ClientBean.client.adresse}"
+						style="width:100%" />
+						
+			<h:outputText  value="Enabled"  />  
+			    	
+			  			<p:inputText  value="#{ClientBean.client.enabled}"
+						style="width:100%" />
+			<h:outputText  value="Tel"  />  
+			    	
+			  			<p:inputText  value="#{ClientBean.client.tel}"
+						style="width:100%" />
+						
+			    
+			    
+	<h:outputText  value="Qui Suis Je"  />  
+			    	
+			  		 <p:editor  value="#{ClientBean.client.quiSuisJe}"
+						style="width:100%" />
+			    
+			    
+			    <h:outputText  value="Notification"  />  
+		
+			  			<p:selectBooleanCheckbox value="#{ClientBean.client.notification}"
+						style="width:100%" />
+						
+					
+		</p:panelGrid>	  
+						
+				  
+  					<f:facet name="footer">
+					<p:commandButton value="Enregistrer"  
+					oncomplete="if(!args.validationFailed){PF('UPDATE').hide();}" actionListener="#{ClientBean.updating(ClientBean.client)}"  icon="ui-icon-circle-check"   update=":formDataTableSlider" />
+				
+					
+								
+					</f:facet>
+
+
+		
+			</p:dialog>
+		
+			</h:form>
+			
+	
+		
+				<h:form id="formNew" onreset="reset()">
+			<p:dialog header="Nouveau" widgetVar="ADDING" onLoad="reset()" modal="true"  width="500" height="500" >
+			
+			
+	
+<p:panelGrid columns="2" style="width:110%">
+		 <h:outputText  value="nom"  />
+			    	<p:inputText value="#{ClientBean.client.nom}"
+						style="width:100%" />
+	
+			   
+	
+			  <h:outputText  value="prenom"  />   	
+			    	<p:inputText  value="#{ClientBean.client.prenom}"
+						style="width:100%" />
+			
+			    
+			<h:outputText  value="Login"  />     	
+			    	<p:inputText  value="#{ClientBean.client.login}"
+						style="width:100%" />
+						
+			  
+		
+					
+			<h:outputText  value="Password"  />     	
+			    	<p:inputText  value="#{ClientBean.client.password}"
+						style="width:100%" />
+						
+			    
+			    
+			
+			  <h:outputText  value="Email"  />    	
+			    	<p:inputText  value="#{ClientBean.client.email}"
+						style="width:100%" />
+						
+			    
+			<h:outputText  value="Adresse"  />  
+			    	
+			    	<p:inputText  value="#{ClientBean.client.adresse}"
+						style="width:100%" />
+						
+		
+			<h:outputText  value="Tel"  />  
+			    	
+			  			<p:inputText  value="#{ClientBean.client.tel}"
+						style="width:100%" />
+						
+			    
+			    
+	<h:outputText  value="Qui Suis Je"  />  
+			    	
+			  		 <p:editor  value="#{ClientBean.client.quiSuisJe}"
+						style="width:100%" />
+			    
+			    
+			    
+			    	<h:outputText  value="Enabled"  />  
+			    	
+			  			<p:selectBooleanCheckbox   value="#{ClientBean.client.enabled}"
+						style="width:100%" />
+						
+			    
+			    <h:outputText  value="Notification"  />  
+		
+			  			<p:selectBooleanCheckbox value="#{ClientBean.client.notification}"
+						style="width:100%" />
+						
+			  
+			    
+			  </p:panelGrid>
+  
+  					<f:facet name="footer">
+					<p:commandButton value="Enregistrer"  
+					oncomplete="if(!args.validationFailed){PF('ADDING').hide();}"  actionListener="#{ClientBean.adding(ClientBean.client)}"  icon="ui-icon-circle-check" update=":formDataTableSlider" >
+					
+				
+					</p:commandButton>
+						
+					
+								
+					</f:facet>
+
+
+		
+			</p:dialog>
+		
+			</h:form>
+			
+			
+		
+			<!-- ******************************************************************************************************************************************************************* -->	
+		
+
+
+	
+	</ui:define>
+	</ui:composition>		

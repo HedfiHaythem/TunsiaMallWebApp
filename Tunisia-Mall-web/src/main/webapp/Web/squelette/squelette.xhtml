@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:sec="http://www.springframework.org/security/tags" >
+
+<h:head>
+<f:event type="preRenderView"  listener="#{access.redirect()}"  />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+ 		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="#{request.contextPath}/resources/assets/images/icons/apple-touch-icon-144-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="#{request.contextPath}/resources/assets/images/icons/apple-touch-icon-114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="#{request.contextPath}/resources/assets/images/icons/apple-touch-icon-72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="#{request.contextPath}/resources/assets/images/icons/apple-touch-icon-57-precomposed.png" />
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/assets/images/icons/favicon.png" />
+
+        <!--[if lt IE 9]>
+          <script src="#{request.contextPath}/resources/assets/js/minified/core/html5shiv.min.js"></script>
+          <script src="#{request.contextPath}/resources/assets/js/minified/core/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Fides Admin CSS Core -->
+
+      
+        
+        
+        <h:outputStylesheet library="assets"  name="css/minified/aui-production.min.css" />
+<h:outputStylesheet library="assets"  name="themes/minified/fides/color-schemes/dark-blue.min.css" />
+<h:outputStylesheet library="assets"  name="themes/minified/fides/common.min.css" />
+<h:outputStylesheet library="assets"  name="themes/minified/fides/responsive.min.css" />
+     
+    
+
+        <!-- Fides Admin JS -->
+
+        <script type="text/javascript" src="#{request.contextPath}/resources/assets/js/minified/aui-production.min.js"></script>
+
+        <script>
+            jQuery(window).load(
+                function(){
+
+                    var wait_loading = window.setTimeout( function(){
+                      $('#loading').slideUp('fast');
+                      jQuery('body').css('overflow','auto');
+                    },1000
+                    );
+
+                });
+
+        </script>
+        
+</h:head>
+
+
+    <h:body style="overflow: hidden;">
+        
+
+        <div id="loading" class="ui-front loader ui-widget-overlay bg-white opacity-100">
+            <img src="#{request.contextPath}/resources/assets/images/loader-dark.gif" alt="" />
+        </div>
+
+        <div id="page-wrapper" class="demo-example">
+        	<ui:include src="/Web/templates/HeaderMenu/HeaderMenu.xhtml"/>
+        	
+        	<ui:include src="/Web/templates/tiles/LeftMenu2.xhtml" />  
+            <div id="page-content-wrapper">
+                <div id="page-title">
+                
+				                
+				<ui:insert name="PageTitle">
+				<h3>
+				    Tables
+				    <small>
+				        You can quickly style tables by using our table helper classes.
+				    </small>
+				</h3>
+				</ui:insert>
+				
+				
+</div>
+
+
+
+<div id="page-content">
+<ui:insert name="content">
+
+
+</ui:insert>
+
+</div>
+
+</div>
+</div>
+</h:body>
+
+
+
+
+</html>

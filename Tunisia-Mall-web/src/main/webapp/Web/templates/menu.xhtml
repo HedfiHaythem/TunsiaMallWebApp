@@ -1,0 +1,516 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:sec="http://www.springframework.org/security/tags">
+	<h:head>
+			<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/buttons.css"/>
+		
+			<!--  	<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+			-->	
+			<script type="text/javascript" src="#{request.contextPath}/resources/js/noty/packaged/jquery.noty.packaged.min.js" />
+		
+	</h:head>
+	<h:body>	 
+	<h:form>  
+  
+      
+  
+</h:form>  
+
+
+	
+<h:form id="formMenuBean">
+<!-- 
+<sec:authorize ifAnyGranted="ROLE_USER,ROLE_CHEF,ROLE_FRS">
+		  	<p:poll interval="#{menuBean.compteur}"   
+		            update=":formMenuBean"  listener="#{menuBean.Rappel()}"/>
+		
+		
+		<p:remoteCommand name="myRemote" actionListener="#{menuBean.ignorer()}"/>
+		<h:outputScript target="head">
+		$ = jQuery;
+		function generate(type, layout,typeEvenement,message,id) {
+		    var n = noty({
+		        text        : typeEvenement+message,
+		        type        : type,
+		        dismissQueue: true,
+		        layout      : layout,
+		        theme       : 'defaultTheme',
+		        buttons     : [
+		            {addClass: 'btn btn-primary', text: 'Me rappeler plus tard',onClick: function ($noty) {
+		           
+		            	$noty.close();
+		                noty({dismissQueue: true, force: true, layout: layout, theme: 'defaultTheme', text: 'Evenement : rapporté', type: 'success' });
+		            }
+		            },
+		            {addClass: 'btn btn-danger', text: 'ignorer', onClick: function ($noty) {
+		             	
+		            	myRemote([{name:'id' , value: id}, {name:'name2', value: message}, {name:'typeEvenement', value: typeEvenement}]);
+		            	$noty.close();
+		                noty({dismissQueue: true, force: true, layout: layout, theme: 'defaultTheme', text: 'Evenement : supprimé', type: 'error'});
+		            }
+		            }
+		        ]
+		    });
+		    console.log('xhtml: ' + n.options.id);
+		}
+		
+		</h:outputScript>
+					      
+</sec:authorize>
+
+noty -->
+	              
+
+    
+   	 <!-- 
+    
+    
+     <p:toolbar> 
+<p:toolbarGroup align="left"> 
+
+       
+       		<sec:authorize ifNotGranted="ROLE_ADMIN,ROLE_USER,ROLE_CHEF,ROLE_FRS">
+	            	<p:commandButton value="Home" action="/Login/login.xhtml?faces-redirect=true" ajax="false" icon="ui-icon-home" /> 
+	            </sec:authorize> 
+	            
+	                 <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER,ROLE_CHEF,ROLE_FRS">
+		            <p:commandButton value="Déconnexion" action="#{loginMgmtBean.logout}" ajax="false" icon="ui-icon-power" /> 
+		          <p:commandButton value="#{log.name}" icon="ui-icon-person"/>
+		          </sec:authorize> 
+	      <sec:authorize ifAnyGranted="ROLE_CHEF">
+	   <c:choose >
+	  <c:when test="${menuBean.gde}">
+	<p:commandButton value="Mes Informations" icon="ui-icon-script"  action="#{menuBean.stringRedirect('/GED/Laboratoire/profil.xhtml?faces-redirect=true' ,' Mes informations')}"  ajax="false"   />
+
+	</c:when>
+	</c:choose>
+	</sec:authorize>
+					   
+
+
+
+ 	</p:toolbarGroup>
+ 		<p:toolbarGroup align="right">
+ 		
+      
+	            
+	                 <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER,ROLE_CHEF,ROLE_FRS">
+		           
+		            <c:choose >
+		            
+	                <c:when test="${menuBean.cqe }">
+	               		<p:commandButton
+					value="Service CQE CQI"  icon="ui-icon-contact"
+					actionListener="#{menuBean.cqe}"
+					action="/autre/CQE_CQI.xhtml?faces-redirect=true" ajax="false" />
+					 	</c:when>
+					 
+				    <c:when test="${menuBean.gde}">
+				    
+					<p:commandButton
+					value="Service GDE" icon="ui-icon-contact"
+						actionListener="#{menuBean.gde}"
+					action="/GED/equipement/consultationGeneral.xhtml?faces-redirect=true" ajax="false" />
+					
+				
+ 		
+ 				 	</c:when>
+					</c:choose>
+ 										 
+ 					 </sec:authorize> 
+ 										 
+	
+	</p:toolbarGroup>
+</p:toolbar>
+	  
+	  
+	   ************************************************Upload   Document******************************************************************************************************************* -->
+
+				            
+  <!-- ************************************************ type intervention ******************************************************************************************************************* -->
+	  
+	  
+	  
+		</h:form>
+		
+		 <h:form>
+            <p:menubar autoDisplay="false">
+              
+        <!--  
+              
+               <c:choose >			
+						    <c:when test="${menuBean.ok=='CQE' }">
+		
+		
+		
+		  <sec:authorize ifAnyGranted="ROLE_FRS"> 
+			        <p:submenu label="Paramétrage" icon="ui-icon-pencil">    
+			            <p:menuitem value="Marque" url="/ADMIN/CRUD/Marque/CRUD-MARQUE.xhtml" icon="ui-icon-pencil" />
+			            <p:separator />
+			            <p:menuitem value="Programme CQ" url="/CQE_CQI/ADMIN/CRUD/ProgrammeCQ/PROGRAMS.xhtml" icon="ui-icon-gear" />
+			            <p:menuitem value="Laboratoire" url="/CQE_CQI/ADMIN/CRUD/Laboratoire/CRUD-LABORATOIRE.xhtml" icon="ui-icon-pencil" />
+			            <p:menuitem value="Kit" url="/CQE_CQI/ADMIN/CRUD/Kit/CRUD-KIT.xhtml" icon="ui-icon-pencil" /> 
+			            <p:menuitem value="Utilisateur" url="/CQE_CQI/ADMIN/CRUD/User/CRUD-USER.xhtml" icon="ui-icon-pencil" /> 
+			            <p:menuitem value="Automate" url="/CQE_CQI/ADMIN/CRUD/Automate/CRUD-AUTOMATE.xhtml" icon="ui-icon-pencil" />
+			            <p:separator/>
+			            <p:menuitem value="Technique" url="/CQE_CQI/ADMIN/CRUD/Technique/Technique.xhtml" icon="ui-icon-pencil" />
+			            <p:separator/>
+			        </p:submenu>  
+			   </sec:authorize>         
+			            
+			   <sec:authorize ifAnyGranted="ROLE_FRS"> 
+				   <p:submenu label="Exploitation" icon="ui-icon-gear">  
+					   <p:menuitem value="Configuration Kits" url="/CQE_CQI/ADMIN/CRUD/Kit/CONFIGURATION-KIT.xhtml" icon="ui-icon-gear"/>
+					   <p:menuitem value="Tableau de Bord" url="/CQE_CQI/ADMIN/TableauDeBord.xhtml" icon="ui-icon-gear"/>
+				   	   <p:separator/>
+				   </p:submenu> 
+			   </sec:authorize>
+			   
+			   <sec:authorize ifAnyGranted="ROLE_FRS"> 
+				   <p:submenu label="Edition" icon="ui-icon-gear"> 
+					   <p:menuitem value="Compte Rendu" url="/CQE_CQI/ADMIN/CompteRendu/NEW/LABORATOIRES.xhtml" icon="ui-icon-gear"/>
+					   <p:menuitem value="Eiquette" url="/CQE_CQI/ADMIN/Etiquette/DISTRIBUTION-ETIQUETTE.xhtml" icon="ui-icon-gear"/>
+					   <p:menuitem value="Rappel d'envoi P-CQ" url="/CQE_CQI/ADMIN/Rappel-Envoi-ProgrammeCQ/EMAIL.xhtml" icon="ui-icon-mail-closed"/>
+					   <p:menuitem value="CONSULTING" url="/CQE_CQI/ADMIN/CONSULTING-SEND-EMAIL/CONSULTING.xhtml" icon="ui-icon-search"/>
+					   
+				   </p:submenu> 
+			   </sec:authorize>
+			   
+			  
+			    
+			   <sec:authorize ifAnyGranted="ROLE_ADMIN"> 
+			        <p:submenu label="Paramétrage" icon="ui-icon-pencil">  
+			            <p:menuitem   action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CRUD/Fournisseur/CRUD-FOURNISSEUR.xhtml?faces-redirect=true' ,' CQE_CQI :Fournisseur')}" value="Fournisseur"  icon="ui-icon-pencil" />  
+			            <p:menuitem  action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CRUD/Marque/CRUD-MARQUE.xhtml?faces-redirect=true' ,' CQE_CQI : Marque')}"  value="Marque"  icon="ui-icon-pencil" />
+			            <p:separator />
+			            <p:menuitem action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CRUD/Analyse/CRUD-ANALYSE.xhtml?faces-redirect=true',' CQE_CQI :Analyse')}" value="Analyse"  icon="ui-icon-pencil" />
+			            <p:menuitem action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CRUD/ProgrammeCQ/CRUD-PROGRAM.xhtml?faces-redirect=true',' CQE_CQI :Programme CQ')}"  value="Programme CQ" icon="ui-icon-pencil" />
+			            <p:menuitem action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CRUD/Laboratoire/CRUD-LABORATOIRE.xhtml?faces-redirect=true',' CQE_CQI :Laboratoire')}"   value="Laboratoire" icon="ui-icon-pencil" />
+			            <p:menuitem  action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CRUD/Kit/CRUD-KIT.xhtml?faces-redirect=true',' CQE_CQI :Kit')}"  value="Kit" icon="ui-icon-pencil" /> 
+			            <p:menuitem action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CRUD/User/CRUD-USER.xhtml?faces-redirect=true',' CQE_CQI :Utilisateur')}"   value="Utilisateur" icon="ui-icon-pencil" /> 
+			            <p:menuitem action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CRUD/Automate/CRUD-AUTOMATE.xhtml?faces-redirect=true',' CQE_CQI :Automate')}" value="Automate" icon="ui-icon-pencil" />
+			            <p:separator/>
+			            <p:menuitem  action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CRUD/Technique/Technique.xhtml?faces-redirect=true',' CQE_CQI :Technique')}" value="Technique" icon="ui-icon-pencil" />
+			            <p:separator/>
+			            
+			            
+			            
+			        </p:submenu>  
+			   </sec:authorize>         
+			            
+			   <sec:authorize ifAnyGranted="ROLE_ADMIN"> 
+				   <p:submenu label="Exploitation" icon="ui-icon-gear">  
+					   <p:menuitem action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CRUD/Kit/CONFIGURATION-KIT.xhtml?faces-redirect=true',' CQE_CQI :Configuration Kit')}" value="Configuration Kit" icon="ui-icon-gear"/>
+					   <p:menuitem action="#{menuBean.title(' CQE_CQI :Tableau de Bord')}" value="Tableau de Bord" url="/CQE_CQI/SUPER-ADMIN/TableauDeBord.xhtml" icon="ui-icon-gear"/>
+				   	   <p:separator/>
+				   </p:submenu> 
+			   </sec:authorize>
+			   
+			   <sec:authorize ifAnyGranted="ROLE_ADMIN"> 
+				   <p:submenu label="Edition" icon="ui-icon-gear"> 
+					   <p:menuitem  action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CompteRendu/NEW/LABORATOIRES.xhtml?faces-redirect=true',' CQE_CQI :Compte Rendu')}"  value="Compte Rendu"  icon="ui-icon-gear"/>
+					   <p:menuitem action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/Etiquette/DISTRIBUTION-ETIQUETTE.xhtml?faces-redirect=true',' CQE_CQI :Eiquette')}"  value="Eiquette"  icon="ui-icon-gear"/>
+					   <p:menuitem action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/Rappel-Envoi-ProgrammeCQ/EMAIL.xhtml?faces-redirect=true',' CQE_CQI :Rappel d envoi P-CQ')}"  value="Rappel d'envoi P-CQ" icon="ui-icon-mail-closed"/>
+				  	   <p:menuitem action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CONSULTING-SEND-EMAIL/CONSULTING.xhtml?faces-redirect=true',' CQE_CQI :CONSULTING')}"  value="CONSULTING"  icon="ui-icon-search"/>
+				  	   <p:menuitem action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/purge/purge.xhtml?faces-redirect=true',' CQE_CQI :Purge Data')}"  value="Purge Data"  icon="ui-icon-search"/>
+				   </p:submenu> 
+			   </sec:authorize>
+			   
+			   <sec:authorize ifAnyGranted="ROLE_USER">
+			   		<p:submenu label="Exploitation" icon="ui-icon-gear">  
+			   			<p:menuitem  action="#{menuBean.title(' CQE_CQI :Résultat CQ')}" value="Résultat CQ" url="/CQE_CQI/USER/EXECUTION/EXECUTION.xhtml" icon="ui-icon-gear"/>
+			   			<p:menuitem  action="#{menuBean.title(' CQE_CQI :Consulter Résultats CQ')}" value="Consulter Résultats CQ" url="/CQE_CQI/USER/CONSULTATION/CONSULTING.xhtml" icon="ui-icon-search"/>
+			   		</p:submenu> 
+			   </sec:authorize>
+			   
+			   <sec:authorize ifAnyGranted="ROLE_CHEF">
+			   		<p:submenu label="Exploitation" icon="ui-icon-gear">  
+			   			<p:menuitem action="#{menuBean.title(' CQE_CQI :Résultat CQ')}"  value="Résultat CQ" url="/CQE_CQI/CHEF/EXECUTION/EXECUTION.xhtml" icon="ui-icon-gear"/>
+			   			<p:menuitem action="#{menuBean.title(' CQE_CQI :Consulter Résultats CQ')}"   value="Consulter Résultats CQ" url="/CQE_CQI/CHEF/CONSULTATION/CONSULTING.xhtml" icon="ui-icon-search"/>
+			   		</p:submenu> 
+			   </sec:authorize> 
+			   
+			   <sec:authorize ifAnyGranted="ROLE_CHEF">
+				   <p:submenu label="Parametrage" icon="ui-icon-gear">  
+					   <p:menuitem action="#{menuBean.title(' CQE_CQI :Automate')}" value="Automate" url="/CQE_CQI/CHEF/CRUD/Automate/CRUD-AUTOMATE.xhtml" icon="ui-icon-pencil" />
+					   <p:menuitem action="#{menuBean.title(' CQE_CQI :Utilisateur')}" value="Utilisateur" url="/CQE_CQI/CHEF/CRUD/User/CRUD-USER.xhtml" icon="ui-icon-pencil"/>
+				  	   
+				   </p:submenu> 
+			   </sec:authorize>
+			   
+			      <sec:authorize ifAnyGranted="ROLE_CHEF">
+				   <p:submenu label="Compte Rendu" icon="ui-icon-gear">  
+					    <p:menuitem  action="#{menuBean.stringRedirect('/CQE_CQI/CHEF/CompteRendu/NEW/LABORATOIRES.xhtml?faces-redirect=true',' CQE_CQI :Compte Rendu')}"   icon="ui-icon-gear"/>
+				  
+				   </p:submenu> 
+			   </sec:authorize>
+			              
+			   <p:submenu label="Service" icon="ui-icon-help">  
+				   <p:menuitem value="Nos service" url="/Login/service.xhtml" icon="ui-icon-search"/>
+				   <p:separator/>
+			   </p:submenu>
+			         
+			   <p:submenu label="Aide" icon="ui-icon-help">  
+				   <p:menuitem value="CHART PCQ" url="#" icon="ui-icon-search"/>
+				   <p:menuitem value="Manuel" url="#" icon="ui-icon-search"/> 
+				   <p:menuitem value="Document CQE" url="#" icon="ui-icon-search"/>
+				   <p:separator/>
+			   </p:submenu>
+			        
+			   <p:submenu label="Sécurité" icon="ui-icon-gear">  
+					   <p:menuitem value="Traçabilité" url="#" icon="ui-icon-pencil"/> 
+				   	   <p:separator/>
+			   </p:submenu> 
+			       
+			   <sec:authorize ifAnyGranted="ROLE_ADMIN"> 
+				   <p:submenu label="Envoyer Compte Rendu" icon="ui-icon-gear">  
+					   <p:menuitem  action="#{menuBean.stringRedirect('/CQE_CQI/SUPER-ADMIN/CompteRendu/SEND.xhtml?faces-redirect=true',' CQE_CQI :Mail Compte Rendu')}" value="Mail Compte Rendu" icon="ui-icon-pencil"/>
+					   <p:separator/>
+				   </p:submenu>  
+			   </sec:authorize>
+		  
+		  		<sec:authorize ifAnyGranted="ROLE_FRS"> 
+				   <p:submenu label="Envoyer Compte Rendu" icon="ui-icon-gear">  
+					   <p:menuitem action="#{menuBean.title(' CQE_CQI :Mail Compte Rendu')}" value="Mail Compte Rendu" url="/CQE_CQI/ADMIN/CompteRendu/SEND.xhtml" icon="ui-icon-pencil"/>
+					   <p:separator/>
+				   </p:submenu>  
+			   </sec:authorize>
+			   
+        
+					</c:when>
+					
+					
+					
+					
+					  <c:when test="${menuBean.ok=='GDE' }">
+					  
+					  	  
+					   <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER,ROLE_CHEF,ROLE_FRS">
+						<p:menuitem value="Equipement"
+							action="#{menuBean.stringRedirect('/GED/equipement/consultationGeneral.xhtml',' Qualipro : Equipement')}"
+						
+							actionListener="#{equipementBean.initialization()}"
+							icon="ui-icon-pencil" />
+
+					</sec:authorize>  
+				
+					  
+					   <sec:authorize ifAnyGranted="ROLE_ADMIN">
+					  
+					   	  <p:menuitem value="Laboratoire"   action="#{menuBean.stringRedirect('/GED/Laboratoire/CRUD-LABORATOIRE.xhtml',' QUALIPRO :Laboratoire')}"      icon="ui-icon-wrench" />
+				
+					  		   		    </sec:authorize>
+					  		   		    
+				 <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_FRS"> 
+					     
+			     <p:submenu label="Parametrage" icon="ui-icon-wrench">  
+			   				 <p:menuitem value="Fournisseur " 		action="#{menuBean.stringRedirect('/GED/parametrage/CRUD-FOURNISSEUR.xhtml?faces-redirect=true',' Qualipro : Fournisseur')}"  icon="ui-icon-wrench" />
+					
+		
+	 				
+	 					 <p:menuitem value="Marque" 		action="#{menuBean.stringRedirect('/GED/parametrage/CRUD-MARQUE.xhtml?faces-redirect=true',' Qualipro :Marque')}"  icon="ui-icon-wrench" />
+	
+	 					 <p:menuitem value="Modèle" 		action="#{menuBean.stringRedirect('/GED/parametrage/CRUD-Model.xhtml?faces-redirect=true',' Qualipro :Modèle')}"  icon="ui-icon-wrench" />
+	
+	
+						<p:separator style="height:5px" />
+											 <p:menuitem value="Utilisateur " action="#{menuBean.stringRedirect('/GED/parametrage/CRUD-USER.xhtml?faces-redirect=true',' Qualipro : Utilisateur')}"  icon="ui-icon-wrench" />
+	
+						<p:menuitem value="Piece de rechange "	action="#{menuBean.stringRedirect('/GED/PieceDeRechange/crudPieceDeRechage.xhtml?faces-redirect=true',' Qualipro : Piece De Rechange')}"  icon="ui-icon-wrench" />
+	       
+				<p:separator style="height:5px" />
+			           
+			          	
+	                     <p:menuitem value="Type Document " 	action="#{menuBean.stringRedirect('/GED/parametrage/CRUD-TYPE-DOC.xhtml?faces-redirect=true',' Qualipro : type Document')}"  icon="ui-icon-wrench" />
+	
+						 <p:menuitem value="Technique" 	     	action="#{menuBean.stringRedirect('/GED/parametrage/Technique.xhtml?faces-redirect=true',' Qualipro : Technique')}"  icon="ui-icon-wrench" />
+	                  	 <p:menuitem value="Type Equipement " 	action="#{menuBean.stringRedirect('/GED/parametrage/CRUD-TYPE-EQUIP.xhtml?faces-redirect=true',' Qualipro : Type Equipement')}"  icon="ui-icon-wrench" />
+	                     <p:menuitem value="Emplacement" 		action="#{menuBean.stringRedirect('/GED/parametrage/CRUD-PAILLASSE.xhtml?faces-redirect=true',' Qualipro : Paillasse')}"  icon="ui-icon-wrench" />
+	                     
+	          <p:separator style="height:5px" />   
+						<p:menuitem value="Config Intervention" 	action="#{menuBean.stringRedirect('/GED/parametrage/Crud-type-Intervention.xhtml?faces-redirect=true',' Qualipro : Config Intervention')}"  icon="ui-icon-wrench" />
+	
+
+	
+	
+			             </p:submenu>  
+			   
+			    </sec:authorize>
+			    
+			    	  
+					   <sec:authorize ifAnyGranted="ROLE_USER,ROLE_CHEF">
+					  
+					   
+					  		    
+					     
+			     <p:submenu label="Parametrage" icon="ui-icon-wrench">  
+			   			
+	 							
+						 <p:menuitem value="Utilisateur " 		action="#{menuBean.stringRedirect('/GED/parametrage/CRUD-USER.xhtml?faces-redirect=true',' Qualipro : Utilisateur')}"  icon="ui-icon-wrench" />
+	
+						<p:menuitem value="Piece de rechange " 	action="#{menuBean.stringRedirect('/GED/PieceDeRechange/crudPieceDeRechage.xhtml?faces-redirect=true',' Qualipro : Piece De Rechange')}"  icon="ui-icon-wrench" />
+	       
+				<p:separator style="height:5px" />
+
+	            						 <p:menuitem value="Technique" 	action="#{menuBean.stringRedirect('/GED/parametrage/Technique.xhtml?faces-redirect=true',' Qualipro : Technique')}"  icon="ui-icon-wrench" />
+	                   
+	          <p:separator style="height:5px" />   
+						<p:menuitem value="Config Intervention" 	action="#{menuBean.stringRedirect('/GED/parametrage/Crud-type-Intervention.xhtml?faces-redirect=true',' Qualipro : Config Intervention')}"  icon="ui-icon-wrench" />
+	
+
+	
+	
+			             </p:submenu>  
+			   
+			    </sec:authorize>
+	
+			    
+			    		   <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER,ROLE_CHEF,ROLE_FRS">
+			     <p:submenu label="Exploitation" icon="ui-icon-pencil">  
+			
+			              <p:menuitem  value="Anomalie"	  	action="#{menuBean.stringRedirect('/GED/anomalie/ListeAnomalie.xhtml?faces-redirect=true',' Qualipro : Anomalie','2')}"  actionListener="#{find.init()}"	  icon="ui-icon-pencil" />
+						   <p:menuitem value="Intervention périodique"		 action="#{menuBean.stringRedirect('/GED/intervention/InterventionRealiser.xhtml?faces-redirect=true',' QUALIPRO :Intervention périodique')}"       icon="ui-icon-pencil" />
+						
+						  <p:menuitem  value="Intervention"   actionListener="#{find.init()}"    action="#{menuBean.stringRedirect('/GED/intervention/ListeInterventions.xhtml?faces-redirect=true',' Qualipro : Intervention','3')}"	 icon="ui-icon-pencil" />
+						  <p:menuitem value="Consulter Equipements" 		action="#{menuBean.stringRedirect('/GED/equipement/gestionEquipement.xhtml?faces-redirect=true',' Qualipro : Equipement')}"  icon="ui-icon-pencil" />
+	
+			             </p:submenu>  
+				    </sec:authorize>             
+			             
+			             		   <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER,ROLE_CHEF,ROLE_FRS">
+			          		   
+			     <p:submenu label="Edition" icon="ui-icon-pencil">  
+			
+			              <p:menuitem value="Anomalie"		 action="#{menuBean.stringRedirect('/GED/anomalie/exportAnomalie.xhtml?faces-redirect=true',' QUALIPRO :Anomalie')}"      icon="ui-icon-pencil" />
+						  <p:menuitem value="Intervention"		 action="#{menuBean.stringRedirect('/GED/intervention/ExportInterventions.xhtml?faces-redirect=true',' QUALIPRO :intervention')}"      icon="ui-icon-pencil" />
+						
+			            
+			             </p:submenu>  
+			            
+			      
+			         <p:submenu label="statistique" icon="ui-icon-pencil">  
+			
+			              <p:menuitem value="Synthèse"		 action="#{menuBean.stringRedirect('/GED/statistique/StatistiqueEquipement.xhtml?faces-redirect=true',' QUALIPRO :Anomalie')}"      icon="ui-icon-pencil" />
+							
+			            
+			             </p:submenu> 
+			
+			
+			          	
+			            
+			      
+			          
+			   
+			   
+			   
+			   
+			    </sec:authorize>
+			    
+			            		   <sec:authorize ifAnyGranted="ROLE_ADMIN">
+			     <p:submenu label="Rappel" icon="ui-icon-pencil">  
+			
+			                   <p:menuitem value="Liste Rappel"		 action="#{menuBean.stringRedirect('/GED/rappel/listeRappel.xhtml?faces-redirect=true',' QUALIPRO :rappel')}"      icon="ui-icon-pencil" />
+						 
+			     
+			         </p:submenu>  
+			             
+			      
+			        <p:submenu label="DashBoard" icon="ui-icon-pencil">  
+			
+			                   <p:menuitem value="Tableau de Bord"		 action="#{menuBean.stringRedirect('/GED/equipement/tableauDeBord.xhtml',' QUALIPRO :Tableau de Bord')}"      icon="ui-icon-pencil" />
+						      <p:menuitem value="paramétrage"		 action="#{menuBean.stringRedirect('/GED/parametrage/parametre.xhtml',' QUALIPRO :Paramétrage')}"      icon="ui-icon-pencil" />
+						 
+			     
+			         </p:submenu>  
+			
+			
+			  			          
+			   
+			   
+			   
+			   
+			    </sec:authorize>
+			    
+			    
+			    
+					  
+					  </c:when>
+					  
+ 				 </c:choose>
+				
+  
+			     -->
+			  
+
+			          	
+			    <f:facet name="options">  
+			    
+   
+        
+       		<sec:authorize ifNotGranted="ROLE_ADMIN,ROLE_USER,ROLE_CHEF,ROLE_FRS">
+	            	<p:commandButton value="Home" action="/Login/login.xhtml?faces-redirect=true" ajax="false" icon="ui-icon-home" /> 
+	            </sec:authorize> 
+	            
+	                 <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER,ROLE_CHEF,ROLE_FRS">
+		            <p:commandButton value="Déconnexion" action="#{loginMgmtBean.logout}" ajax="false" icon="ui-icon-power" /> 
+		          <p:commandButton value="#{log.name}" icon="ui-icon-person"/>
+		          </sec:authorize> 
+	      <sec:authorize ifAnyGranted="ROLE_CHEF">
+	   <c:choose >
+	  <c:when test="${menuBean.gde}">
+	<p:commandButton value="Mes Informations" icon="ui-icon-script"  action="#{menuBean.stringRedirect('/GED/Laboratoire/profil.xhtml?faces-redirect=true' ,' Mes informations')}"  ajax="false"   />
+
+	</c:when>
+	</c:choose>
+	</sec:authorize>
+					  
+ 		
+      
+	            
+	                 <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER,ROLE_CHEF,ROLE_FRS">
+		           
+		            <c:choose >
+		            
+			                <c:when test="${menuBean.cqe }">
+			               		<p:commandButton
+							value="Service CQE CQI"  icon="ui-icon-contact"
+							actionListener="#{menuBean.cqe}"
+							action="/autre/CQE_CQI.xhtml?faces-redirect=true" ajax="false" />
+							 	</c:when>
+							 
+						    <c:when test="${menuBean.gde}">
+						    
+							<p:commandButton
+							value="Service GDE" icon="ui-icon-contact"
+								actionListener="#{menuBean.gde}"
+							action="/GED/equipement/consultationGeneral.xhtml?faces-redirect=true" ajax="false" />
+							
+						
+		 		
+		 				 	</c:when>
+		 				 	
+					</c:choose>
+					
+					
+ 										 
+ 					 </sec:authorize>  
+        </f:facet> 
+			      
+			  
+		    </p:menubar>
+		    
+		          <h:graphicImage value="/resources/images/logo.png"   style="
+     width: 94px;     margin-top: -10%;     height: 82px;  
+     /* position: inherit; */     /* margin-left: -6%; */     /* float: inherit; */         position:  relative;      /* z-index: 7; */
+        " /> 
+        
+        </h:form>
+	</h:body>
+</html>

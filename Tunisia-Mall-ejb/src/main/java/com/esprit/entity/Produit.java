@@ -1,6 +1,7 @@
 package com.esprit.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,6 +23,7 @@ public class Produit implements Serializable {
 	private Integer id;
 	private String libelle;
 	private String description;
+	private Date   dateMisEnLigne;
 	private float prixHt;
 	private Integer quantite;
 	private float tva;
@@ -116,6 +118,12 @@ public class Produit implements Serializable {
 	}
 	public void setShopOwner(ShopOwner shopOwner) {
 		this.shopOwner = shopOwner;
+	}
+	public Date getDateMisEnLigne() {
+		return dateMisEnLigne;
+	}
+	public void setDateMisEnLigne(Date dateMisEnLigne) {
+		this.dateMisEnLigne = dateMisEnLigne;
 	}
 
 }
