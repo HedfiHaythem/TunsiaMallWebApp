@@ -1,214 +1,299 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	   xmlns:f="http://xmlns.jcp.org/jsf/core"
-	   xmlns:h="http://xmlns.jcp.org/jsf/html"
-	   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	   xmlns:jsf="http://xmlns.jcp.org/jsf"
-	   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	   xmlns:p="http://primefaces.org/ui">
-     
-<h:head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<title>Connexion</title>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/Web/squelette/squelette.xhtml">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">
+.jqstooltip {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	visibility: hidden;
+	background: rgb(0, 0, 0) transparent;
+	background-color: rgba(0, 0, 0, 0.6);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,
+		endColorstr=#99000000);
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+	color: white;
+	font: 10px arial, san serif;
+	text-align: left;
+	white-space: nowrap;
+	padding: 5px;
+	border: 1px solid white;
+	z-index: 10000;
+}
+
+.jqsfield {
+	color: white;
+	font: 10px arial, san serif;
+	text-align: left;
+}
+</style>
+	</h:head>
+	<ui:define name="content">
 
 
-</h:head>
-
-	
+		<h:body>
 
 
+			<div class="example-box">
+				<div class="example-code">
 
-       
+					<div class="tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
+						<div class="button-block-justified">
+							<ul
+								class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"
+								role="tablist">
 
- 
 
-  <h:body>
-  
-  
-    <div id="login-wrap">
+								<li class="mobile-hidden ui-state-default ui-corner-top"
+									role="tab" tabindex="-1" aria-controls="justified-tabs-3"
+									aria-labelledby="ui-id-21" aria-selected="false"><a
+									href="#justified-tabs-3" title="Tab 3" class="ui-tabs-anchor"
+									role="presentation" tabindex="-1" id="ui-id-21"> <i
+										class="glyph-icon icon-cogs float-left opacity-80"></i>
+										Register Shop Owner
+								</a></li>
+								<li class="mobile-hidden ui-state-default ui-corner-top"
+									role="tab" tabindex="-1" aria-controls="justified-tabs-4"
+									aria-labelledby="ui-id-22" aria-selected="false"><a
+									href="#justified-tabs-4" title="Tab 4" class="ui-tabs-anchor"
+									role="presentation" tabindex="-1" id="ui-id-22"> <i
+										class="glyph-icon icon-cogs float-left opacity-80"></i>
+										Register Client
+								</a></li>
+							</ul>
+						</div>
+						<div id="justified-tabs-3" aria-labelledby="ui-id-21"
+							class="ui-tabs-panel ui-widget-content ui-corner-bottom"
+							role="tabpanel" aria-expanded="false" aria-hidden="true"
+							style="display: none;">
 
-		<div id="login-buttons">
-			<div class="btn-wrap">
-				<button type="button" class="btn" data-target="#login-form"><i class="icon-key"></i></button>
+							<div class="example-box">
+								<div class="example-code">
+
+									<h:form>
+										<p:messages />
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for=""> Nom: <span class="required">*</span>
+												</label>
+											</div>
+											<div class="form-input col-md-10">
+												<p:inputText value="#{ShopOwnerBean.shopOwner.nom}"
+													style="width:100%" class="parsley-validated" />
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for=""> Prenom: <span class="required">*</span>
+												</label>
+											</div>
+											<div class="form-input col-md-10">
+												<p:inputText value="#{ShopOwnerBean.shopOwner.prenom}"
+													style="width:100%" class="parsley-validated" />
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for=""> Login: </label>
+											</div>
+											<div class="form-input col-md-10">
+												<p:inputText value="#{ShopOwnerBean.shopOwner.login}"
+													style="width:100%" class="parsley-validated" />
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for=""> Mot de Passe: </label>
+											</div>
+											<div class="form-input col-md-10">
+												<p:inputText value="#{ShopOwnerBean.shopOwner.password}"
+													style="width:100%" class="parsley-validated"
+													type="password" />
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for=""> Email: </label>
+											</div>
+											<div class="form-input col-md-10">
+												<p:inputText value="#{ShopOwnerBean.shopOwner.email}"
+													style="width:100%" class="parsley-validated" type="email" />
+											</div>
+										</div>
+
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for=""> Adresse: </label>
+											</div>
+											<div class="form-input col-md-10">
+												<p:inputTextarea value="#{ShopOwnerBean.shopOwner.adresse}"
+													style="width:100%" class="parsley-validated" />
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for="" class="label-description"> Numéro de
+													boutique: </label>
+											</div>
+											<div class="form-input col-md-10">
+												<h:selectOneMenu style="width:100%"
+													value="#{ShopOwnerBean.shopOwner.boutique.id}"
+													required="true"
+													requiredMessage="Numéro de Boutique Obligatoire"
+													filter="true">
+													<f:selectItem itemLabel="select" itemValue="" />
+													<f:selectItems value="#{ShopOwnerBean.listBoutique}"
+														var="item2" itemValue="#{item2.id}"
+														itemLabel="#{item2.num}" />
+
+												</h:selectOneMenu>
+											</div>
+
+										</div>
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for="" class="label-description"> Secteur
+													Activiter: </label>
+											</div>
+											<div class="form-input col-md-10">
+												<h:selectOneMenu style="width:100%"
+													value="#{ShopOwnerBean.shopOwner.secteurActiviter.id}"
+													required="true"
+													requiredMessage="Secteur Activiter Obligatoire"
+													filter="true">
+													<f:selectItem itemLabel="select" itemValue="" />
+													<f:selectItems value="#{ShopOwnerBean.listSecteurActivite}"
+														var="item2" itemValue="#{item2.id}"
+														itemLabel="#{item2.libelle}" />
+
+												</h:selectOneMenu>
+											</div>
+
+										</div>
+										<div class="divider"></div>
+										<div class="form-row">
+											<input type="hidden" name="superhidden" id="superhidden" />
+											<div class="form-input col-md-10 col-md-offset-2">
+												<p:commandButton value="Enregistrer"
+													actionListener="#{ShopOwnerBean.adding(ShopOwnerBean.shopOwner)}"
+													icon="ui-icon-circle-check"
+													class="btn medium primary-bg radius-all-4" update="@parent" />
+											</div>
+										</div>
+
+									</h:form>
+
+								</div>
+
+							</div>
+
+						</div>
+						<div id="justified-tabs-4" aria-labelledby="ui-id-22"
+							class="ui-tabs-panel ui-widget-content ui-corner-bottom"
+							role="tabpanel" aria-expanded="false" aria-hidden="true"
+							style="display: none;">
+							<div class="example-box">
+								<div class="example-code">
+
+									<h:form>
+										<p:messages />
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for=""> Nom: <span class="required">*</span>
+												</label>
+											</div>
+											<div class="form-input col-md-10">
+												<p:inputText value="#{ClientBean.client.nom}"
+													style="width:100%" class="parsley-validated" />
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for=""> Prenom: <span class="required">*</span>
+												</label>
+											</div>
+											<div class="form-input col-md-10">
+												<p:inputText value="#{ClientBean.client.prenom}"
+													style="width:100%" class="parsley-validated" />
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for=""> Login: </label>
+											</div>
+											<div class="form-input col-md-10">
+												<p:inputText value="#{ClientBean.client.login}"
+													style="width:100%" class="parsley-validated" />
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for=""> Mot de Passe: </label>
+											</div>
+											<div class="form-input col-md-10">
+												<p:inputText value="#{ClientBean.client.password}"
+													style="width:100%" class="parsley-validated"
+													type="password" />
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for=""> Email: </label>
+											</div>
+											<div class="form-input col-md-10">
+												<p:inputText value="#{ClientBean.client.email}"
+													style="width:100%" class="parsley-validated" type="email" />
+											</div>
+										</div>
+
+										<div class="form-row">
+											<div class="form-label col-md-2">
+												<label for=""> Adresse: </label>
+											</div>
+											<div class="form-input col-md-10">
+												<p:inputTextarea value="#{ClientBean.client.adresse}"
+													style="width:100%" class="parsley-validated" />
+											</div>
+										</div>
+
+										<div class="divider"></div>
+										<div class="form-row">
+											<input type="hidden" name="superhidden" id="superhidden" />
+											<div class="form-input col-md-10 col-md-offset-2">
+												<p:commandButton value="Enregistrer"
+													actionListener="#{ClientBean.adding(ClientBean.client)}"
+													icon="ui-icon-circle-check"
+													class="btn medium primary-bg radius-all-4" update="@parent" />
+											</div>
+										</div>
+
+									</h:form>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
 			</div>
-			
-			<div class="btn-wrap">
-				<button type="button" class="btn" data-target="#register-form"><i class="icon-edit"></i></button>
-			</div>
-			<div class="btn-wrap">
-				<button type="button" class="btn" data-target="#forget-form"><i class="icon-edit"></i></button>
-			</div>
-			
-		</div>
-
-		<div id="login-inner" class="login-inset">
-
-			<div id="login-circle">
-				<section id="login-form" class="login-inner-form">
-					<h1>Login #{access.name()} </h1>
-			
-				</section>
-				
-				<section id="register-form" class="login-inner-form">
-					<h1>Register Shop Owner</h1>
-						
-		<h:form>			
-		   <p:growl id="growl" showDetail="true" life="3000"   /> 
-							
-<p:panelGrid columns="2" style="width:110%">
-		 <h:outputText  value="nom"  />
-			    	<p:inputText value="#{ShopOwnerBean.shopOwner.nom}"
-						style="width:100%" />
-	
-			   
-	
-			  <h:outputText  value="prenom"  />   	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.prenom}"
-						style="width:100%" />
-			
-			    
-			<h:outputText  value="Login"  />     	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.login}"
-						style="width:100%" />
-						
-			  
-		
-					
-			<h:outputText  value="Password"  />     	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.password}"
-						style="width:100%" />
-						
-			    
-			    
-			
-			  <h:outputText  value="Email"  />    	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.email}"
-						style="width:100%" />
-						
-			    
-			<h:outputText  value="Adresse"  />  
-			    	
-			    	<p:inputText  value="#{ShopOwnerBean.shopOwner.adresse}"
-						style="width:100%" />
-						
-			
-			    
-			    
-			    <h:outputText  value="Notification"  />  
-		
-			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.notification}"
-						style="width:100%" />
-						
-			  
-			    
-			     <h:outputText  value="approuver"  />  
-			    	
-			  			<p:selectBooleanCheckbox value="#{ShopOwnerBean.shopOwner.approuver}"
-						style="width:100%" />
-
-						
-		</p:panelGrid>	  
-						
-						  <p:outputLabel>Numéro de boutique</p:outputLabel>
-					<h:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.boutique.id}"  required="true" requiredMessage="Numéro de Boutique Obligatoire" filter="true">
-						<f:selectItem itemLabel="select"  itemValue="" />
-						<f:selectItems value="#{ShopOwnerBean.listBoutique}"
-						var="item2"
-						itemValue="#{item2.id}"
-						itemLabel="#{item2.num}"/>
-						
-											</h:selectOneMenu>
-					
-						
-			
-			 			
-						  <p:outputLabel>Secteur Activiter</p:outputLabel>
-					<h:selectOneMenu  style="width:100%"  value="#{ShopOwnerBean.shopOwner.secteurActiviter.id}"  required="true" requiredMessage="Secteur Activiter Obligatoire" filter="true">
-						<f:selectItem itemLabel="select"  itemValue="" />
-						<f:selectItems value="#{ShopOwnerBean.listSecteurActivite}"
-						var="item2"
-						itemValue="#{item2.id}"
-						itemLabel="#{item2.libelle}"/>
-						
-											</h:selectOneMenu>	
-			    
-			<p:commandButton value="Enregistrer"  
-					oncomplete="if(!args.validationFailed){PF('UPDATE').hide();}" actionListener="#{ShopOwnerBean.updating(ShopOwnerBean.shopOwner)}"  icon="ui-icon-circle-check"   update="@form" />
-			
-				</h:form>	
-				</section>
-				<section id="forget-form" class="login-inner-form">
-					<h1>Register Client</h1>
-				<h:form>
-				   <p:growl id="growl" showDetail="true" life="3000"   /> 
-						
-						
-<p:panelGrid columns="2" style="width:110%">
-		 <h:outputText  value="nom"  />
-			    	<p:inputText value="#{ClientBean.client.nom}"
-						style="width:100%" />
-	
-			   
-	
-			  <h:outputText  value="prenom"  />   	
-			    	<p:inputText  value="#{ClientBean.client.prenom}"
-						style="width:100%" />
-			
-			    
-			<h:outputText  value="Login"  />     	
-			    	<p:inputText  value="#{ClientBean.client.login}"
-						style="width:100%" />
-						
-			  
-		
-					
-			<h:outputText  value="Password"  />     	
-			    	<p:inputText  value="#{ClientBean.client.password}"
-						style="width:100%" />
-						
-			    
-			    
-			
-			  <h:outputText  value="Email"  />    	
-			    	<p:inputText  value="#{ClientBean.client.email}"
-						style="width:100%" />
-						
-			    
-			<h:outputText  value="Adresse"  />  
-			    	
-			    	<p:inputText  value="#{ClientBean.client.adresse}"
-						style="width:100%" />
-						
-		
-			<h:outputText  value="Tel"  />  
-			    	
-			  			<p:inputText  value="#{ClientBean.client.tel}"
-						style="width:100%" />
-							    
-			    <h:outputText  value="Notification"  />  
-		
-			  			<p:selectBooleanCheckbox value="#{ClientBean.client.notification}"
-						style="width:100%" />
-			
-			</p:panelGrid>			
-	<p:commandButton value="Enregistrer"  
-					oncomplete="if(!args.validationFailed){PF('ADDING').hide();}"  actionListener="#{ClientBean.adding(ClientBean.client)}"  icon="ui-icon-circle-check" update="@form" />
-					
-					
-					</h:form>	
-				</section>
-			
-			</div>
-
-		</div>
-
-	    
-    </div>
-  
-  
-  
-</h:body>
 
 
 
-</html>
+
+
+		</h:body>
+
+
+	</ui:define>
+</ui:composition>

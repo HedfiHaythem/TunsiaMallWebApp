@@ -76,7 +76,7 @@ public class ShopOwnerBean implements Serializable {
 				serviceShopOwner.create(ta);
 		initialization();
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Enregistré(e) avec succés", "");
+				"EnregistrÃ©e avec succÃ©s", "");
 		FacesContext.getCurrentInstance().addMessage
 
 		(null, msg);
@@ -89,7 +89,7 @@ public class ShopOwnerBean implements Serializable {
 		initialization();
 
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"mis(e) à jour avec succés", "");
+				"mis(e) ï¿½ jour avec succï¿½s", "");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		
 	}
@@ -102,7 +102,7 @@ public class ShopOwnerBean implements Serializable {
 			serviceShopOwner.delete(new ShopOwner(),"id",ta.getId()+"");
 			initialization();
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"Supprimé(e) avec succés", "");
+					"Supprimï¿½(e) avec succï¿½s", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		} catch (Exception e) {
 			initialization();

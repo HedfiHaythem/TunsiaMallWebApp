@@ -73,7 +73,7 @@ public class ClientBean implements Serializable {
 				serviceClient.create(ta);
 		initialization();
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Enregistré(e) avec succés", "");
+				"EnregistrÃ© avec succÃ©s", "");
 		FacesContext.getCurrentInstance().addMessage
 
 		(null, msg);
@@ -86,7 +86,7 @@ public class ClientBean implements Serializable {
 		initialization();
 
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"mis(e) à jour avec succés", "");
+				"mis(e) ï¿½ jour avec succï¿½s", "");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		
 	}
@@ -99,7 +99,7 @@ public class ClientBean implements Serializable {
 			serviceClient.delete(new Client(),"id",ta.getId()+"");
 			initialization();
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"Supprimé(e) avec succés", "");
+					"Supprimï¿½(e) avec succï¿½s", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		} catch (Exception e) {
 			initialization();

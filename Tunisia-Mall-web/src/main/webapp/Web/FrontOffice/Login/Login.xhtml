@@ -10,42 +10,97 @@ template="/Web/squelette/squelette.xhtml">
 
 <h:head>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</h:head>
-	<ui:define name="PageTitle">
-Login 
-</ui:define>     	
+</h:head>    	
 	<ui:define name="content">
    
 	
 	<h:body>
 	
-	
-			<h:form styleClass="form-vertical" >
-					   <p:growl id="growl" showDetail="true" life="3000"   /> 
-						<div class="control-group-merged">
-							<div class="control-group">
-						
-								<h:inputText  styleClass="big required" value="#{access.email}"  id="input-username"    required="true" requiredMessage="Adresse électronique incorrecte L’adresse électronique que vous avez saisie n’est associée à aucun compte. Vous pouvez vous connecter en utilisant l’adresse électronique, le nom d’utilisateur ou le numéro de téléphone mobile associé(e) à votre compte. Assurez-vous qu’il/elle soit tapée correctement." />   
+	<h:form styleClass="col-md-3 center-margin form-vertical mrg25T" >
 
-							</div>
-							<div class="control-group">
-									<h:inputSecret  styleClass="big required" value="#{access.password}"   name="Login[password]" id="input-password" required="true" requiredMessage="Vous devez saisir votre mot de passe" /> 
- 
-							</div>
-						</div>
-						<!-- 
-								<div class="control-group">
-									<label class="checkbox">
-										<input type="checkbox" name="Login[remember]" class="uniform" /> Remember me
-									</label>
-								</div>
-						 -->
-						<div class="form-actions">
-					  							<p:commandButton value="login" action="#{access.doLogin}" ajax="false" />
-								  	
-								</div>
-					</h:form>
-	
+                    <div id="login-form" class="content-box">
+                        <h3 class="content-box-header ui-state-default">
+                            <div class="glyph-icon icon-separator">
+                                <i class="glyph-icon icon-user"></i>
+                            </div>
+                            <span>Login</span>
+                        </h3>
+                        <div class="content-box-wrapper pad20A pad0B">
+                            <div class="form-row">
+                                <div class="form-label col-md-2">
+                                    <label for="login_email">
+                                        Email:
+                                        <span class="required">*</span>
+                                    </label>
+                                </div>
+                                <div class="form-input col-md-10">
+                                    <div class="form-input-icon">
+                                        <i class="glyph-icon icon-envelope-alt ui-state-default"></i>
+                                        								<h:inputText  styleClass="big required" value="#{access.email}"  id="input-username"    required="true" requiredMessage="Adresse électronique incorrecte L’adresse électronique que vous avez saisie n’est associée à aucun compte. Vous pouvez vous connecter en utilisant l’adresse électronique, le nom d’utilisateur ou le numéro de téléphone mobile associé(e) à votre compte. Assurez-vous qu’il/elle soit tapée correctement." />   
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label col-md-2">
+                                    <label for="login_pass">
+                                        Password:
+                                    </label>
+                                </div>
+                                <div class="form-input col-md-10">
+                                    <div class="form-input-icon">
+                                        <i class="glyph-icon icon-unlock-alt ui-state-default"></i>
+                                        <h:inputSecret  styleClass="big required" value="#{access.password}" data-rangelength="[3,25]"  name="login_pass" id="login_pass" required="true" requiredMessage="Vous devez saisir votre mot de passe" /> 
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        </div>
+                        <div class="button-pane text-center">
+                            <p:commandButton type="submit" value="Login" class="btn large primary-bg text-transform-upr font-size-11" id="demo-form-valid" title="Validate!" action="#{access.doLogin}">
+                               
+                            </p:commandButton>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+                    <div class="form-row text-center">
+                    <h:outputLink value="Oldlogin.xhtml" class="btn large primary-bg text-transform-upr font-size-13">Register a new account</h:outputLink>
+                    		
+                    </div>
+                    <div class="ui-dialog mrg5T no-shadow hide" id="login-forgot" style="position: relative !important;">
+                        <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+                            <span class="ui-dialog-title">Recover password</span>
+                        </div>
+                        <div class="pad20A ui-dialog-content ui-widget-content">
+                            <div class="form-row">
+                                <div class="form-label col-md-2">
+                                    <label for="">
+                                        Email address:
+                                    </label>
+                                </div>
+                                <div class="form-input col-md-10">
+                                    <div class="form-input-icon">
+                                        <i class="glyph-icon icon-envelope-alt ui-state-default"></i>
+                                        <input placeholder="Email address" type="text" name="" id=""/>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="ui-dialog-buttonpane text-center">
+
+                            <a href="javascript:;" switch-target="#login-form" switch-parent="#login-forgot" class="btn large transparent no-shadow toggle-switch font-bold font-size-11 radius-all-4" id="login-form-valid" onclick="javascript:$('#login-validation').parsley( 'validate' );" title="Validate!">
+                                <span class="button-content">
+                                    Cancel
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+</h:form>
+
 	
 	</h:body>
 

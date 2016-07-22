@@ -166,12 +166,13 @@
                     </div>
                 </div>
              
-            	 <c:if test="${ empty sessionScope.superAdmin ||  empty sessionScope.client || empty sessionScope.shopOwner }">
-             		 <div class="user-profile dropdown">
+            	 <c:if test="${ empty sessionScope.superAdmin and  empty sessionScope.client and empty sessionScope.shopOwner }">
+            	 
+             		 <div class="dropdown dash-menu">
 	             		<h:form>
-	                            <h:commandLink action="#{access.doLogin()}" value="Login">
+	                            <h:commandLink action="#{access.doLogin()}" value="Login" class="btn medium bg-gray float-left mrg5A">
 	                                <i class="glyph-icon icon-signin font-size-13 mrg5R"></i>
-	                                <span class="font-bold"></span>
+	                                <span class="button-content"></span>
 	                            </h:commandLink>
 	                         </h:form> 
 	                  </div>       
