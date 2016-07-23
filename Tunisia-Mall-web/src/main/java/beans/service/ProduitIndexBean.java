@@ -161,10 +161,21 @@ public class ProduitIndexBean implements Serializable {
 			if(ut.getUserfromMapSession() instanceof ShopOwner){
 				shopOwner = (ShopOwner) ut.getUserfromMapSession();
 				}
-			 mesCommandes=serviceCommande.findReqList(new Commande(), "shopOwner.id="+ shopOwner.getId().toString());
+			commandeFrs=serviceCommande.findReqList(new Commande(), "shopOwner.id="+ shopOwner.getId().toString());
 			
 		}
 		
+		
+		public Integer SizeCommandesFrs(){
+			 Iutility ut =new Utility();
+			 ShopOwner shopOwner = null;
+			if(ut.getUserfromMapSession() instanceof ShopOwner){
+				shopOwner = (ShopOwner) ut.getUserfromMapSession();
+				}
+			commandeFrs=serviceCommande.findReqList(new Commande(), "shopOwner.id="+ shopOwner.getId().toString());
+			
+			return commandeFrs.size();
+		}
 		
 		public void validerCommandesFrs(){
 			 Iutility ut =new Utility();

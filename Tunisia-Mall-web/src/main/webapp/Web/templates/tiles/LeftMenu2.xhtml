@@ -65,15 +65,36 @@
 				<p:menu toggleable="true">
 					<p:submenu label="Gestion-Mall">
 						<p:menuitem value="Sous Catégorie"
-							url="#{request.contextPath}/Web/BackOffice/ShopOwner/Gestion/SousCategorie/SousCategorie.xhtml"
+							url="/Web/BackOffice/ShopOwner/Gestion/SousCategorie/SousCategorie.xhtml"
 							icon="ui-icon-home" />
 						<p:menuitem value="Produit"
-							url="#{request.contextPath}/Web/BackOffice/ShopOwner/Gestion/Produit/Produit.xhtml"
+							url="/Web/BackOffice/ShopOwner/Gestion/Produit/Produit.xhtml"
 							icon="ui-icon-home" />
+							
+							<p:menuitem value="Commande-reçu"
+							url="/Web/BackOffice/ShopOwner/Gestion/Commande/MesCommande.xhtml"
+							icon="ui-icon-home" />
+							
 					</p:submenu>
 				</p:menu>
 			</h:form>
 			</c:if>
+			
+			
+			
+					<c:if test="${not empty sessionScope.client}">
+			<h:form>
+				<p:menu toggleable="true">
+					<p:submenu label="Mon-espace">
+						<p:menuitem value="Mes Commande"
+							url="/Web/BackOffice/Client/Commande/MesCommande.xhtml"
+							icon="ui-icon-home" />
+						
+					</p:submenu>
+				</p:menu>
+			</h:form>
+			</c:if>
+			
 			
 			<div class="divider mrg5T mobile-hidden"></div>
 			<div class="text-center mobile-hidden">

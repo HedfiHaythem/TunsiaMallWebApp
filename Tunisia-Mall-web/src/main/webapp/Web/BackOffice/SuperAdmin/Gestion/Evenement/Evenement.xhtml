@@ -18,7 +18,7 @@
 		
 			<h:form id="formNewSliderUploadFile2" onreset="reset()">
 										<p:dialog header="Nouveau" widgetVar="ADDINGFILEBanner"
-											onLoad="reset()" modal="true">
+											onLoad="reset()" >
 
 
 											<p:fileUpload
@@ -88,6 +88,13 @@
 															value="/PublicImage/#{item.img}"
 															rendered="#{not empty item.img}" />
 
+							
+									<p:commandButton update="@parent" style="align:center;"
+									actionListener="#{EvenementBean.notifyClient()}" icon="ui-icon-pencil">
+								<f:setPropertyActionListener value="#{item}"
+									target="#{EvenementBean.evenement}" />
+							</p:commandButton>
+							
 							<p:commandButton update=":formUpdate" style="align:center;"
 								oncomplete="PF('UPDATE').show()" icon="ui-icon-pencil">
 								<f:setPropertyActionListener value="#{item}"
@@ -119,7 +126,7 @@
 
 		<h:form id="formUpdate" onreset="reset()">
 			<p:dialog header="Update" widgetVar="UPDATE" onLoad="reset()"
-				modal="true" width="500" height="500">
+				 width="500" height="500">
 
 
 				
@@ -160,7 +167,7 @@
 
 		<h:form id="formNew" onreset="reset()">
 			<p:dialog header="Nouveau" widgetVar="ADDING" onLoad="reset()"
-				modal="true" width="500" height="500">
+				 width="500" height="500">
 
 				<h:outputText value=" dateDebut *" />
 				<p:calendar label="dateDebut" style="width:98%"
