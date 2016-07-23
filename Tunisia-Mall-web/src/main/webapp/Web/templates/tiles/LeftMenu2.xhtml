@@ -27,6 +27,23 @@
             <div id="page-sidebar" class="scrollable-content">
 
                 <div id="sidebar-menu">
+          <h:form>  
+        <p:menu toggleable="true">
+           <p:submenu label="Gestion-Mall">
+            <p:menuitem value="Boutique" url="/Web/BackOffice/SuperAdmin/Gestion/Boutique/Boutique.xhtml" icon="ui-icon-home"/>
+                <p:menuitem value="Catégorie" url="/Web/BackOffice/SuperAdmin/Gestion/Categorie/Categorie.xhtml" icon="ui-icon-home"/>
+                <p:menuitem value="Evenement" url="/Web/BackOffice/SuperAdmin/Gestion/Categorie/Categorie.xhtml" icon="ui-icon-home"/>
+                <p:menuitem value="Secteur Activite" url="/Web/BackOffice/SuperAdmin/Gestion/Categorie/Categorie.xhtml" icon="ui-icon-home"/>
+                <p:menuitem value="Secteur Activite" url="/Web/BackOffice/SuperAdmin/Gestion/Categorie/Categorie.xhtml" icon="ui-icon-home"/>
+        	
+                </p:submenu>
+         <p:submenu label="Gestion-Utilisateur">
+                <p:menuitem value="Boutique" url="/Web/BackOffice/SuperAdmin/Gestion/Boutique/Boutique.xhtml" icon="ui-icon-home"/>
+                <p:menuitem value="Boutique" url="/Web/BackOffice/SuperAdmin/Gestion/Boutique/Boutique.xhtml" icon="ui-icon-home"/>
+        </p:submenu>
+        
+    </p:menu>
+    </h:form>    
                     <ul>
                     	<c:if test="${not empty sessionScope.superAdmin}">
                         <li>

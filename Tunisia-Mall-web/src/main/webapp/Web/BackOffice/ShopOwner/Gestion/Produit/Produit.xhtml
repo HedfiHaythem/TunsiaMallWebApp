@@ -14,29 +14,13 @@
 
 <h:head>
 
-  <script type="text/javascript">
-  jQuery.noConflict();
-  // Code that uses other library's $ can follow here.
-</script>  
 </h:head>
    	
 	<ui:define name="content">
 
 		<h:body>
 		
-							<h:form id="formNewSliderUploadFile2" onreset="reset()">
-										<p:dialog header="Nouveau" widgetVar="ADDINGFILEBanner"
-											onLoad="reset()" >
-
-
-											<p:fileUpload
-												fileUploadListener="#{ProduitBean.fileUpload22}"
-												mode="advanced" dragDropSupport="true" multiple="false"
-												update=":formDataTableSlider" sizeLimit="1000000"
-												allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-
-										</p:dialog>
-									</h:form>
+						
 			<h:form id="formDataTableSlider">
 				<p:growl id="msg" showDetail="false" enctype="multipart/form-data" />
 				<!-- DATA TABLE LIST ALL MARQUE -->
@@ -160,13 +144,13 @@
 
 										
 <p:outputLabel>Sous Categorie</p:outputLabel>
-<p:selectOneMenu value="#{ProduitBean.produit.souscategories.id}" required="true" requiredMessage="Type Annonce Obligatoire" filter="true">
+<h:selectOneMenu value="#{ProduitBean.produit.souscategories.id}" required="true" requiredMessage="Type Annonce Obligatoire" filter="true">
 <f:selectItem itemLabel="select"  itemValue="" />
 <f:selectItems value="#{ProduitBean.listSousCategories}"
 var="item2"
 itemValue="#{item2.id}"
 itemLabel="#{item2.libelle}"/>
-</p:selectOneMenu>
+</h:selectOneMenu>
 							
 					
 
@@ -203,14 +187,14 @@ itemLabel="#{item2.libelle}"/>
 				<p:inputText label="tva" style="width:98%"
 					value="#{ProduitBean.produit.tva}" />
 					
-					<p:outputLabel>Categorie</p:outputLabel>
-<p:selectOneMenu value="#{ProduitBean.produit.souscategories.id}" required="true" requiredMessage="Type Annonce Obligatoire" filter="true">
+					<p:outputLabel>Sous Categorie</p:outputLabel>
+<h:selectOneMenu value="#{ProduitBean.produit.souscategories.id}" required="true" requiredMessage="Type Annonce Obligatoire" >
 <f:selectItem itemLabel="select"  itemValue="" />
 <f:selectItems value="#{ProduitBean.listSousCategories}"
 var="item2"
 itemValue="#{item2.id}"
 itemLabel="#{item2.libelle}"/>
-</p:selectOneMenu>
+</h:selectOneMenu>
 					
 	         
 				<f:facet name="footer">
@@ -222,6 +206,20 @@ itemLabel="#{item2.libelle}"/>
 				</f:facet>
 			</p:dialog>
 		</h:form>
+		
+			<h:form id="formNewSliderUploadFile2" onreset="reset()">
+										<p:dialog header="Nouveau" widgetVar="ADDINGFILEBanner"
+											onLoad="reset()" >
+
+
+											<p:fileUpload
+												fileUploadListener="#{ProduitBean.fileUpload22}"
+												mode="advanced" dragDropSupport="true" multiple="false"
+												update=":formDataTableSlider" sizeLimit="1000000"
+												allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+										</p:dialog>
+									</h:form>
 		<!-- ******************************************************************************************************************************************************************* -->
 	</ui:define>
 </ui:composition>

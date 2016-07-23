@@ -53,7 +53,21 @@ public class ProduitIndexBean implements Serializable {
 	private List<Produit> listProduits ;
 	private List<Produit> listProduitselected =new ArrayList<Produit>();
 	private List<Commande> mesCommandes;
+	private List<Commande> commandeFrs;
+	private Commande commande;
 	
+	public List<Commande> getCommandeFrs() {
+		return commandeFrs;
+	}
+
+
+
+	public void setCommandeFrs(List<Commande> commandeFrs) {
+		this.commandeFrs = commandeFrs;
+	}
+
+
+
 	/**
 	 * ------------------------------------------------------------------------
 	 * --------------------------------------------------------
@@ -115,6 +129,7 @@ public class ProduitIndexBean implements Serializable {
 			commande.setProduits(listProduitselected );
 			commande.setClient(client);
 			commande.setEtat("en cours");
+			commande.setShopOwner(listProduitselected.get(0).getShopOwner());
 			serviceCommande.create(commande);
 			
 			listProduitselected=new ArrayList<>();
@@ -132,6 +147,32 @@ public class ProduitIndexBean implements Serializable {
 				client = (Client) ut.getUserfromMapSession();
 				}
 			 mesCommandes=serviceCommande.findReqList(new Commande(), "client.id="+ client.getId().toString());
+			
+		}
+		
+		public void mesCommandesFrs(){
+			 Iutility ut =new Utility();
+			 ShopOwner shopOwner = null;
+			if(ut.getUserfromMapSession() instanceof ShopOwner){
+				shopOwner = (ShopOwner) ut.getUserfromMapSession();
+				}
+			 mesCommandes=serviceCommande.findReqList(new Commande(), "shopOwner.id="+ shopOwner.getId().toString());
+			
+		}
+		
+		
+		public void validerCommandesFrs(){
+			 Iutility ut =new Utility();
+			 ShopOwner shopOwner = null;
+			if(ut.getUserfromMapSession() instanceof ShopOwner){
+				shopOwner = (ShopOwner) ut.getUserfromMapSession();
+				}
+			commande.setEtat("ok");
+			serviceCommande.update(commande);
+			
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Commande Valider Avec Succes", "");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
 			
 		}
 		
@@ -185,6 +226,18 @@ public class ProduitIndexBean implements Serializable {
 
 	public void setMesCommandes(List<Commande> mesCommandes) {
 		this.mesCommandes = mesCommandes;
+	}
+
+
+
+	public Commande getCommande() {
+		return commande;
+	}
+
+
+
+	public void setCommande(Commande commande) {
+		this.commande = commande;
 	}
 	 
 
