@@ -129,8 +129,13 @@ public class ProduitIndexBean implements Serializable {
 			commande.setProduits(listProduitselected );
 			commande.setClient(client);
 			commande.setEtat("en cours");
-			commande.setShopOwner(listProduitselected.get(0).getShopOwner());
-			serviceCommande.create(commande);
+			for (int i = 0; i < listProduitselected.size(); i++) {
+				commande.setShopOwner(listProduitselected.get(i).getShopOwner());
+				serviceCommande.create(commande);
+				
+			}
+				
+			
 			
 			listProduitselected=new ArrayList<>();
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,

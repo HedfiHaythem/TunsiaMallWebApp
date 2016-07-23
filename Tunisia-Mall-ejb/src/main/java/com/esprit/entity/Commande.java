@@ -26,6 +26,7 @@ public class Commande implements Serializable{
 	private Date dateLivraison;
 	private String etat;
 	private Client client;
+	private ShopOwner shopOwner;
 	private  List<Produit> produits;
 	
 	
@@ -77,6 +78,14 @@ public class Commande implements Serializable{
 	}
 	public void setProduits(List<Produit> produits) {
 		this.produits = produits;
+	}
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	public ShopOwner getShopOwner() {
+		return shopOwner;
+	}
+	public void setShopOwner(ShopOwner shopOwner) {
+		this.shopOwner = shopOwner;
 	}
 	
 	

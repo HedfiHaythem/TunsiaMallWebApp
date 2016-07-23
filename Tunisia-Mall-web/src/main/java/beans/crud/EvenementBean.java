@@ -1,11 +1,13 @@
 package beans.crud;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -14,11 +16,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 
 import org.primefaces.event.FileUploadEvent;
 
+import com.esprit.entity.Client;
 import com.esprit.entity.Evenement;
+import com.esprit.entity.SuperAdmin;
 import com.esprit.entity.Utilisateur;
+import com.esprit.mail.ConfigUtility;
+import com.esprit.mail.EmailUtility;
 import com.esprit.service.UserServiceLocal;
 
 import utility.Iutility;
@@ -35,6 +43,9 @@ public class EvenementBean implements Serializable {
 	private UserServiceLocal<Evenement>  ServiceEvenement;
 	
 
+	@EJB
+	private UserServiceLocal<Client>  serviceClient;
+	
 
 	/**
 	 * ------------------------------------------------------------------------
@@ -42,6 +53,7 @@ public class EvenementBean implements Serializable {
 	 */
 
 	private List<Evenement> listEvenements ;
+	private List<Client> clients;
 	private List<Evenement> listSelectedEvenements=new ArrayList<Evenement>() ;
 	private List<Evenement> listFilterEvenements ;
 	private Evenement Evenement;
@@ -93,13 +105,45 @@ public class EvenementBean implements Serializable {
 
 	}
 
+	private ConfigUtility configUtil = new ConfigUtility();
 	
 
+	public void notifyClient(){
+		
+		clients=serviceClient.findReqList(new Client(), "notification="+1);
+		for (int i = 0; i < clients.size(); i++) {
+				
+			
+			Properties smtpProperties;
+			try {
+				smtpProperties = configUtil.loadProperties();
+				EmailUtility.sendEmail(smtpProperties, clients.get(i).getEmail(), "evenement numero :"+Evenement.getId(), Evenement.getDescription(), null);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (AddressException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		}
+		
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+				"notification envoyer  avec succés", "");
+		FacesContext.getCurrentInstance().addMessage
+
+		(null, msg);
+	}
 	 
 	 
 	 
 	public void adding(Evenement ta) {
 		ServiceEvenement.create(ta);
+		notifyClient();
 		initialization();
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"Enregistré(e) avec succés", "");
